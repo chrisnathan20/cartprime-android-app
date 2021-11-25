@@ -14,11 +14,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    // re-directs user to Login page for Store Owners
     public void storeOwner_button (View view){
         Intent intent = new Intent(this, LoginStoreOwnerActivity.class);
         startActivity(intent);
     }
 
+    // re-directs user to Login page for Customers
     public void customer_button (View view){
         Intent intent = new Intent(this, LoginCustomerActivity.class);
         startActivity(intent);

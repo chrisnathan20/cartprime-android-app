@@ -11,4 +11,5 @@
     <string name="lastname">Last Name</string>
     <string name="registertext">To register an account, click here.</string>
     <string name="createAccount_button">Create new account</string>
+    <string name="emptytext"></string>
 </resources>
