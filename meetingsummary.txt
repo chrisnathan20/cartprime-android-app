@@ -1,0 +1,25 @@
+Things we have done so far:
+- formed a group of 4
+- choose the scrum master
+- set up ways of communication
+- choose github as version control system
+- schedule 15 minute recurrent "standup" meetings
+- information to include in the commits
+- wrote down working agreement
+- learned git and github
+- learned android studio
+- learned firebase
+- initialize git repository
+- set up firebase realtime database
+- define classes including its fields and methods
+- finish coding classes
+- design welcome page layout
+- program welcome page activity
+- design login page layout
+- program login page activity
+- design register page layout
+- program register page activity
+- implement registeration functionality for store owner
+- implement registeration functionality for customer
+
+Split it into 7 days of work
