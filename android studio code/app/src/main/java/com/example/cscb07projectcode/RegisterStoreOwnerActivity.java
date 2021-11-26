@@ -38,33 +38,37 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginStoreOwnerActivity.class);
 
         // store user input for first name
-        EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
-        String firstname_field = editText.getText().toString();
+        EditText firstname_id = (EditText) findViewById(R.id.editTextTextPersonName);
+        String firstname_field = firstname_id.getText().toString();
 
         // store user input for last name
-        editText = (EditText) findViewById(R.id.editTextTextPersonName2);
-        String lastname_field = editText.getText().toString();
+        EditText lastname_id = (EditText) findViewById(R.id.editTextTextPersonName2);
+        String lastname_field = lastname_id.getText().toString();
 
         // store user input for email (e.g. username)
-        editText = (EditText) findViewById(R.id.editTextTextEmailAddress);
-        String email_field = editText.getText().toString();
+        EditText email_id = (EditText) findViewById(R.id.editTextTextEmailAddress);
+        String email_field = email_id.getText().toString();
 
         // store user input for password
-        editText = (EditText) findViewById(R.id.editTextTextPassword);
-        String password_field = editText.getText().toString();
+        EditText password_id = (EditText) findViewById(R.id.editTextTextPassword);
+        String password_field = password_id.getText().toString();
 
         // checks if any input fields (e.g. first name, last name, email, password) are empty
         if(firstname_field.isEmpty()){
             field_status=false;
+            firstname_id.setError("Please fill in your first name.");
         }
         if(lastname_field.isEmpty()){
             field_status=false;
+            lastname_id.setError("Please fill in your last name.");
         }
         if(email_field.isEmpty()){
             field_status=false;
+            email_id.setError("Please fill in your email.");
         }
         if(password_field.isEmpty()){
             field_status=false;
+            password_id.setError("Please fill in your password.");
         }
 
         // inform user that at least one input box is empty and needs to be filled
@@ -83,6 +87,7 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
                     // if username is already taken
                     if(snapshot.exists()){
                         notifyMessage.setText("An account is already registered with that email.");
+                        email_id.setError("Someone already has this email.");
                     }
                     // if username is not taken, then append new user into database
                     else {
