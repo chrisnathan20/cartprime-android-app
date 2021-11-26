@@ -4,19 +4,23 @@ import java.util.*;
 
 public class Customer {
     private String username;
-    private String fullName;
+    private String firstname;
+    private String lastname;
     private String password;
-    private ArrayList<Order> orders;
+    //private ArrayList<Order> orders;
 
     public Customer() {
     }
 
-    public Customer(String username, String fullName, String password) {
+    public Customer(String username, String firstname, String lastname, String password) {
         this.username = username;
-        this.fullName = fullName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.password = password;
-        this.orders = new ArrayList<Order>();
+        //this.orders = new ArrayList<Order>();
     }
+
+    // getters and setters
 
     public String getUsername() {
         return username;
@@ -26,12 +30,20 @@ public class Customer {
         this.username = newUsername;
     }
 
-    public String getfullName() {
-        return fullName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setfullName(String newfullName) {
-        this.fullName = newfullName;
+    public void setFirstname(String newFirstname) {
+        this.firstname = newFirstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String newLastname) {
+        this.firstname = newLastname;
     }
 
     public String getPassword() {
@@ -42,7 +54,7 @@ public class Customer {
         this.password = newPassword;
     }
 
-    public ArrayList<Order> getOrders(){
+    /*public ArrayList<Order> getOrders(){
         return orders;
     }
 
@@ -52,5 +64,5 @@ public class Customer {
 
     public void addOrder(Order order) {
         orders.add(order);
-    }
+    }*/
 }
