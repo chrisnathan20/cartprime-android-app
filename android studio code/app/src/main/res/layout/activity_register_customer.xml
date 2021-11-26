@@ -93,7 +93,6 @@
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:autofillHints=""
         android:ems="10"
         android:hint="@string/lastname"
         android:inputType="textPersonName"
