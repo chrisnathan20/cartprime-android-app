@@ -80,12 +80,15 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
             // getReference(): selects data under key:"StoreOwners" who has a child named (email_field)
             // convention for storing data: StoreOwners -> (username) -> (firstname,lastname,username,password)
             // note: email and username are synonyms
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("StoreOwners").child(email_field);
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("taken_usernames").child(email_field);
             ValueEventListener listener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     // if username is already taken
                     if(snapshot.exists()){
+                        // the reqason for if condition is because listener will instanteously trigger when new account is added
+                        // this means it will show an error for a split second before re-directing you to login screen
+                        // if statement prevents that
                         notifyMessage.setText("An account is already registered with that email.");
                         email_id.setError("Someone already has this email.");
                     }
@@ -93,9 +96,12 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
                     else {
                         // create a new user instance with user-specified data
                         StoreOwner storeowner = new StoreOwner(firstname_field, lastname_field, email_field, password_field);
-                        // append new user under StoreOwners as a child with key: email
+                        // get database refernce
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                        ref.child("StoreOwners").child(email_field).setValue(storeowner);
+                        // append new user under StoreOwners as a child with key: email
+                        ref.child("users").child("storeowners").child(email_field).setValue(storeowner);
+                        // append username into list of pre-existing usernames
+                        ref.child("users").child("taken_usernames").child(email_field).setValue(email_field);
                         // re-directs the user to login page for StoreOwners
                         startActivity(intent);
                     }

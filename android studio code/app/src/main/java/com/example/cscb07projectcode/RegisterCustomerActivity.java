@@ -79,7 +79,7 @@ public class RegisterCustomerActivity extends AppCompatActivity {
             // getReference(): selects data under key:"Customers" who has a child named (email_field)
             // convention for storing data: Customers -> (username) -> (firstname,lastname,username,password)
             // note: email and username are synonyms
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("StoreOwners").child(email_field);
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("taken_usernames").child(email_field);
             ValueEventListener listener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -92,9 +92,12 @@ public class RegisterCustomerActivity extends AppCompatActivity {
                     else {
                         // create a new user instance with user-specified data
                         Customer customer = new Customer(email_field, firstname_field, lastname_field, password_field);
-                        // append new user under Customers as a child with key: email
+                        // get data reference into db
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                        ref.child("Customers").child(email_field).setValue(customer);
+                        // append user data into database under users -> customers
+                        ref.child("users").child("customers").child(email_field).setValue(customer);
+                        // append username into list of pre-existing usernames
+                        ref.child("users").child("taken_usernames").child(email_field).setValue(email_field);
                         // re-directs the user to login page for Customers
                         startActivity(intent);
                     }
