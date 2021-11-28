@@ -34,7 +34,7 @@ public class Order {
     public HashMap<String,Integer> getOrderContents()
     { return this.orderContents; }
     public int getOrderId()
-    {return this.orderId}
+    {return this.orderId; }
     public boolean getOrderStatus()
     {return this.orderStatus;}
     public Customer getCustomer()

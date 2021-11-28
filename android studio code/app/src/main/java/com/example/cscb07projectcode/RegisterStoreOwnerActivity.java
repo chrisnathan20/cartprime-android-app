@@ -16,6 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterStoreOwnerActivity extends AppCompatActivity {
 
     @Override
@@ -71,12 +74,21 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
             password_id.setError("Please fill in your password.");
         }
 
+        // checks if email input is valid
+        Pattern pattern = Pattern.compile("[A-Za-z0-9_.-]+@[A-Za-z]+\\.c[A-Za-z]+");
+        Matcher matcher = pattern.matcher(email_field);
+        boolean valid_email = true;
+        if (!matcher.matches()){
+            notifyMessage.setText("Please input valid email.");
+            valid_email = false;
+        }
+
         // inform user that at least one input box is empty and needs to be filled
         if(!field_status){
             notifyMessage.setText("Please fill in all input fields.");
         }
         // proceed to next validation check: validates if email input is available
-        else{
+        else if (valid_email){
             // getReference(): selects data under key:"StoreOwners" who has a child named (email_field)
             // convention for storing data: StoreOwners -> (username) -> (firstname,lastname,username,password)
             // note: email and username are synonyms
