@@ -1,10 +1,14 @@
-package com.example.cscb07projectcode;
+package com.example.cscb07projectcode.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.cscb07projectcode.Activities.LoginCustomerActivity;
+import com.example.cscb07projectcode.Activities.LoginStoreOwnerActivity;
+import com.example.cscb07projectcode.R;
 
 public class MainActivity extends AppCompatActivity {
 

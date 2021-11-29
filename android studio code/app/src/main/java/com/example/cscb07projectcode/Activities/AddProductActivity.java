@@ -1,4 +1,4 @@
-package com.example.cscb07projectcode;
+package com.example.cscb07projectcode.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.cscb07projectcode.Item;
+import com.example.cscb07projectcode.R;
+import com.example.cscb07projectcode.StoreOwner;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

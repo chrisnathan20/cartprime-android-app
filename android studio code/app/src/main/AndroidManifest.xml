@@ -10,41 +10,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cscb07projectcode">
         <activity
-            android:name=".AddProductActivity"
+            android:name=".Activities.AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".StoreOwnerMainActivity"
+            android:name=".Activities.StoreOwnerMainActivity"
+            android:parentActivityName=".Activities.LoginStoreOwnerActivity" />
             android:exported="false" />
         <activity
-            android:name=".CustomerMainActivity"
+            android:name=".Activities.CustomerMainActivity"
+            android:parentActivityName=".Activities.LoginCustomerActivity" />
             android:exported="false" />
         <activity
-            android:name=".RegisterCustomerActivity"
+            android:name=".Activities.RegisterCustomerActivity"
             android:exported="false"
             android:label="Customer Sign Up"
-            android:parentActivityName=".LoginCustomerActivity" />
+            android:parentActivityName=".Activities.LoginCustomerActivity" />
         <activity
-            android:name=".LoginCustomerActivity"
+            android:name=".Activities.LoginCustomerActivity"
             android:exported="false"
             android:label="Customer Login"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".Activities.MainActivity" />
         <activity
-            android:name=".RegisterStoreOwnerActivity"
+            android:name=".Activities.RegisterStoreOwnerActivity"
             android:exported="false"
             android:label="Store Owner Sign Up"
-            android:parentActivityName=".LoginStoreOwnerActivity" />
+            android:parentActivityName=".Activities.LoginStoreOwnerActivity" />
         <activity
-            android:name=".LoginStoreOwnerActivity"
+            android:name=".Activities.LoginStoreOwnerActivity"
             android:exported="false"
             android:label="Store Owner Login"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".Activities.MainActivity" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
+            android:value=".Activities.MainActivity" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.cscb07projectcode;
+package com.example.cscb07projectcode.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -6,6 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.cscb07projectcode.R;
+import com.example.cscb07projectcode.Store;
+import com.example.cscb07projectcode.StoreRecyclerAdapter;
 
 import java.util.ArrayList;
 

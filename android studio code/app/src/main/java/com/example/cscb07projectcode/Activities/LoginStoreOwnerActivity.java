@@ -1,4 +1,4 @@
-package com.example.cscb07projectcode;
+package com.example.cscb07projectcode.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class LoginStoreOwnerActivity extends AppCompatActivity implements LoginContract.View{
+import com.example.cscb07projectcode.LoginContract;
+import com.example.cscb07projectcode.R;
+import com.example.cscb07projectcode.StoreOwnerModel;
+import com.example.cscb07projectcode.StoreOwnerPresenter;
+
+public class LoginStoreOwnerActivity extends AppCompatActivity implements LoginContract.View {
 
     public static final String username_key = "username_key";
 

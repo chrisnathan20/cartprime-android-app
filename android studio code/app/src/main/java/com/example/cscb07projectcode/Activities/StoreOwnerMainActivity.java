@@ -1,12 +1,14 @@
-package com.example.cscb07projectcode;
+package com.example.cscb07projectcode.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+
+import com.example.cscb07projectcode.Activities.AddProductActivity;
+import com.example.cscb07projectcode.Activities.LoginStoreOwnerActivity;
+import com.example.cscb07projectcode.R;
 
 public class StoreOwnerMainActivity extends AppCompatActivity {
 
