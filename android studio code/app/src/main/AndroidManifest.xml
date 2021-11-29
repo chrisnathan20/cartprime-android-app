@@ -21,18 +21,22 @@
         <activity
             android:name=".RegisterCustomerActivity"
             android:exported="false"
+            android:label="Customer Sign Up"
             android:parentActivityName=".LoginCustomerActivity" />
         <activity
             android:name=".LoginCustomerActivity"
             android:exported="false"
+            android:label="Customer Login"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RegisterStoreOwnerActivity"
             android:exported="false"
+            android:label="Store Owner Sign Up"
             android:parentActivityName=".LoginStoreOwnerActivity" />
         <activity
             android:name=".LoginStoreOwnerActivity"
             android:exported="false"
+            android:label="Store Owner Login"
             android:parentActivityName=".MainActivity" />
 
         <meta-data

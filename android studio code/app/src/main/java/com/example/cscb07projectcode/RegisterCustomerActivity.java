@@ -24,14 +24,14 @@ public class RegisterCustomerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_store_owner);
+        setContentView(R.layout.activity_register_customer);
     }
 
     // called when user clicks "Create new account" button
     public void CreateNewAccount(View view) {
 
         // initialize the empty message notification
-        TextView notifyMessage = (TextView) findViewById(R.id.textView);
+        TextView notifyMessage = (TextView) findViewById(R.id.textView10);
         notifyMessage.setText("");
 
         // reset field_status=true on each button click
