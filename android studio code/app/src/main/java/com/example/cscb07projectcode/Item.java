@@ -3,26 +3,29 @@ package com.example.cscb07projectcode;
 public class Item {
 
     private String name;
+    private String description;
     private double price;
     private int quantity;
     private String unit;
 
-
     public Item() {
-
     }
 
-    public Item(String name, double price, int quantity, String unit) {
+    public Item(String name, String description, double price, int quantity, String unit) {
         setName(name);
+        setDescription(description);
         setQuantity(quantity);
         setUnit(unit);
         setPrice(price);
-
     }
 
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setDescription(String name) {
+        this.name = description;
     }
 
     public void setPrice(double price) {
@@ -41,6 +44,8 @@ public class Item {
         return this.name;
     }
 
+    public String getDescription(){ return this.description;}
+
     public double getPrice() {
         return this.price;
     }
@@ -52,7 +57,6 @@ public class Item {
     public String getUnit() {
         return this.unit;
     }
-
 
     @Override
     public String toString() {
@@ -66,7 +70,11 @@ public class Item {
         if (o.getClass() != this.getClass())
             return false;
         Item obj = (Item) o;
-        if (obj.getName() != this.name && obj.getPrice() != this.price && obj.getQuantity() != this.quantity && this.unit != obj.getUnit())
+        if (obj.getName() != this.name &&
+                obj.getDescription() != this.description &&
+                obj.getPrice() != this.price &&
+                obj.getQuantity() != this.quantity &&
+                this.unit != obj.getUnit())
             return false;
         return true;
     }

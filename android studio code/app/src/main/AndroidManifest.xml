@@ -10,14 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cscb07projectcode">
         <activity
+            android:name=".AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StoreOwnerMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterCustomerActivity"
             android:exported="false"
-            android:parentActivityName=".LoginCustomerActivity"/>
+            android:parentActivityName=".LoginCustomerActivity" />
         <activity
             android:name=".LoginCustomerActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
-
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RegisterStoreOwnerActivity"
             android:exported="false"
@@ -26,9 +34,11 @@
             android:name=".LoginStoreOwnerActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
+
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".MainActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

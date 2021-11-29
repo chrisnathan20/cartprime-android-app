@@ -18,4 +18,9 @@ public class LoginCustomerActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterCustomerActivity.class);
         startActivity(intent);
     }
+
+    public void login_button (View view){
+        Intent intent = new Intent(this, CustomerMainActivity.class);
+        startActivity(intent);
+    }
 }

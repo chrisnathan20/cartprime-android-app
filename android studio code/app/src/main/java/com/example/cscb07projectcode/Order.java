@@ -15,7 +15,7 @@ public class Order {
 
     public Order(HashMap<String,Integer > orderContents,int orderId,boolean orderStatus,Customer customer,Store store)
     { setOrderContents(orderContents); setOrderId(orderId);setOrderStatus(orderStatus);
-    setStore(store); setCustomer(customer);}
+        setStore(store); setCustomer(customer);}
 
     public void setOrderContents(HashMap<String,Integer> OC)
     { this.orderContents.clear();this.orderContents = OC; }

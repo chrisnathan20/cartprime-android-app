@@ -5,9 +5,7 @@ import java.util.*;
 public class Store {
 
     //private ArrayList<Order> orders;
-
     private String name;
-
     private String description;
 
     //private HashMap<Item, Integer> itemstock; //Key: item, Value: Stock Number

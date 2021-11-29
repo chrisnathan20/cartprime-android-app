@@ -7,20 +7,19 @@ public class StoreOwner {
     String password;
     String firstname;
     String lastname;
-    /* TO-DO
-     Store store = new Store();
-     */
+    String storename;
 
     // empty constructor
     public StoreOwner(){
     }
 
     // non-empty constructor
-    public StoreOwner(String firstname, String lastname, String username, String password){
+    public StoreOwner(String firstname, String lastname, String username, String password, String storename){
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
         this.password = password;
+        this.storename = storename;
     }
 
     // getters and setters
@@ -56,6 +55,15 @@ public class StoreOwner {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+    public String getStorename(){
+        return storename;
+    }
+
+    public void setStorename(String storename){
+        this.storename = storename;
+    }
+
     /* TO-DO
     public Store set_store(){
         ;
