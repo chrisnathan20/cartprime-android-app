@@ -24,8 +24,8 @@ public class Item {
         this.name = name;
     }
 
-    public void setDescription(String name) {
-        this.name = description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setPrice(double price) {

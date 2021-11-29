@@ -37,9 +37,7 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
     }
 
     public void setStoreInfo() {
-        itemsList.add(new Item("Walmart", "Retail"));
-        itemsList.add(new Item("Walmart", "Retail"));
-        itemsList.add(new Item("Walmart", "Retail"));
+        itemsList.add(new Item("Walmart", "Retail", 24.99, 35, "kg"));
     }
 
     public void setAdapter(){
