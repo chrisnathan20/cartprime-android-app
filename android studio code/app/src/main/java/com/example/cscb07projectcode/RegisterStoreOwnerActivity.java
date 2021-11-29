@@ -56,6 +56,14 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
         EditText password_id = (EditText) findViewById(R.id.editTextTextPassword);
         String password_field = password_id.getText().toString();
 
+        // store user input for storename
+        EditText storename_id = (EditText) findViewById(R.id.editTextTextPersonName7);
+        String storename_field = storename_id.getText().toString();
+
+        // store user input for description
+        EditText description_id = (EditText) findViewById(R.id.editTextTextPersonName8);
+        String description_field = description_id.getText().toString();
+
         // checks if any input fields (e.g. first name, last name, email, password) are empty
         if(firstname_field.isEmpty()){
             field_status=false;
@@ -73,6 +81,14 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
             field_status=false;
             password_id.setError("Please fill in your password.");
         }
+        if(storename_field.isEmpty()){
+            field_status=false;
+            password_id.setError("Please fill in your Store's name.");
+        }
+        if(description_field.isEmpty()){
+            field_status=false;
+            password_id.setError("Please fill in your Store's description.");
+        }
 
         // checks if email input is valid
         Pattern pattern = Pattern.compile("[A-Za-z0-9_.-]+@[A-Za-z]+\\.c[A-Za-z]+");
@@ -88,7 +104,8 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
             notifyMessage.setText("Please fill in all input fields.");
         }
         // proceed to next validation check: validates if email input is available
-        else if (valid_email){
+//        else if (valid_email){
+        else{
             // getReference(): selects data under key:"StoreOwners" who has a child named (email_field)
             // convention for storing data: StoreOwners -> (username) -> (firstname,lastname,username,password)
             // note: email and username are synonyms
@@ -106,14 +123,23 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
                     }
                     // if username is not taken, then append new user into database
                     else {
-                        // create a new user instance with user-specified data
-                        StoreOwner storeowner = new StoreOwner(firstname_field, lastname_field, email_field, password_field);
                         // get database refernce
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
+                        // create a new user instance with user-specified data
+                        StoreOwner storeowner = new StoreOwner(firstname_field, lastname_field, email_field, password_field, storename_field);
                         // append new user under StoreOwners as a child with key: email
                         ref.child("users").child("storeowners").child(email_field).setValue(storeowner);
                         // append username into list of pre-existing usernames
                         ref.child("users").child("taken_usernames").child(email_field).setValue(email_field);
+
+                        // create a new store instance
+                        Store store = new Store(storename_field, description_field);
+                        // append new store data under stores with child key: storename
+                        ref.child("stores").child("list_of_stores").child(storename_field).setValue(store);
+                        // append store name into list of pre-existing store names
+                        ref.child("stores").child("taken_storenames").child(storename_field);
+
                         // re-directs the user to login page for StoreOwners
                         startActivity(intent);
                     }

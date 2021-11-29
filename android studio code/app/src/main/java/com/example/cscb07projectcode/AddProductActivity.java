@@ -71,6 +71,7 @@ public class AddProductActivity extends AppCompatActivity {
                         break;
                     }
                 }
+                startActivity(newIntent);
             }
 
             @Override
