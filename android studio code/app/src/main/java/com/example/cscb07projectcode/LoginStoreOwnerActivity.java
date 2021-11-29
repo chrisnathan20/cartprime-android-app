@@ -66,7 +66,6 @@ public class LoginStoreOwnerActivity extends AppCompatActivity implements LoginC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_store_owner);
-
         presenter = new StoreOwnerPresenter(new StoreOwnerModel(), this);
     }
 }

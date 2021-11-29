@@ -23,6 +23,7 @@ public class StoreOwnerModel implements LoginContract.Model {
 
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference user = root.child("users").child("storeowners").child(username);
+        
         user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {

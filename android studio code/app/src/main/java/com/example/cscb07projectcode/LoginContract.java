@@ -1,5 +1,5 @@
 package com.example.cscb07projectcode;
-
+//based on Rawad's code
 public interface LoginContract {
     public interface Model{
         public boolean userExists(String username);

@@ -18,6 +18,7 @@ public class StoreOwnerPresenter implements LoginContract.Presenter{
 
         //Gets string values from appropriate editTexts using view method
         String username = view.getUsername();
+
         String password = view.getPassword();
 
         //Display appropriate message if any is empty
