@@ -34,6 +34,72 @@ public class PresenterUnitTest {
     StoreOwnerModel model;
 
     @Test
+    public void testPresenterCorrectUsernameCorrectPassword(){
+        // stubbing
+        when(view.getUsername()).thenReturn("mockito");
+        when(view.getPassword()).thenReturn("testing");
+
+        LoginPresenter presenter = new LoginPresenter(model, view);
+
+        when(model.userCheck("mockito", "testing", presenter)).thenReturn(new boolean[] {true, true});
+
+        presenter.checkLogin();
+
+        // verify displayMessage and onSuccess called
+        verify(view).displayMessage("Login Successful.");
+        verify(view).onSuccess("mockito");
+    }
+
+    @Test
+    public void testPresenterCorrectUsernameIncorrectPassword(){
+        // stubbing
+        when(view.getUsername()).thenReturn("mockito");
+        when(view.getPassword()).thenReturn("wrong");
+
+        LoginPresenter presenter = new LoginPresenter(model, view);
+
+        when(model.userCheck("mockito", "wrong", presenter)).thenReturn(new boolean[] {true, false});
+
+        presenter.checkLogin();
+
+        // verify displayMessage called
+        verify(view).displayMessage("Incorrect username or password.");
+    }
+
+    @Test
+    public void testPresenterIncorrectUsernameCorrectPassword(){
+        // stubbing
+        when(view.getUsername()).thenReturn("wrong");
+        when(view.getPassword()).thenReturn("testing");
+
+        LoginPresenter presenter = new LoginPresenter(model, view);
+
+        when(model.userCheck("wrong", "testing", presenter)).thenReturn(new boolean[] {true, false});
+
+        presenter.checkLogin();
+
+        // verify displayMessage called
+        verify(view).displayMessage("Incorrect username or password.");
+    }
+
+    @Test
+    public void testPresenterIncorrectUsernameIncorrectPassword(){
+        // stubbing
+        when(view.getUsername()).thenReturn("wrong");
+        when(view.getPassword()).thenReturn("wrongpswd");
+
+        LoginPresenter presenter = new LoginPresenter(model, view);
+
+        when(model.userCheck("wrong", "wrongpswd", presenter)).thenReturn(new boolean[] {true, false});
+
+        presenter.checkLogin();
+
+        // verify displayMessage called
+        verify(view).displayMessage("Incorrect username or password.");
+    }
+
+
+    @Test
     public void testPresenterEmptyUsernameEmptyPassword(){
         // stubbing
         when(view.getUsername()).thenReturn("");
