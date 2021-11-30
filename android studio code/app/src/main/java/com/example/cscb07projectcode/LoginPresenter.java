@@ -41,7 +41,16 @@ public class LoginPresenter implements LoginContract.Presenter{
 
         //New login check algorithm, everything else is done inside userExists
         else{
-            model.userCheck(username, password, this);
+            boolean [] for_stubbing = model.userCheck(username, password, this);
+
+            if(for_stubbing[0]){
+                if (for_stubbing[1]){
+                    validLogin(username);
+                }
+                else{
+                    invalidLogin();
+                }
+            }
         }
 
         //Checks if correct username and correct password

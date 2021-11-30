@@ -2,7 +2,7 @@ package com.example.cscb07projectcode;
 
 public interface LoginContract {
     public interface Model{
-        public void userCheck(String username, String password, LoginContract.Presenter presenter);
+        public boolean[] userCheck(String username, String password, LoginContract.Presenter presenter);
         public void passwordCheck(String username, String password, LoginContract.Presenter presenter);
     }
 

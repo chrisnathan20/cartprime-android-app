@@ -12,16 +12,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StoreOwnerModel implements LoginContract.Model {
 
-    /*
-    //to work around the void return of onDataChange
-    public static boolean user_result = false;
-    public static boolean pw_result = false;
-     */
-
     public StoreOwnerModel() {
     }
 
-    public void userCheck(String username, String password, LoginContract.Presenter presenter) {
+    public boolean[] userCheck(String username, String password, LoginContract.Presenter presenter) {
 
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference user = root.child("users").child("storeowners").child(username);
@@ -57,6 +51,15 @@ public class StoreOwnerModel implements LoginContract.Model {
             }
         };
         */
+
+        //initialized for testing indicator; array of boolean size 2
+        //default is set as false, false; only to change in stubbing of mockito
+        //to be used for mockito testing
+        //first index set true if we are doing mockito testing
+        //second index set true if we are mocking a successful login
+        //second index set false if we are mocking an unsuccessful login
+        boolean [] for_testing_indicator = {false, false};
+        return for_testing_indicator;
     }
 
     public void passwordCheck(String username, String password, LoginContract.Presenter presenter) {

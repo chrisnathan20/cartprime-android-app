@@ -33,21 +33,6 @@ public class PresenterUnitTest {
     @Mock
     StoreOwnerModel model;
 
-    /*@Test
-    public void testStoreOwnerPresenterCorrectUsernameCorrectPassword(){
-        model = Mockito.spy(model);
-        // stubbing
-        when(view.getUsername()).thenReturn("mockito");
-        when(view.getPassword()).thenReturn("testing");
-
-        LoginPresenter presenter = new LoginPresenter(model, view);
-        presenter.checkLogin();
-
-        // verify displayMessage and onSuccess called
-        verify(view).displayMessage("Login Successful.");
-        verify(view).onSuccess("mockito");
-    }*/
-
     @Test
     public void testPresenterEmptyUsernameEmptyPassword(){
         // stubbing
