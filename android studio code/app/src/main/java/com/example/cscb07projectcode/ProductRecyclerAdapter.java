@@ -23,6 +23,9 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
 
         private TextView itemnameView;
         private TextView itemdescriptionView;
+        private TextView item_priceView;
+        private TextView item_unitView;
+        private TextView item_qtyView;
 
         public MyViewHolder(final View view){
             // pass the view to superclass
@@ -30,6 +33,9 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
             // locate and store the view for store name and description
             itemnameView = view.findViewById(R.id.textView3);
             itemdescriptionView = view.findViewById(R.id.textView2);
+            item_priceView = view.findViewById(R.id.input_priceView);
+            item_unitView = view.findViewById(R.id.input_unitView);
+            item_qtyView = view.findViewById(R.id.input_qtyView);
         }
     }
 
@@ -47,9 +53,15 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
 
         String itemName = itemsList.get(position).getName();
         String itemDescription = itemsList.get(position).getDescription();
+        String itemPrice = String.valueOf(itemsList.get(position).getPrice());
+        String itemUnit = itemsList.get(position).getUnit();
+        String itemQty = String.valueOf(itemsList.get(position).getQuantity());
 
         holder.itemnameView.setText(itemName);
         holder.itemdescriptionView.setText(itemDescription);
+        holder.item_priceView.setText(itemPrice);
+        holder.item_unitView.setText(itemUnit);
+        holder.item_qtyView.setText(itemQty);
     }
 
     @Override

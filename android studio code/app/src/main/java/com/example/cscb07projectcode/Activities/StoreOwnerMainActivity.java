@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class StoreOwnerMainActivity extends AppCompatActivity {
 
@@ -42,6 +43,13 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
         itemsList = new ArrayList<>();
 
         setStoreInfo();
+        // set a short delay to read from database
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Log.i("mytag", "caught exception");
+        }
         setAdapter();
     }
 
@@ -98,13 +106,11 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
         };
         ref.addValueEventListener(listener);
 //        itemsList.add(new Item("test", "test", 25.44, 34, "test"));
-
     }
 
 
     public void setAdapter(){
         ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(itemsList);
-        Log.i("mytag", String.valueOf(adapter.getItemCount()));
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -113,6 +119,7 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
         recyclerView.setClickable(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+        Log.i("mytag", "passed thru adapter");
     }
 
     public void addproduct_button(View view){
