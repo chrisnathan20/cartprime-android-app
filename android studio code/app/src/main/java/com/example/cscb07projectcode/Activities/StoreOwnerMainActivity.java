@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +17,6 @@ import com.example.cscb07projectcode.Item;
 import com.example.cscb07projectcode.R;
 import com.example.cscb07projectcode.ProductRecyclerAdapter;
 import com.example.cscb07projectcode.Store;
-import com.example.cscb07projectcode.StoreOwner;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class StoreOwnerMainActivity extends AppCompatActivity {
@@ -32,6 +32,7 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
 
     private ArrayList<Item> itemsList;
     private RecyclerView recyclerView;
+    private ProductRecyclerAdapter.RecyclerViewClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,10 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
 
     public void setStoreInfo() {
         // Get the Intent that started this activity and extract the username
-        String username = getIntent().getStringExtra(LoginStoreOwnerActivity.username_key);
+//        String username = getIntent().getStringExtra(LoginStoreOwnerActivity.username_key);
+
+        SharedPreferences pref = getSharedPreferences("credentials", Context.MODE_PRIVATE);
+        String username = pref.getString("username", "");
 
         // leverages store owner's username to find their store name
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores").child("list_of_stores");
@@ -110,7 +114,8 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
 
 
     public void setAdapter(){
-        ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(itemsList);
+        setOnClickListener();
+        ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(itemsList, listener);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -122,17 +127,40 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
         Log.i("mytag", "passed thru adapter");
     }
 
+    // called when clicking on any product under current products
+    private void setOnClickListener() {
+        listener = new ProductRecyclerAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getApplicationContext(), EditProductActivity.class);
+
+                // use intent as a vehicle to transfer product details into next activity
+                intent.putExtra("productName", itemsList.get(position).getName());
+                intent.putExtra("productDesc", itemsList.get(position).getDescription());
+                intent.putExtra("productPrice", String.valueOf(itemsList.get(position).getPrice()));
+                intent.putExtra("productQty", String.valueOf(itemsList.get(position).getQuantity()));
+                intent.putExtra("productUnit", itemsList.get(position).getUnit());
+
+//                Log.i("mytager", itemsList.get(position).getName());
+                startActivity(intent);
+            }
+        };
+    }
+
     public void addproduct_button(View view){
         // Get the Intent that started this activity and extract the username
-        String username = getIntent().getStringExtra(LoginStoreOwnerActivity.username_key);
+//        String username = getIntent().getStringExtra(LoginStoreOwnerActivity.username_key);
 
+        SharedPreferences pref = getSharedPreferences("credentials", Context.MODE_PRIVATE);
+        String username = pref.getString("username", "");
         // assign the intent to open add a product form
         Intent intent = new Intent(this, AddProductActivity.class);
 
         // go into the next activity and pass the username
-        intent.putExtra(username_key, username);
+//        intent.putExtra(username_key, username);
 
         // start the next activity
         startActivity(intent);
     }
+
 }

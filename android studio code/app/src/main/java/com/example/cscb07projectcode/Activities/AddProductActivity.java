@@ -2,7 +2,9 @@ package com.example.cscb07projectcode.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,8 +32,10 @@ public class AddProductActivity extends AppCompatActivity {
     // called when publish button is pressed and writes new product data to database
     public void publish_button(View view){
         // Get the Intent that started this activity and extract the username
-        String username = getIntent().getStringExtra(LoginStoreOwnerActivity.username_key);
+//        String username = getIntent().getStringExtra(LoginStoreOwnerActivity.username_key);
         //        Log.i("mytag", username);
+        SharedPreferences pref = getSharedPreferences("credentials", Context.MODE_PRIVATE);
+        String username = pref.getString("username", "");
 
         // set navigation for store owner to their home page when item is created
         Intent newIntent = new Intent(this, StoreOwnerMainActivity.class);
@@ -52,6 +56,10 @@ public class AddProductActivity extends AppCompatActivity {
         EditText quantity_id = (EditText) findViewById(R.id.editTextTextPersonName6);
         int quantity_field = Integer.parseInt(quantity_id.getText().toString());
 
+        // store user input for product measurement unit
+        EditText unit_id = (EditText) findViewById(R.id.editTextTextPersonName9);
+        String unit_field = unit_id.getText().toString();
+
         // leverages store owner's username to find their store name
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("storeowners");
         ValueEventListener listener = new ValueEventListener() {
@@ -67,7 +75,7 @@ public class AddProductActivity extends AppCompatActivity {
                         // extract store name of storeowner
                         String storename = storeowner.getStorename();
                         // create a new product instance
-                        Item item = new Item(productname_field, description_field, price_field, quantity_field, "kg");
+                        Item item = new Item(productname_field, description_field, price_field, quantity_field, unit_field);
                         // get database reference object
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                         // append new product under the storeowner's store as a child with key: product name

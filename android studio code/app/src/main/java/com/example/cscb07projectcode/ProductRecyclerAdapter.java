@@ -13,13 +13,15 @@ import java.util.ArrayList;
 public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecyclerAdapter.MyViewHolder> {
 
     private ArrayList<Item> itemsList;
+    private RecyclerViewClickListener listener;
 
     // each adapter requires an array list of stores on instantiation
-    public ProductRecyclerAdapter(ArrayList<Item> itemsList){
+    public ProductRecyclerAdapter(ArrayList<Item> itemsList, RecyclerViewClickListener listener){
         this.itemsList = itemsList;
+        this.listener=listener;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView itemnameView;
         private TextView itemdescriptionView;
@@ -36,6 +38,13 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
             item_priceView = view.findViewById(R.id.input_priceView);
             item_unitView = view.findViewById(R.id.input_unitView);
             item_qtyView = view.findViewById(R.id.input_qtyView);
+            // set view
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view, getAdapterPosition());
         }
     }
 
@@ -68,4 +77,9 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
     public int getItemCount() {
         return itemsList.size();
     }
+
+    public interface RecyclerViewClickListener {
+        void onClick(View v, int position);
+    }
 }
+
