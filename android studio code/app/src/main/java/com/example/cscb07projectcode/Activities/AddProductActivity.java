@@ -19,6 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AddProductActivity extends AppCompatActivity {
 
+    public static final String username_key = "username_key";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,8 @@ public class AddProductActivity extends AppCompatActivity {
                         break;
                     }
                 }
+                // pass data through intent into the next activity, which is the store owner's menu page
+                newIntent.putExtra(username_key, username);
                 startActivity(newIntent);
             }
 

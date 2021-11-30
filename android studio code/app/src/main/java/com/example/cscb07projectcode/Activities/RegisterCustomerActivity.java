@@ -90,7 +90,8 @@ public class RegisterCustomerActivity extends AppCompatActivity {
         }
 
         // proceed to next validation check: validates if email input is available
-        else if(valid_email){
+//        else if(valid_email){
+        else{
             // getReference(): selects data under key:"Customers" who has a child named (email_field)
             // convention for storing data: Customers -> (username) -> (firstname,lastname,username,password)
             // note: email and username are synonyms
@@ -123,7 +124,7 @@ public class RegisterCustomerActivity extends AppCompatActivity {
                 }
             };
             // call the event listener method with the database reference
-            ref.addValueEventListener(listener);
+            ref.addListenerForSingleValueEvent(listener);
         }
     }
 }
