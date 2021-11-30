@@ -12,14 +12,16 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StoreOwnerModel implements LoginContract.Model {
 
+    /*
     //to work around the void return of onDataChange
     public static boolean user_result = false;
     public static boolean pw_result = false;
+     */
 
     public StoreOwnerModel() {
     }
 
-    public boolean userExists(String username) {
+    public void userCheck(String username, String password, LoginContract.Presenter presenter) {
 
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference user = root.child("users").child("storeowners").child(username);
@@ -27,7 +29,12 @@ public class StoreOwnerModel implements LoginContract.Model {
         user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                user_result = snapshot.exists();
+                if(!snapshot.exists()){
+                    presenter.invalidLogin();
+                }
+                else{
+                    passwordCheck(username, password, presenter);
+                }
             }
 
             @Override
@@ -50,12 +57,9 @@ public class StoreOwnerModel implements LoginContract.Model {
             }
         };
         */
-
-        //uses static to work around void return def of onDataChange
-        return StoreOwnerModel.user_result;
     }
 
-    public boolean correctPassword(String username, String password) {
+    public void passwordCheck(String username, String password, LoginContract.Presenter presenter) {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("storeowners");
 
@@ -64,8 +68,11 @@ public class StoreOwnerModel implements LoginContract.Model {
             public void onDataChange(DataSnapshot snapshot) {
                 //true if password in database is equal to password in argument
                 //false otherwise
-                if(!(snapshot.getValue().equals(null))) {
-                    StoreOwnerModel.pw_result = (snapshot.getValue().equals(password));
+                if(!password.equals(snapshot.getValue())){
+                    presenter.invalidLogin();
+                }
+                else{
+                    presenter.validLogin(username);
                 }
             }
 
@@ -73,9 +80,6 @@ public class StoreOwnerModel implements LoginContract.Model {
             public void onCancelled(@NonNull DatabaseError firebaseError) {
             }
         });
-
-        //uses static to work around void return def of onDataChange
-        return StoreOwnerModel.pw_result;
 
     }
 }

@@ -14,6 +14,19 @@ public class StoreOwnerPresenter implements LoginContract.Presenter{
         this.view = view;
     }
 
+    public void validLogin(String username){
+        view.displayMessage("Login Successful.");
+        view.onSuccess(username);
+    }
+
+    public void invalidLogin(){
+        view.displayMessage("Incorrect username or password.");
+    }
+
+    public void emptyLogin(){
+        view.displayMessage("Please fill in all input fields.");
+    }
+
     public void checkLogin(){
 
         //Gets string values from appropriate editTexts using view method
@@ -23,10 +36,16 @@ public class StoreOwnerPresenter implements LoginContract.Presenter{
 
         //Display appropriate message if any is empty
         if(username.isEmpty() | password.isEmpty()){
-            view.displayMessage("Please fill in all input fields.");
+            this.emptyLogin();
+        }
+
+        //New login check algorithm, everything else is done inside userExists
+        else{
+            model.userCheck(username, password, this);
         }
 
         //Checks if correct username and correct password
+        /*
         else if (model.userExists(username)){
             if (model.correctPassword(username, password)) {
                 view.onSuccess(username);
@@ -40,6 +59,7 @@ public class StoreOwnerPresenter implements LoginContract.Presenter{
         else{
             view.displayMessage("Incorrect username or password.");
         }
+         */
 
 
     }

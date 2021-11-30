@@ -1,9 +1,9 @@
 package com.example.cscb07projectcode;
-//based on Rawad's code
+
 public interface LoginContract {
     public interface Model{
-        public boolean userExists(String username);
-        public boolean correctPassword(String username, String password);
+        public void userCheck(String username, String password, LoginContract.Presenter presenter);
+        public void passwordCheck(String username, String password, LoginContract.Presenter presenter);
     }
 
     public interface View {
@@ -15,5 +15,9 @@ public interface LoginContract {
 
     public interface Presenter {
         public void checkLogin();
+
+        //String username to be used for intent passed to next activity
+        public void validLogin(String username);
+        public void invalidLogin();
     }
 }
