@@ -10,16 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cscb07projectcode">
         <activity
+            android:name=".Activities.CustomerOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.AddProductActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.StoreOwnerMainActivity"
             android:parentActivityName=".Activities.LoginStoreOwnerActivity" />
-            android:exported="false" />
         <activity
             android:name=".Activities.CustomerMainActivity"
             android:parentActivityName=".Activities.LoginCustomerActivity" />
-            android:exported="false" />
         <activity
             android:name=".Activities.RegisterCustomerActivity"
             android:exported="false"
