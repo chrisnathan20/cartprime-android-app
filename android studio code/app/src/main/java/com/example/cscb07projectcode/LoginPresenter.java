@@ -3,13 +3,13 @@ package com.example.cscb07projectcode;
 import android.content.Intent;
 import android.widget.EditText;
 
-public class StoreOwnerPresenter implements LoginContract.Presenter{
+public class LoginPresenter implements LoginContract.Presenter{
 
 
     private LoginContract.Model model;
     private LoginContract.View view;
 
-    public StoreOwnerPresenter(LoginContract.Model model, LoginContract.View view){
+    public LoginPresenter(LoginContract.Model model, LoginContract.View view){
         this.model = model;
         this.view = view;
     }

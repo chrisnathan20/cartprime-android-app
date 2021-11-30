@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.cscb07projectcode.LoginContract;
 import com.example.cscb07projectcode.R;
 import com.example.cscb07projectcode.StoreOwnerModel;
-import com.example.cscb07projectcode.StoreOwnerPresenter;
+import com.example.cscb07projectcode.LoginPresenter;
 
 public class LoginStoreOwnerActivity extends AppCompatActivity implements LoginContract.View {
 
@@ -71,6 +71,6 @@ public class LoginStoreOwnerActivity extends AppCompatActivity implements LoginC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_store_owner);
-        presenter = new StoreOwnerPresenter(new StoreOwnerModel(), this);
+        presenter = new LoginPresenter(new StoreOwnerModel(), this);
     }
 }
