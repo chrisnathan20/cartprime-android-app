@@ -7,6 +7,7 @@ public class Store {
     //private ArrayList<Order> orders;
     private String name;
     private String description;
+    private String storeowner;
 
     //private HashMap<Item, Integer> itemstock; //Key: item, Value: Stock Number
 
@@ -15,9 +16,10 @@ public class Store {
     }
 
     //Normal Constructor
-    public Store(String name, String description) {
+    public Store(String name, String description, String storeowner) {
         this.name = name;
         this.description = description;
+        this.storeowner = storeowner;
         //this.orders = new ArrayList<Order>();
         //this.itemstock = new HashMap<Item, Integer>();
     }
@@ -49,6 +51,15 @@ public class Store {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getStoreowner() {
+        return storeowner;
+    }
+
+    public void setStoreowner(String storeowner) {
+        this.storeowner = storeowner;
+    }
+
     /*
     public HashMap<Item, Integer> getItemstock() {
         return itemstock;

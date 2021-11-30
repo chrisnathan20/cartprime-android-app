@@ -137,7 +137,7 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
                         ref.child("users").child("taken_usernames").child(email_field).setValue(email_field);
 
                         // create a new store instance
-                        Store store = new Store(storename_field, description_field);
+                        Store store = new Store(storename_field, description_field, storeowner.getUsername());
                         // append new store data under stores with child key: storename
                         ref.child("stores").child("list_of_stores").child(storename_field).setValue(store);
                         // append store name into list of pre-existing store names
@@ -153,7 +153,7 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
                 }
             };
             // call the event listener method with the database reference
-            ref.addValueEventListener(listener);
+            ref.addListenerForSingleValueEvent(listener);
         }
     }
 }
