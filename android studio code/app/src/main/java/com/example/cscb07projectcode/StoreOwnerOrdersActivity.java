@@ -41,25 +41,16 @@ public class StoreOwnerOrdersActivity extends AppCompatActivity {
         itemsList = new ArrayList<Item>();
 
         setStoreInfo();
-        // set a short delay to read from database
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            Log.i("mytag", "caught exception");
-        }
     }
 
     public void setStoreInfo() {
-        // Get the Intent that started this activity and extract the username
-//        String username = getIntent().getStringExtra(LoginStoreOwnerActivity.username_key);
 
         SharedPreferences pref = getSharedPreferences("credentials", Context.MODE_PRIVATE);
         String username = pref.getString("username", "");
 
         // find the store name based on store owner id
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("storeowners");
-        ValueEventListener listener = new ValueEventListener() {
+        ValueEventListener valueListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // loops through user (of type store owner) until it matches a username
@@ -76,7 +67,7 @@ public class StoreOwnerOrdersActivity extends AppCompatActivity {
                                 // loops through user (of type store owner) until it matches a username
                                 for(DataSnapshot newChild:dataSnapshot.getChildren()) {
                                     OrderMetaData orderMetaData = newChild.getValue(OrderMetaData.class);
-                                    if(storename.equals(orderMetaData.getStoreName())){
+                                    if(storename.equals(orderMetaData.getStoreName()) && orderMetaData.getOrderStatus().equals("Incomplete")){
                                         OrderMetaData newOrder = new OrderMetaData(
                                             orderMetaData.getOrderId(),
                                             orderMetaData.getOrderStatus(),
@@ -102,7 +93,7 @@ public class StoreOwnerOrdersActivity extends AppCompatActivity {
                 Log.w("warning", "loadPost:onCancelled", databaseError.toException());
             }
         };
-        ref.addValueEventListener(listener);
+        ref.addValueEventListener(valueListener);
     }
 
 
@@ -124,16 +115,14 @@ public class StoreOwnerOrdersActivity extends AppCompatActivity {
         listener = new OrderRecyclerAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Intent intent = new Intent(getApplicationContext(), StoreOwnerOrdersActivity.class);
+                Intent intent = new Intent(getApplicationContext(), StoreOwnerOrderFormActivity.class);
 
-                // use intent as a vehicle to transfer product details into next activity
-//                intent.putExtra("productName", itemsList.get(position).getName());
-//                intent.putExtra("productDesc", itemsList.get(position).getDescription());
-//                intent.putExtra("productPrice", String.valueOf(itemsList.get(position).getPrice()));
-//                intent.putExtra("productQty", String.valueOf(itemsList.get(position).getQuantity()));
-//                intent.putExtra("productUnit", itemsList.get(position).getUnit());
+                // write username into a shared preference
+                SharedPreferences pref = getSharedPreferences("ordersData", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("orderIdKey", String.valueOf(ordersList.get(position).getOrderId()));
+                editor.apply();
 
-//                Log.i("mytager", itemsList.get(position).getName());
                 startActivity(intent);
             }
         };
