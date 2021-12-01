@@ -102,12 +102,12 @@
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <EditText
-        android:id="@+id/editTextTextUsername"
+        android:id="@+id/editTextTextEmailAddress"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
-        android:hint="@string/username"
-        android:inputType="textPersonName"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toStartOf="@+id/guideline14"
         app:layout_constraintStart_toStartOf="@+id/guideline13"
