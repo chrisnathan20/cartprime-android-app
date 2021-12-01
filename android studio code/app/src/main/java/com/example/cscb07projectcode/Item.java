@@ -1,5 +1,8 @@
 package com.example.cscb07projectcode;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+
 public class Item {
 
     private String name;
@@ -90,5 +93,18 @@ public class Item {
         x = this.quantity + p ;
         return x;
     }
+
+
+    public static DiffUtil.ItemCallback<Item> itemItemCallback = new DiffUtil.ItemCallback<Item>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Item oldItem, @NonNull Item newItem) {
+            return oldItem.getDescription().equals(newItem.getDescription());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Item oldItem, @NonNull Item newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
 
 }
