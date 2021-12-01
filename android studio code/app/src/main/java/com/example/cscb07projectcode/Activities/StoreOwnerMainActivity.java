@@ -52,7 +52,6 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
             e.printStackTrace();
             Log.i("mytag", "caught exception");
         }
-        setAdapter();
     }
 
     public void setStoreInfo() {
@@ -85,6 +84,7 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
                                     Log.i("mytag", item.getDescription());
 
                                 }
+                                setAdapter();
 //                                Log.i("mytag", itemsList.toString());
                             }
 
