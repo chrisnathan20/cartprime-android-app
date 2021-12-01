@@ -22,7 +22,7 @@ public class LoginStoreOwnerActivity extends AppCompatActivity implements LoginC
     private LoginContract.Presenter presenter;
 
     public String getUsername(){
-        EditText editText = (EditText) findViewById(R.id.editTextTextUsername2);
+        EditText editText = (EditText) findViewById(R.id.editTextTextEmailAddress2);
         return editText.getText().toString();
     }
 

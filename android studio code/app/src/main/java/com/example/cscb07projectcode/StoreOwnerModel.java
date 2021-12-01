@@ -37,6 +37,21 @@ public class StoreOwnerModel implements LoginContract.Model {
             }
         });
 
+        /* For some reason, this does not work
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("storeowners").child(username);
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // true if username exists, false if username does not exists
+                StoreOwnerModel.user_result = snapshot.exists();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        };
+        */
+
         //initialized for testing indicator; array of boolean size 2
         //default is set as false, false; only to change in stubbing of mockito
         //to be used for mockito testing
@@ -47,8 +62,6 @@ public class StoreOwnerModel implements LoginContract.Model {
         return for_testing_indicator;
     }
 
-
-    //method below is called directly from userCheck
     public void passwordCheck(String username, String password, LoginContract.Presenter presenter) {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("storeowners");

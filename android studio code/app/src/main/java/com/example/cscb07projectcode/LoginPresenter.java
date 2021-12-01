@@ -14,7 +14,6 @@ public class LoginPresenter implements LoginContract.Presenter{
         this.view = view;
     }
 
-    //The 3 Login methods below are called from model
     public void validLogin(String username){
         view.displaySuccessMessage("Login Successful.");
         view.onSuccess(username);
@@ -53,6 +52,24 @@ public class LoginPresenter implements LoginContract.Presenter{
                 }
             }
         }
+
+        //Checks if correct username and correct password
+        /*
+        else if (model.userExists(username)){
+            if (model.correctPassword(username, password)) {
+                view.onSuccess(username);
+            }
+            else{
+                //change after finish debugging
+                view.displayMessage("Correct username but incorrect password.");
+            }
+        }
+
+        else{
+            view.displayMessage("Incorrect username or password.");
+        }
+         */
+
 
     }
 }
