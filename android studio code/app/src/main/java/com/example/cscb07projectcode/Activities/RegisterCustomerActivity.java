@@ -76,12 +76,12 @@ public class RegisterCustomerActivity extends AppCompatActivity {
         }
 
         // checks if email input is valid
-        Pattern pattern = Pattern.compile("[A-Za-z0-9_.-]+@[A-Za-z]+\\.c[A-Za-z]+");
+        Pattern pattern = Pattern.compile("[A-Za-z0-9]+");
         Matcher matcher = pattern.matcher(email_field);
-        boolean valid_email = true;
+        boolean valid_username = true;
         if (!matcher.matches()){
-            notifyMessage.setText("Please input valid email.");
-            valid_email = false;
+            notifyMessage.setText("Please input valid username.");
+            valid_username = false;
         }
 
         // inform user that at least one input box is empty and needs to be filled
