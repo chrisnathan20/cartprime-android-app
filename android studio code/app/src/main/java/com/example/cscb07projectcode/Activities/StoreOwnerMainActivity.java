@@ -17,6 +17,7 @@ import com.example.cscb07projectcode.Item;
 import com.example.cscb07projectcode.R;
 import com.example.cscb07projectcode.ProductRecyclerAdapter;
 import com.example.cscb07projectcode.Store;
+import com.example.cscb07projectcode.StoreOwnerOrdersActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -160,6 +161,11 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
 //        intent.putExtra(username_key, username);
 
         // start the next activity
+        startActivity(intent);
+    }
+
+    public void ordersIcon_button(View view){
+        Intent intent = new Intent(this, StoreOwnerOrdersActivity.class);
         startActivity(intent);
     }
 

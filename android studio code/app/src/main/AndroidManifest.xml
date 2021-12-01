@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cscb07projectcode">
         <activity
+            android:name=".StoreOwnerOrdersActivity"
+            android:parentActivityName=".Activities.StoreOwnerMainActivity" />
+        <activity
             android:name=".Activities.EditProductActivity"
             android:parentActivityName=".Activities.StoreOwnerMainActivity" />
         <activity

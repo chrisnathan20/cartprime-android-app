@@ -13,17 +13,25 @@ public class Order {
 
     }
 
-    public Order(HashMap<String,Integer > orderContents,int orderId,boolean orderStatus,Customer customer,Store store)
-    { setOrderContents(orderContents); setOrderId(orderId);setOrderStatus(orderStatus);
-        setStore(store); setCustomer(customer);}
+    public Order(HashMap<String,Integer > orderContents, int orderId, boolean orderStatus, Customer customer, Store store){
+        setOrderContents(orderContents);
+        setOrderId(orderId);
+        setOrderStatus(orderStatus);
+        setStore(store); setCustomer(customer);
+    }
 
-    public void setOrderContents(HashMap<String,Integer> OC)
-    { this.orderContents.clear();this.orderContents = OC; }
-    public void setOrderId(int orderId)
-    {   int max= 999999;
+    public void setOrderContents(HashMap<String,Integer> OC) {
+        this.orderContents.clear();
+        this.orderContents = OC;
+    }
+
+    public void setOrderId(int orderId){
+        int max= 999999;
         int min = 100000;
-        int random = (int)Math.floor(Math.random()*(max-min+1)+min); //RANDOMIZING THE ORDER ID
-        this.orderId = random ;}
+        int random = (int) Math.floor(Math.random()*(max-min+1)+min); //RANDOMIZING THE ORDER ID
+        this.orderId = random;
+    }
+
     public void setOrderStatus(boolean orderStatus)
     {this.orderStatus = orderStatus;}
     public void setCustomer(Customer customer)
