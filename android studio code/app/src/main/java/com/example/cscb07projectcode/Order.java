@@ -2,7 +2,7 @@ package com.example.cscb07projectcode;
 import java.util.ArrayList;
 
 public class Order {
-    private ArrayList<ReservedItem> reservedItemsList;
+    private ArrayList<Item> itemsList;
     private int orderId;
     private String orderStatus;
     private String customerId;
@@ -11,16 +11,16 @@ public class Order {
     public Order() {
     }
 
-    public Order(ArrayList<ReservedItem> reservedItemsList, int orderId, String orderStatus, String customerId, String storeName){
-        setReservedItems(reservedItemsList);
+    public Order(ArrayList<Item> reservedItemsList, int orderId, String orderStatus, String customerId, String storeName){
+        setItems(reservedItemsList);
         setOrderId(orderId);
         setOrderStatus(orderStatus);
         setStore(storeName);
         setCustomer(customerId);
     }
 
-    public void setReservedItems(ArrayList<ReservedItem> reservedItemsList) {
-        this.reservedItemsList = reservedItemsList;
+    public void setItems(ArrayList<Item> itemsList) {
+        this.itemsList = itemsList;
     }
 
     public void setOrderId(int orderId){
@@ -42,8 +42,8 @@ public class Order {
         this.storeName = storeName;
     }
 
-    public ArrayList<ReservedItem> getReservedItems() {
-        return this.reservedItemsList;
+    public ArrayList<Item> getReservedItems() {
+        return this.itemsList;
     }
 
     public int getOrderId() {
