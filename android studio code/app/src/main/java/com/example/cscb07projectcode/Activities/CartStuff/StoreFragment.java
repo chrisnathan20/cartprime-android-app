@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cscb07projectcode.R;
+import com.example.cscb07projectcode.databinding.FragmentStore2Binding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,7 +18,7 @@ import com.example.cscb07projectcode.R;
  */
 public class StoreFragment extends Fragment {
 
-
+FragmentStore2Binding fragmentStore2Binding;
 
     public StoreFragment() {
         // Required empty public constructor
@@ -28,6 +29,8 @@ public class StoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_store2, container, false);
+        fragmentStore2Binding = FragmentStore2Binding.inflate(inflater,container,false);
+        return fragmentStore2Binding.getRoot();
+
     }
 }

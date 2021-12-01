@@ -79,6 +79,11 @@ public class Item {
         return true;
     }
 
+    public boolean isAvailable()
+    {
+        return this.quantity >0;
+    }
+
     public int hashCode() {
         int x = 0;
         int p = (int) this.price;

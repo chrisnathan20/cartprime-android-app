@@ -28,7 +28,7 @@
         android:id="@+id/storeFragment"
         android:name="com.example.cscb07projectcode.Activities.CartStuff.StoreFragment"
         android:label="fragment_store2"
-        tools:layout="@layout/fragment_store2" >
+        tools:layout="@layout/fragment_store2">
         <action
             android:id="@+id/action_storeFragment_to_cartFragment"
             app:destination="@id/cartFragment"
