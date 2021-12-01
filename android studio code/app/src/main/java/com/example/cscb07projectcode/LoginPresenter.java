@@ -15,16 +15,16 @@ public class LoginPresenter implements LoginContract.Presenter{
     }
 
     public void validLogin(String username){
-        view.displayMessage("Login Successful.");
+        view.displaySuccessMessage("Login Successful.");
         view.onSuccess(username);
     }
 
     public void invalidLogin(){
-        view.displayMessage("Incorrect username or password.");
+        view.displayErrorMessage("Incorrect username or password.");
     }
 
     public void emptyLogin(){
-        view.displayMessage("Please fill in all input fields.");
+        view.displayErrorMessage("Please fill in all input fields.");
     }
 
     public void checkLogin(){
