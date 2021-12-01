@@ -30,9 +30,16 @@ public class LoginCustomerActivity extends AppCompatActivity  implements LoginCo
         return editText.getText().toString();
     }
 
-    public void displayMessage(String message) {
+    public void displayErrorMessage(String message) {
         TextView alert = (TextView) findViewById(R.id.TextViewAlert);
         alert.setText(message);
+        alert.setTextColor(0xFFFF0000);
+    }
+
+    public void displaySuccessMessage(String message) {
+        TextView alert = (TextView) findViewById(R.id.TextViewAlert);
+        alert.setText(message);
+        alert.setTextColor(0xFF00FF00);
     }
 
 
@@ -47,18 +54,6 @@ public class LoginCustomerActivity extends AppCompatActivity  implements LoginCo
     }
 
     public void login_button (View view){
-        //commented out, intent passing implemented in method onSuccess
-        /*
-        Intent intent = new Intent(this, StoreOwnerMainActivity.class);
-
-        // pass data through intent into the next activity, which is the store owner's menu page
-        EditText editText = (EditText) findViewById(R.id.editTextTextEmailAddress2);
-        String username = editText.getText().toString();
-        intent.putExtra(username_key, username);
-
-        // navigate to the next activity
-        startActivity(intent);
-         */
 
         presenter.checkLogin();
     }

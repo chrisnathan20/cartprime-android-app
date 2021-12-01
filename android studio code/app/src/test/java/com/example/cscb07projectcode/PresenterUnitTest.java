@@ -46,7 +46,7 @@ public class PresenterUnitTest {
         presenter.checkLogin();
 
         // verify displayMessage and onSuccess called
-        verify(view).displayMessage("Login Successful.");
+        verify(view).displaySuccessMessage("Login Successful.");
         verify(view).onSuccess("mockito");
     }
 
@@ -63,7 +63,7 @@ public class PresenterUnitTest {
         presenter.checkLogin();
 
         // verify displayMessage called
-        verify(view).displayMessage("Incorrect username or password.");
+        verify(view).displayErrorMessage("Incorrect username or password.");
     }
 
     @Test
@@ -79,7 +79,7 @@ public class PresenterUnitTest {
         presenter.checkLogin();
 
         // verify displayMessage called
-        verify(view).displayMessage("Incorrect username or password.");
+        verify(view).displayErrorMessage("Incorrect username or password.");
     }
 
     @Test
@@ -95,7 +95,7 @@ public class PresenterUnitTest {
         presenter.checkLogin();
 
         // verify displayMessage called
-        verify(view).displayMessage("Incorrect username or password.");
+        verify(view).displayErrorMessage("Incorrect username or password.");
     }
 
 
@@ -109,7 +109,7 @@ public class PresenterUnitTest {
         presenter.checkLogin();
 
         //verify correct message is displayed
-        verify(view).displayMessage("Please fill in all input fields.");
+        verify(view).displayErrorMessage("Please fill in all input fields.");
     }
 
     @Test
@@ -122,7 +122,7 @@ public class PresenterUnitTest {
         presenter.checkLogin();
 
         //verify correct message is displayed
-        verify(view).displayMessage("Please fill in all input fields.");
+        verify(view).displayErrorMessage("Please fill in all input fields.");
     }
 
     @Test
@@ -135,7 +135,7 @@ public class PresenterUnitTest {
         presenter.checkLogin();
 
         //verify correct message is displayed
-        verify(view).displayMessage("Please fill in all input fields.");
+        verify(view).displayErrorMessage("Please fill in all input fields.");
     }
 
 }

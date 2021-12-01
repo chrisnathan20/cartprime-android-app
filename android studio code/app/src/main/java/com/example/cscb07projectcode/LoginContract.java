@@ -9,7 +9,8 @@ public interface LoginContract {
     public interface View {
         public String getUsername();
         public String getPassword();
-        public void displayMessage(String message);
+        public void displayErrorMessage(String message);
+        public void displaySuccessMessage(String message);
         public void onSuccess(String username);
     }
 
