@@ -1,28 +1,26 @@
 package com.example.cscb07projectcode;
-import java.util.HashMap;
+import java.util.ArrayList;
+
 public class Order {
-    private HashMap<String,Integer> orderContents;
+    private ArrayList<ReservedItem> reservedItemsList;
     private int orderId;
-    private boolean orderStatus;
-    private Customer customer;
-    private Store store;
+    private String orderStatus;
+    private String customerId;
+    private String storeName;
 
-
-    public Order()
-    {
-
+    public Order() {
     }
 
-    public Order(HashMap<String,Integer > orderContents, int orderId, boolean orderStatus, Customer customer, Store store){
-        setOrderContents(orderContents);
+    public Order(ArrayList<ReservedItem> reservedItemsList, int orderId, String orderStatus, String customerId, String storeName){
+        setReservedItems(reservedItemsList);
         setOrderId(orderId);
         setOrderStatus(orderStatus);
-        setStore(store); setCustomer(customer);
+        setStore(storeName);
+        setCustomer(customerId);
     }
 
-    public void setOrderContents(HashMap<String,Integer> OC) {
-        this.orderContents.clear();
-        this.orderContents = OC;
+    public void setReservedItems(ArrayList<ReservedItem> reservedItemsList) {
+        this.reservedItemsList = reservedItemsList;
     }
 
     public void setOrderId(int orderId){
@@ -32,27 +30,35 @@ public class Order {
         this.orderId = random;
     }
 
-    public void setOrderStatus(boolean orderStatus)
-    {this.orderStatus = orderStatus;}
-    public void setCustomer(Customer customer)
-    {this.customer = customer;}
-    public void setStore(Store store)
-    {this.store = store;}
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 
-    public HashMap<String,Integer> getOrderContents()
-    { return this.orderContents; }
-    public int getOrderId()
-    {return this.orderId; }
-    public boolean getOrderStatus()
-    {return this.orderStatus;}
-    public Customer getCustomer()
-    {return this.customer;}
-    public Store getStore()
-    {return this.store;}
+    public void setCustomer(String customerId) {
+        this.customerId = customerId;
+    }
 
-    @Override
-    public String toString()
-    {
-        return "Order id "+ String.valueOf(this.orderId) + "Customer Name" + customer.getFirstname() + " " +customer.getLastname() +" Store Name: " + store.getName() + " item summary: "+orderContents.keySet().toString();
+    public void setStore(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public ArrayList<ReservedItem> getReservedItems() {
+        return this.reservedItemsList;
+    }
+
+    public int getOrderId() {
+        return this.orderId;
+    }
+
+    public String getOrderStatus() {
+        return this.orderStatus;
+    }
+
+    public String getCustomer() {
+        return this.customerId;
+    }
+
+    public String getStore() {
+        return this.storeName;
     }
 }
