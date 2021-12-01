@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cscb07projectcode">
         <activity
+            android:name=".Activities.CartStuff.OrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".StoreOwnerOrdersActivity"
             android:parentActivityName=".Activities.StoreOwnerMainActivity" />
         <activity
