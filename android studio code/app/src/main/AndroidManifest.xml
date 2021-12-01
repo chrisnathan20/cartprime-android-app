@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cscb07projectcode">
         <activity
-            android:name=".StoreOwnerOrderFormActivity"
-            android:parentActivityName=".StoreOwnerOrderFormActivity"
+            android:name=".StoreOwnerOrderHistoryActivity"
             android:exported="false" />
+        <activity
+            android:name=".StoreOwnerOrderFormActivity"
+            android:exported="false"
+            android:parentActivityName=".StoreOwnerOrderFormActivity" />
         <activity
             android:name=".Activities.CartStuff.OrderActivity"
             android:exported="false" />

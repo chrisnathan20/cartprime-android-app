@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StoreOwnerOrderFormActivity extends AppCompatActivity {
 
@@ -138,10 +140,13 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // loops through user (of type store owner) until it matches a username
                 for(DataSnapshot child:dataSnapshot.getChildren()) {
-                    OrderMetaData order = child.getValue(OrderMetaData.class);
-                    order.setOrderStatus("Complete");
+//                    OrderMetaData order = child.getValue(OrderMetaData.class);
+//                    order.setOrderStatus("Complete");
                     DatabaseReference newRef = ref.child(orderId);
-                    newRef.setValue(order);
+//                    newRef.setValue(order);
+                    Map<String, Object> updates = new HashMap<>();
+                    updates.put("orderStatus", "Complete");
+                    newRef.updateChildren(updates);
                 }
             }
 
