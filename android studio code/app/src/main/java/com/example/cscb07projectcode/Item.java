@@ -10,6 +10,7 @@ public class Item {
     private double price;
     private int quantity;
     private String unit;
+    private boolean available;
 
     public Item() {
     }
@@ -20,6 +21,7 @@ public class Item {
         setQuantity(quantity);
         setUnit(unit);
         setPrice(price);
+        setAvailable();
     }
 
 
@@ -60,6 +62,11 @@ public class Item {
     public String getUnit() {
         return this.unit;
     }
+    public void setAvailable()
+    {
+        this.available = this.quantity >0;
+    }
+
 
     @Override
     public String toString() {
@@ -82,7 +89,7 @@ public class Item {
         return true;
     }
 
-    public boolean isAvailable()
+    public boolean getAvailable()
     {
         return this.quantity >0;
     }
