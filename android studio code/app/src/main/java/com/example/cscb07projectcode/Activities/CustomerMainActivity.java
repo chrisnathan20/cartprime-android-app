@@ -2,24 +2,20 @@ package com.example.cscb07projectcode.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Button;
 import android.view.View;
-import android.widget.TextView;
 
+import com.example.cscb07projectcode.Activities.CartStuff.OrderActivity;
 import com.example.cscb07projectcode.R;
 import com.example.cscb07projectcode.Store;
-import com.example.cscb07projectcode.ProductRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -105,10 +101,13 @@ public class CustomerMainActivity extends AppCompatActivity {
 
         //String text_to_send = spinner.getOnItemSelectedListener().toString();
 
-        Intent intent = new Intent(this,CustomerOrderActivity.class);
+        Intent intent = new Intent(this, OrderActivity.class);
         String x = spinner.getSelectedItem().toString();
         intent.putExtra("getData",x);
-
+        SharedPreferences pref = getSharedPreferences("credentials_store_name", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("store_name", x); // saving the current store name to a local file
+        editor.apply();
         startActivity(intent);
 
 

@@ -1,4 +1,6 @@
 package com.example.cscb07projectcode;
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Order {
@@ -11,54 +13,69 @@ public class Order {
     public Order() {
     }
 
-    public Order(ArrayList<Item> reservedItemsList, int orderId, String orderStatus, String customerId, String storeName){
-        setItems(reservedItemsList);
-        setOrderId(orderId);
-        setOrderStatus(orderStatus);
-        setStore(storeName);
-        setCustomer(customerId);
+    public Order(ArrayList<Item> itemsList, int orderId, String orderStatus, String customerId, String storeName) {
+        this.itemsList = itemsList;
+        this.orderId = orderId;
+        this.orderStatus = orderStatus;
+        this.customerId = customerId;
+        this.storeName = storeName;
     }
 
-    public void setItems(ArrayList<Item> itemsList) {
+    public String computeTotalPrice(){
+        double totalPrice = 0;
+        Log.i("pricerino", String.valueOf(itemsList));
+        if(!itemsList.isEmpty()) {
+            for (Item item : itemsList) {
+                double temp = item.getPrice() * item.getQuantity();
+                totalPrice = totalPrice + temp;
+                Log.i("pricerino", String.valueOf(item.getPrice()));
+                Log.i("pricerino", String.valueOf(item.getQuantity()));
+                Log.i("pricerino", String.valueOf(totalPrice));
+            }
+        }
+        return String.valueOf(totalPrice);
+    }
+
+    public ArrayList<Item> getItemsList() {
+        return itemsList;
+    }
+
+    public void setItemsList(ArrayList<Item> itemsList) {
         this.itemsList = itemsList;
     }
 
-    public void setOrderId(int orderId){
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
         int max= 999999;
         int min = 100000;
         int random = (int) Math.floor(Math.random()*(max-min+1)+min); //RANDOMIZING THE ORDER ID
         this.orderId = random;
     }
 
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
 
-    public void setCustomer(String customerId) {
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 
-    public void setStore(String storeName) {
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
         this.storeName = storeName;
-    }
-
-    public ArrayList<Item> getReservedItems() {
-        return this.itemsList;
-    }
-
-    public int getOrderId() {
-        return this.orderId;
-    }
-
-    public String getOrderStatus() {
-        return this.orderStatus;
-    }
-
-    public String getCustomer() {
-        return this.customerId;
-    }
-
-    public String getStore() {
-        return this.storeName;
     }
 }

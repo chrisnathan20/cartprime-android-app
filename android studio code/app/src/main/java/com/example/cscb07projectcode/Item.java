@@ -1,5 +1,8 @@
 package com.example.cscb07projectcode;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+
 public class Item {
 
     private String name;
@@ -7,6 +10,7 @@ public class Item {
     private double price;
     private int quantity;
     private String unit;
+    private boolean available;
 
     public Item() {
     }
@@ -17,6 +21,7 @@ public class Item {
         setQuantity(quantity);
         setUnit(unit);
         setPrice(price);
+        setAvailable();
     }
 
 
@@ -57,6 +62,11 @@ public class Item {
     public String getUnit() {
         return this.unit;
     }
+    public void setAvailable()
+    {
+        this.available = this.quantity >0;
+    }
+
 
     @Override
     public String toString() {
@@ -79,11 +89,29 @@ public class Item {
         return true;
     }
 
+    public boolean getAvailable()
+    {
+        return this.quantity >0;
+    }
+
     public int hashCode() {
         int x = 0;
         int p = (int) this.price;
         x = this.quantity + p ;
         return x;
     }
+
+
+    public static DiffUtil.ItemCallback<Item> itemItemCallback = new DiffUtil.ItemCallback<Item>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Item oldItem, @NonNull Item newItem) {
+            return oldItem.getDescription().equals(newItem.getDescription());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Item oldItem, @NonNull Item newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
 
 }

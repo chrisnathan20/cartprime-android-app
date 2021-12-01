@@ -3,26 +3,40 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Nathanael/cscb07project/android studio code/app/src/main/res/layout/activity_login_customer.xml" value="0.5" />
+        <entry key="..\:/Users/Nathanael/cscb07project/android studio code/app/src/main/res/layout/activity_login_customer.xml" value="0.264" />
         <entry key="..\:/Users/Nathanael/cscb07project/android studio code/app/src/main/res/layout/activity_login_store_owner.xml" value="0.2" />
         <entry key="..\:/Users/Nathanael/cscb07project/android studio code/app/src/main/res/layout/activity_register_customer.xml" value="0.264" />
         <entry key="..\:/Users/Nathanael/cscb07project/android studio code/app/src/main/res/layout/activity_register_store_owner.xml" value="0.25" />
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_add_product.xml" value="0.536" />
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_customer_main.xml" value="0.1" />
+        <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_customer_order.xml" value="0.223731884057971" />
+        <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_edit_product.xml" value="0.5" />
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_login_customer.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_login_store_owner.xml" value="0.2" />
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_register_customer.xml" value="0.33" />
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_register_store_owner.xml" value="0.4" />
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_store_owner_main.xml" value="0.4" />
-        <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/store_container.xml" value="0.536" />
+        <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/store_container.xml" value="0.5" />
+        <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/store_info_for_customer_main_activity.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/harrickcheong/cscb07project/cscb07project/android studio code/app/src/main/res/layout/activity_register_store_owner.xml" value="0.264" />
+<<<<<<< HEAD
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.3158974358974359" />
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_login_customer.xml" value="0.2600767754318618" />
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_login_store_owner.xml" value="0.2763915547024952" />
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_register_store_owner.xml" value="0.2763915547024952" />
+=======
+>>>>>>> 2f32690d708fd4bb75255ed3927099b59718b6b9
         <entry key="app/src/main/res/layout/activity_customer_main.xml" value="0.45" />
-        <entry key="app/src/main/res/layout/activity_customer_order.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/layout/activity_customer_order.xml" value="0.3282051282051282" />
+        <entry key="app/src/main/res/layout/activity_order.xml" value="0.28958333333333336" />
+        <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/fragment_order.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/fragment_store.xml" value="0.2755208333333333" />
+        <entry key="app/src/main/res/layout/fragment_store2.xml" value="0.45" />
         <entry key="app/src/main/res/layout/store_info_for_customer_main_activity.xml" value="0.75" />
+        <entry key="app/src/main/res/layout/store_layout.xml" value="0.28958333333333336" />
+        <entry key="app/src/main/res/layout/store_row_customer_order.xml" value="0.28958333333333336" />
+        <entry key="app/src/main/res/layout/store_row_for_ordering.xml" value="0.28958333333333336" />
       </map>
     </option>
   </component>
