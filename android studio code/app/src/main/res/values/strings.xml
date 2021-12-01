@@ -4,7 +4,7 @@
     <string name="customer_button">Customer</string>
     <string name="storeOwner_button">Store Owner</string>
     <!-- login, register page -->
-    <string name="email">Email</string>
+    <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login_button">Login</string>
     <string name="firstname">First Name</string>

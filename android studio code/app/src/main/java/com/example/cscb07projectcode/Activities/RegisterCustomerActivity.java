@@ -49,9 +49,9 @@ public class RegisterCustomerActivity extends AppCompatActivity {
         EditText lastname_id = (EditText) findViewById(R.id.editTextTextPersonName2);
         String lastname_field = lastname_id.getText().toString();
 
-        // store user input for email (e.g. username)
-        EditText email_id = (EditText) findViewById(R.id.editTextTextEmailAddress);
-        String email_field = email_id.getText().toString();
+        // store user input for username
+        EditText username_id = (EditText) findViewById(R.id.editTextTextUsername);
+        String username_field = username_id.getText().toString();
 
         // store user input for password
         EditText password_id = (EditText) findViewById(R.id.editTextTextPassword);
@@ -66,18 +66,18 @@ public class RegisterCustomerActivity extends AppCompatActivity {
             field_status=false;
             lastname_id.setError("Please fill in your last name.");
         }
-        if(email_field.isEmpty()){
+        if(username_field.isEmpty()){
             field_status=false;
-            email_id.setError("Please fill in your email.");
+            username_id.setError("Please fill in your username.");
         }
         if(password_field.isEmpty()){
             field_status=false;
             password_id.setError("Please fill in your password.");
         }
 
-        // checks if email input is valid
+        // checks if username input is valid
         Pattern pattern = Pattern.compile("[A-Za-z0-9]+");
-        Matcher matcher = pattern.matcher(email_field);
+        Matcher matcher = pattern.matcher(username_field);
         boolean valid_username = true;
         if (!matcher.matches()){
             notifyMessage.setText("Please input valid username.");
@@ -95,25 +95,25 @@ public class RegisterCustomerActivity extends AppCompatActivity {
             // getReference(): selects data under key:"Customers" who has a child named (email_field)
             // convention for storing data: Customers -> (username) -> (firstname,lastname,username,password)
             // note: email and username are synonyms
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("taken_usernames").child(email_field);
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("taken_usernames").child(username_field);
             ValueEventListener listener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     // if username is already taken
                     if(snapshot.exists()){
-                        notifyMessage.setText("An account is already registered with that email.");
-                        email_id.setError("Someone already has this email.");
+                        notifyMessage.setText("An account is already registered with that username.");
+                        username_id.setError("Someone already has this username");
                     }
                     // if username is not taken, then append new user into database
                     else {
                         // create a new user instance with user-specified data
-                        Customer customer = new Customer(email_field, firstname_field, lastname_field, password_field);
+                        Customer customer = new Customer(username_field, firstname_field, lastname_field, password_field);
                         // get data reference into db
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                         // append user data into database under users -> customers
-                        ref.child("users").child("customers").child(email_field).setValue(customer);
+                        ref.child("users").child("customers").child(username_field).setValue(customer);
                         // append username into list of pre-existing usernames
-                        ref.child("users").child("taken_usernames").child(email_field).setValue(email_field);
+                        ref.child("users").child("taken_usernames").child(username_field).setValue(username_field);
                         // re-directs the user to login page for Customers
                         startActivity(intent);
                     }

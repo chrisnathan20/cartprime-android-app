@@ -21,7 +21,7 @@ public class LoginCustomerActivity extends AppCompatActivity  implements LoginCo
     private LoginContract.Presenter presenter;
 
     public String getUsername(){
-        EditText editText = (EditText) findViewById(R.id.editTextTextEmailAddress2);
+        EditText editText = (EditText) findViewById(R.id.editTextTextUsername2);
         return editText.getText().toString();
     }
 
