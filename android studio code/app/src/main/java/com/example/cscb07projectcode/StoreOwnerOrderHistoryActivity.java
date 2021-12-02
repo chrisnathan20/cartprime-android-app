@@ -33,7 +33,7 @@ public class StoreOwnerOrderHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_owner_order_history);
 
-        recyclerView = findViewById(R.id.recyclerOrderId);
+        recyclerView = findViewById(R.id.recyclerOrderHistoryId);
         ordersList = new ArrayList<OrderMetaData>();
         itemsList = new ArrayList<Item>();
 

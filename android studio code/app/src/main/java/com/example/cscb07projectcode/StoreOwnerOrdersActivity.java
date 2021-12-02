@@ -128,7 +128,7 @@ public class StoreOwnerOrdersActivity extends AppCompatActivity {
         };
     }
 
-    private void orderHistory_button(View view){
+    public void orderHistory_button(View view){
         Intent intent = new Intent(this, StoreOwnerOrderHistoryActivity.class);
         startActivity(intent);
     }

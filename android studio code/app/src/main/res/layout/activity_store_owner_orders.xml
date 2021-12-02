@@ -82,4 +82,18 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="395dp" />
 
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="120dp"
+        android:onClick="orderHistory_button"
+        android:text="Order History"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
