@@ -118,6 +118,7 @@ public class StoreOwnerOrderHistoryActivity extends AppCompatActivity {
                 SharedPreferences pref = getSharedPreferences("ordersData", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("orderIdKey", String.valueOf(ordersList.get(position).getOrderId()));
+                editor.putString("fromComplete", "true");
                 editor.apply();
 
                 startActivity(intent);

@@ -11,6 +11,7 @@
         android:theme="@style/Theme.Cscb07projectcode">
         <activity
             android:name=".StoreOwnerOrderHistoryActivity"
+            android:parentActivityName=".StoreOwnerOrdersActivity"
             android:exported="false" />
         <activity
             android:name=".StoreOwnerOrderFormActivity"

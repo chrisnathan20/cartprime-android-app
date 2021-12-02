@@ -1,5 +1,6 @@
 package com.example.cscb07projectcode;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,10 +65,16 @@ public class OrderRecyclerAdapter extends RecyclerView.Adapter<OrderRecyclerAdap
 //        String totalPrice = String.valueOf(ordersList.get(position).computeTotalPrice());
         Log.i("pricerino", "passed through viewholder");
         String orderStatus = ordersList.get(position).getOrderStatus();
-
         holder.orderIdView.setText(orderId);
         holder.customerNameView.setText(customerName);
         holder.orderStatusView.setText(orderStatus);
+        // condition textview based on order status to select colour
+        if(orderStatus.equals("Incomplete")){
+            holder.orderStatusView.setTextColor(Color.parseColor("#C0392B"));
+        }
+        if(orderStatus.equals("Complete")){
+            holder.orderStatusView.setTextColor(Color.parseColor("#28B463"));
+        }
     }
 
     @Override

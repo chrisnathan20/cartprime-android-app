@@ -106,13 +106,12 @@
         android:id="@+id/textView9"
         android:layout_width="225dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:onClick="register_button"
         android:text="@string/registertext"
-        app:layout_constraintBottom_toTopOf="@+id/guideline32"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline33"
-        app:layout_constraintVertical_bias="0.371" />
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline31"

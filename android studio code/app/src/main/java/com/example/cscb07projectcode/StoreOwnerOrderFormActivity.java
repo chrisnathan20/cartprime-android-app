@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -39,6 +40,12 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
 
         // extract order id and set the value to corresponding order id textview
         SharedPreferences pref = getSharedPreferences("ordersData", Context.MODE_PRIVATE);
+        String fromComplete = pref.getString("fromComplete","");
+        if(fromComplete.equals("true")){
+            Button button = (Button) findViewById(R.id.button16);
+            button.setVisibility(View.INVISIBLE);
+        }
+
         String orderId = "Id: #" + pref.getString("orderIdKey", "");
 
         TextView order_id = (TextView) findViewById(R.id.textView5);

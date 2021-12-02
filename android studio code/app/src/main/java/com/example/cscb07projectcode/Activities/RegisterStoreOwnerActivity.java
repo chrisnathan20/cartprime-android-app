@@ -3,9 +3,14 @@ package com.example.cscb07projectcode.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -86,11 +92,11 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
         }
         if(storename_field.isEmpty()){
             field_status=false;
-            password_id.setError("Please fill in your Store's name.");
+            storename_id.setError("Please fill in your Store's name.");
         }
         if(description_field.isEmpty()){
             field_status=false;
-            password_id.setError("Please fill in your Store's description.");
+            description_id.setError("Please fill in your Store's description.");
         }
 
         // checks if email input is valid
@@ -126,25 +132,53 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
                     }
                     // if username is not taken, then append new user into database
                     else {
-                        // get database refernce
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                        DatabaseReference newRef = FirebaseDatabase.getInstance().getReference("stores").child("taken_storeNames").child(storename_field);
+                        ValueEventListener newListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot newsnapshot) {
+                                if(newsnapshot.exists()){
+                                    notifyMessage.setText("An account is already registered with that store name.");
+                                    storename_id.setError("Someone already has this store name.");
+                                }
+                                else{
+                                    // get database refernce
+                                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-                        // create a new user instance with user-specified data
-                        StoreOwner storeowner = new StoreOwner(firstname_field, lastname_field, email_field, password_field, storename_field);
-                        // append new user under StoreOwners as a child with key: email
-                        ref.child("users").child("storeowners").child(email_field).setValue(storeowner);
-                        // append username into list of pre-existing usernames
-                        ref.child("users").child("taken_usernames").child(email_field).setValue(email_field);
+                                    // create a new user instance with user-specified data
+                                    StoreOwner storeowner = new StoreOwner(firstname_field, lastname_field, email_field, password_field, storename_field);
+                                    // append new user under StoreOwners as a child with key: email
+                                    ref.child("users").child("storeowners").child(email_field).setValue(storeowner);
+                                    // append username into list of pre-existing usernames
+                                    ref.child("users").child("taken_usernames").child(email_field).setValue(email_field);
 
-                        // create a new store instance
-                        Store store = new Store(storename_field, description_field, storeowner.getUsername());
-                        // append new store data under stores with child key: storename
-                        ref.child("stores").child("list_of_stores").child(storename_field).setValue(store);
-                        // append store name into list of pre-existing store names
-                        ref.child("stores").child("taken_storenames").child(storename_field);
+                                    // create a new store instance
+                                    Store store = new Store(storename_field, description_field, storeowner.getUsername());
+                                    // append new store data under stores with child key: storename
+                                    ref.child("stores").child("list_of_stores").child(storename_field).setValue(store);
+                                    // append store name into list of pre-existing store names
+                                    ref.child("stores").child("taken_storeNames").child(storename_field).setValue(storename_field);
 
-                        // re-directs the user to login page for StoreOwners
-                        startActivity(intent);
+                                    notifyMessage.setTextColor(Color.parseColor("#00FF00"));
+                                    notifyMessage.setText("Account was successfully registered!");
+
+                                    // set a short delay to read from database
+                                    try {
+                                        TimeUnit.SECONDS.sleep(1);
+                                    } catch (InterruptedException e) {
+//                                        e.printStackTrace();
+                                    }
+
+                                    // re-directs the user to login page for StoreOwners
+                                    startActivity(intent);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        };
+                        newRef.addListenerForSingleValueEvent(newListener);
                     }
                 }
                 @Override
@@ -155,5 +189,14 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
             // call the event listener method with the database reference
             ref.addListenerForSingleValueEvent(listener);
         }
+        dismissKeyboard(this);
+    }
+
+    // hides the keyboard on call
+    public void dismissKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (null != activity.getCurrentFocus())
+            imm.hideSoftInputFromWindow(activity.getCurrentFocus()
+                    .getApplicationWindowToken(), 0);
     }
 }
