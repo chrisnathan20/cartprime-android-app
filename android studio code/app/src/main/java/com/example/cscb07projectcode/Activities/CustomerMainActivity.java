@@ -13,7 +13,6 @@ import android.widget.Spinner;
 import android.widget.Button;
 import android.view.View;
 
-import com.example.cscb07projectcode.Activities.CartStuff.OrderActivity;
 import com.example.cscb07projectcode.R;
 import com.example.cscb07projectcode.Store;
 import com.google.firebase.database.DataSnapshot;
@@ -101,7 +100,7 @@ public class CustomerMainActivity extends AppCompatActivity {
 
         //String text_to_send = spinner.getOnItemSelectedListener().toString();
 
-        Intent intent = new Intent(this, OrderActivity.class);
+        Intent intent = new Intent(this, Customer_Store_View.class);
         String x = spinner.getSelectedItem().toString();
         intent.putExtra("getData",x);
         SharedPreferences pref = getSharedPreferences("credentials_store_name", Context.MODE_PRIVATE);

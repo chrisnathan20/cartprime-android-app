@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_margin="16dp"
+    android:background="#FF9B09"
+    android:backgroundTint="#ECECEC"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Product Name"
+            android:textColor="@color/common_google_signin_btn_text_light"
+            android:textSize="14sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/productDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Product Name"
+            android:textColor="@color/common_google_signin_btn_text_light"
+            android:textSize="14sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/productPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Product Name"
+            android:textColor="@color/common_google_signin_btn_text_light"
+            android:textSize="14sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/productUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Product Name"
+            android:textColor="@color/common_google_signin_btn_text_light"
+            android:textSize="14sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/productAvailable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Product Name"
+            android:textColor="@color/common_google_signin_btn_text_light"
+            android:textSize="14sp"
+            android:textStyle="bold"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/quantity"
+                android:layout_width="107dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="@string/Quan"
+                android:textSize="10sp"
+                android:minHeight="48dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/Add_to_Cart"
+                android:layout_width="145dp"
+                android:layout_height="48dp"
+                android:padding="10dp"
+                android:text="Add to Cart" />
+
+            <TextView
+                android:id="@+id/Reduce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+

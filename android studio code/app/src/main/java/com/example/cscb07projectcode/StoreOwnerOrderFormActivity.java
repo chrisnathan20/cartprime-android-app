@@ -11,12 +11,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cscb07projectcode.Activities.EditProductActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -44,14 +47,31 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("ordersData", Context.MODE_PRIVATE);
         String fromComplete = pref.getString("fromComplete","");
         if(fromComplete.equals("true")){
+            // hides "complete" button for completing orders
             Button button = (Button) findViewById(R.id.button16);
             button.setVisibility(View.INVISIBLE);
+
+            // change text to complete
+            // change font colour to be green
+            TextView statusView = (TextView) findViewById(R.id.textView23);
+            statusView.setText("Complete");
+            statusView.setTextColor(Color.parseColor("#28B463"));
+        }
+        else{
+            TextView statusView = (TextView) findViewById(R.id.textView23);
+            statusView.setText("Incomplete");
+            statusView.setTextColor(Color.parseColor("#C0392B"));
         }
 
-        String orderId = "Id: #" + pref.getString("orderIdKey", "");
+        // pull order/customer id from sharedpreference file
+        String orderId = "Receipt Id: #" + pref.getString("orderIdKey", "");
+        String CustomerId = pref.getString("CustomerIdKey", "");
 
+        // set textview value via backend
         TextView order_id = (TextView) findViewById(R.id.textView5);
+        TextView customer_id = (TextView) findViewById(R.id.textView20);
         order_id.setText(orderId);
+        customer_id.setText(CustomerId);
 
         // initialize variables and call method for the recycler
         recyclerView = findViewById(R.id.recyclerOrderFormId);
@@ -81,14 +101,24 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
                         ValueEventListener newListener = new ValueEventListener(){
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                                // iterate through each product and append it into the arraylist
+                                // initialize total price variable
+                                double totalPrice = 0;
+                                // iterate through each product
                                 for(DataSnapshot newChild:snapshot.getChildren()) {
+                                    // append it into the arraylist
                                     Item item = newChild.getValue(Item.class);
                                     itemsList.add(item);
-                                    Log.i("asdf",item.getName());
+
+                                    // also compute the total price
+                                    double itemPrice = item.getPrice()*item.getQuantity();
+                                    totalPrice = totalPrice + itemPrice;
                                 }
+                                // populates data in each container in the recycler view
                                 setAdapter();
+                                // update textview wtih total price value and change colour to green
+                                TextView priceView = (TextView) findViewById(R.id.textView22);
+                                priceView.setText("$" + String.valueOf(totalPrice));
+                                priceView.setTextColor(Color.parseColor("#28B463"));
                             }
 
                             @Override
@@ -128,11 +158,13 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
         listener = new ProductRecyclerAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Intent intent = new Intent(getApplicationContext(), StoreOwnerOrderFormActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), StoreOwnerOrderFormActivity.class);
 
                 // use intent as a vehicle to transfer product details into next activity
 //                intent.putExtra("productUnit", itemsList.get(position).getUnit());
-                startActivity(intent);
+//                startActivity(intent);
+                Toast.makeText(StoreOwnerOrderFormActivity.this, itemsList.get(position).getName(),
+                        Toast.LENGTH_SHORT).show();
             }
         };
     }

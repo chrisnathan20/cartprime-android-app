@@ -10,18 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".StoreOwnerOrderHistoryActivity"
-            android:label="Order History"
-            android:parentActivityName=".StoreOwnerOrdersActivity"
+            android:name=".Activities.Cart_Order_Activity"
             android:exported="false" />
+        <activity
+            android:name=".Activities.Customer_Store_View"
+            android:exported="false" />
+        <activity
+            android:name=".StoreOwnerOrderHistoryActivity"
+            android:exported="false"
+            android:label="Order History"
+            android:parentActivityName=".StoreOwnerOrdersActivity" />
         <activity
             android:name=".StoreOwnerOrderFormActivity"
-            android:label="Order Details"
             android:exported="false"
+            android:label="Order Details"
             android:parentActivityName=".StoreOwnerOrderFormActivity" />
-        <activity
-            android:name=".Activities.CartStuff.OrderActivity"
-            android:exported="false" />
         <activity
             android:name=".StoreOwnerOrdersActivity"
             android:label="Orders Page"
