@@ -54,13 +54,13 @@ public class Customer_Store_View extends AppCompatActivity {
         myAdapter =  new AdapterForCustomerStoreView(this,list);
         cartList = new ArrayList<>();
 
-        add = (Button) findViewById(R.id.cart_add);
+
         // This for when items in the recyler view are clicked
 
 // RETRIEVING THE CUSTOMER USERNAME
         SharedPreferences pref = getSharedPreferences("credentialsCustomer", Context.MODE_PRIVATE);
         String username = pref.getString("username", "");
-        // RETRIEVING THE STORE NAME
+        // RETRIEVING THE CUSTOMER
         SharedPreferences pref2 = getSharedPreferences("credentials_store_name",Context.MODE_PRIVATE);
         String store_name = pref2.getString("store_name","");
 

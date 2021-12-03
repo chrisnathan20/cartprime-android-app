@@ -21,23 +21,13 @@
         android:id="@+id/visitCart"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:color="#66FF0000"
+        android:layout_marginTop="56dp"
+        android:color="#ffcccb"
 
-    app:icon="@drawable/cart"
+        app:icon="@drawable/cartttt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/cart_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:text="Add to Cart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

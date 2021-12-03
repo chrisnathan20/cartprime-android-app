@@ -93,16 +93,20 @@ Button SendOrder;
         OrderMetaData Order_info = new OrderMetaData();
          ref = FirebaseDatabase.getInstance().getReference("orders");
         SendOrder = (Button)findViewById(R.id.btn_placeorder);
-        DatabaseReference orderRef = ref.child("list_of_orders");
+        //DatabaseReference orderRef = ref.child("list_of_orders");
+
         SendOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DatabaseReference mDatabase  = FirebaseDatabase.getInstance().getReference();
                 Map<String, OrderMetaData> new_order = new HashMap<>();
                 String id = UUID.randomUUID().toString();
                 order_place.setOrderId(0);
-                new_order.put(id,new OrderMetaData(order_place.getOrderId(), "incomplete",username,store_name));
+
+                new_order.put(id,new OrderMetaData(order_place.getOrderId(), "Incomplete",username,store_name));
                 DatabaseReference new_child = ref.child("list_of_orders");
-                new_child.setValue(new_order);
+                mDatabase.child("orders").child("list_of_orders").setValue(new_order);
+               // new_child.setValue(new_order);
                 DatabaseReference child2 = ref.child("list_of_orders").child(id).child("itemList");
                 Map<String, Item> new_list = new HashMap<>();
 
@@ -111,7 +115,10 @@ Button SendOrder;
                     new_list.put(i.getName(),i);
                 }
 
-                child2.setValue(new_list);
+                mDatabase.child("orders").child("list_of_orders").child(id).child("itemList").setValue(new_list);
+             //  child2.setValue(new_list);
+
+
 
 
             }
