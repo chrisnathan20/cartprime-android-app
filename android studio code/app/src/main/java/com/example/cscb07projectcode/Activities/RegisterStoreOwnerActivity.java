@@ -38,6 +38,7 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
 
     // called when user clicks "Create new account" button
     public void CreateNewAccount(View view) {
+//        dismissKeyboard(this);
 
         // initialize the empty message notification
         TextView notifyMessage = (TextView) findViewById(R.id.textView);
@@ -64,6 +65,10 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
         // store user input for password
         EditText password_id = (EditText) findViewById(R.id.editTextTextPassword);
         String password_field = password_id.getText().toString();
+
+        // store user input for retype_password
+        EditText retype_password_id = (EditText) findViewById(R.id.editTextTextPassword3);
+        String retype_password_field = retype_password_id.getText().toString();
 
         // store user input for storename
         EditText storename_id = (EditText) findViewById(R.id.editTextTextPersonName7);
@@ -114,82 +119,91 @@ public class RegisterStoreOwnerActivity extends AppCompatActivity {
         }
         // proceed to next validation check: validates if email input is available
 //        else if (valid_email){
-        else{
-            // getReference(): selects data under key:"StoreOwners" who has a child named (email_field)
-            // convention for storing data: StoreOwners -> (username) -> (firstname,lastname,username,password)
-            // note: email and username are synonyms
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("taken_usernames").child(email_field);
-            ValueEventListener listener = new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    // if username is already taken
-                    if(snapshot.exists()){
-                        // the reqason for if condition is because listener will instanteously trigger when new account is added
-                        // this means it will show an error for a split second before re-directing you to login screen
-                        // if statement prevents that
-                        notifyMessage.setText("An account is already registered with that email.");
-                        email_id.setError("Someone already has this email.");
-                    }
-                    // if username is not taken, then append new user into database
-                    else {
-                        DatabaseReference newRef = FirebaseDatabase.getInstance().getReference("stores").child("taken_storeNames").child(storename_field);
-                        ValueEventListener newListener = new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot newsnapshot) {
-                                if(newsnapshot.exists()){
-                                    notifyMessage.setText("An account is already registered with that store name.");
-                                    storename_id.setError("Someone already has this store name.");
-                                }
-                                else{
-                                    // get database refernce
-                                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        else {
+            // check if password are matching
+            if (!password_field.equals(retype_password_field)) {
+                password_id.setError("Passwords do not match");
+                retype_password_id.setError("Passwords do not match");
+                notifyMessage.setText("Passwords do not match");
+                dismissKeyboard(this);
+            }
+            else {
+                // getReference(): selects data under key:"StoreOwners" who has a child named (email_field)
+                // convention for storing data: StoreOwners -> (username) -> (firstname,lastname,username,password)
+                // note: email and username are synonyms
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("taken_usernames").child(email_field);
+                ValueEventListener listener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        // if username is already taken
+                        if (snapshot.exists()) {
+                            // the reqason for if condition is because listener will instanteously trigger when new account is added
+                            // this means it will show an error for a split second before re-directing you to login screen
+                            // if statement prevents that
+                            notifyMessage.setText("An account is already registered with that email.");
+                            email_id.setError("Someone already has this email.");
+                        }
+                        // if username is not taken, then append new user into database
+                        else {
+                            DatabaseReference newRef = FirebaseDatabase.getInstance().getReference("stores").child("taken_storeNames").child(storename_field);
+                            ValueEventListener newListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot newsnapshot) {
+                                    if (newsnapshot.exists()) {
+                                        notifyMessage.setText("An account is already registered with that store name.");
+                                        storename_id.setError("Someone already has this store name.");
+                                    } else {
+                                        // get database refernce
+                                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-                                    // create a new user instance with user-specified data
-                                    StoreOwner storeowner = new StoreOwner(firstname_field, lastname_field, email_field, password_field, storename_field);
-                                    // append new user under StoreOwners as a child with key: email
-                                    ref.child("users").child("storeowners").child(email_field).setValue(storeowner);
-                                    // append username into list of pre-existing usernames
-                                    ref.child("users").child("taken_usernames").child(email_field).setValue(email_field);
+                                        // create a new user instance with user-specified data
+                                        StoreOwner storeowner = new StoreOwner(firstname_field, lastname_field, email_field, password_field, storename_field);
+                                        // append new user under StoreOwners as a child with key: email
+                                        ref.child("users").child("storeowners").child(email_field).setValue(storeowner);
+                                        // append username into list of pre-existing usernames
+                                        ref.child("users").child("taken_usernames").child(email_field).setValue(email_field);
 
-                                    // create a new store instance
-                                    Store store = new Store(storename_field, description_field, storeowner.getUsername());
-                                    // append new store data under stores with child key: storename
-                                    ref.child("stores").child("list_of_stores").child(storename_field).setValue(store);
-                                    // append store name into list of pre-existing store names
-                                    ref.child("stores").child("taken_storeNames").child(storename_field).setValue(storename_field);
+                                        // create a new store instance
+                                        Store store = new Store(storename_field, description_field, storeowner.getUsername());
+                                        // append new store data under stores with child key: storename
+                                        ref.child("stores").child("list_of_stores").child(storename_field).setValue(store);
+                                        // append store name into list of pre-existing store names
+                                        ref.child("stores").child("taken_storeNames").child(storename_field).setValue(storename_field);
 
-                                    notifyMessage.setTextColor(Color.parseColor("#00FF00"));
-                                    notifyMessage.setText("Account was successfully registered!");
+                                        notifyMessage.setTextColor(Color.parseColor("#00FF00"));
+                                        notifyMessage.setText("Account was successfully registered!");
 
-                                    // set a short delay to read from database
-                                    try {
-                                        TimeUnit.SECONDS.sleep(1);
-                                    } catch (InterruptedException e) {
-//                                        e.printStackTrace();
+                                        // set a short delay to read from database
+                                        try {
+                                            TimeUnit.SECONDS.sleep(1);
+                                        } catch (InterruptedException e) {
+                                            //                                        e.printStackTrace();
+                                        }
+
+                                        // re-directs the user to login page for StoreOwners
+                                        startActivity(intent);
                                     }
-
-                                    // re-directs the user to login page for StoreOwners
-                                    startActivity(intent);
                                 }
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        };
-                        newRef.addListenerForSingleValueEvent(newListener);
+                                }
+                            };
+                            newRef.addListenerForSingleValueEvent(newListener);
+                        }
                     }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // TODO: add a error message here
-                }
-            };
-            // call the event listener method with the database reference
-            ref.addListenerForSingleValueEvent(listener);
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        // TODO: add a error message here
+                    }
+                };
+                // call the event listener method with the database reference
+                ref.addListenerForSingleValueEvent(listener);
+            }
+            dismissKeyboard(this);
         }
-        dismissKeyboard(this);
     }
 
     // hides the keyboard on call
