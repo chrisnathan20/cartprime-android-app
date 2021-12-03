@@ -3,8 +3,9 @@
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="200dp"
     android:layout_margin="16dp"
     android:background="#FF9B09"
     android:backgroundTint="#ECECEC"
@@ -67,12 +68,31 @@
             android:textSize="14sp"
             android:textStyle="bold"></TextView>
 
-        <Button
-            android:id="@+id/Add_to_Cart"
-            android:layout_width="145dp"
-            android:layout_height="48dp"
-            android:text="Add to Cart"
-            android:padding="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/quantity"
+                android:layout_width="107dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="@string/Quan"
+                android:textSize="10sp"
+                android:minHeight="48dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/Add_to_Cart"
+                android:layout_width="145dp"
+                android:layout_height="48dp"
+                android:padding="10dp"
+                android:text="Add to Cart" />
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

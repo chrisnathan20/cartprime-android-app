@@ -15,10 +15,6 @@
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_register_customer.xml" value="0.33" />
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_register_store_owner.xml" value="0.4" />
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_store_owner_main.xml" value="0.4" />
-        <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_store_owner_order_form.xml" value="0.6034658511722731" />
-        <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_store_owner_order_history.xml" value="0.26811594202898553" />
-        <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/activity_store_owner_orders.xml" value="0.26811594202898553" />
-        <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/order_container.xml" value="0.26811594202898553" />
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/store_container.xml" value="0.5" />
         <entry key="..\:/Users/harrickcheong/cscb07project/android studio code/app/src/main/res/layout/store_info_for_customer_main_activity.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/harrickcheong/cscb07project/cscb07project/android studio code/app/src/main/res/layout/activity_register_store_owner.xml" value="0.264" />
@@ -32,7 +28,7 @@
         <entry key="app/src/main/res/layout/activity_customer_order.xml" value="0.3282051282051282" />
         <entry key="app/src/main/res/layout/activity_customer_store_view.xml" value="0.2890625" />
         <entry key="app/src/main/res/layout/activity_order.xml" value="0.2890625" />
-        <entry key="app/src/main/res/layout/customer_products_recyler_indiv.xml" value="0.35714285714285715" />
+        <entry key="app/src/main/res/layout/customer_products_recyler_indiv.xml" value="0.25892857142857145" />
         <entry key="app/src/main/res/layout/order_container.xml" value="0.2890625" />
         <entry key="app/src/main/res/layout/store_info_for_customer_main_activity.xml" value="0.75" />
       </map>

@@ -28,6 +28,7 @@ public class Customer_Store_View extends AppCompatActivity {
 
     AdapterForCustomerStoreView myAdapter;
     ArrayList<Item> list;
+    ArrayList<Item> cartList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +39,30 @@ public class Customer_Store_View extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myAdapter =  new AdapterForCustomerStoreView(this,list);
+        cartList = new ArrayList<>();
+
+        // This for when items in the recyler view are clicked
+        myAdapter.setOnItemClickListener(new AdapterForCustomerStoreView.onItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                list.get(position); // GET THE ITEM AT THIS POSITION DONE
+                Log.i("AAAAAA", list.get(position).getName());
+            }
+
+            @Override
+            public void onAddtoCart(int position) {
+                list.get(position); // GET THE ITEM AT THIS POSITION DONE
+                Log.i("AAAAAA", list.get(position).getName()); // this works for now
+
+            }
+        });
 
 
 
 
 
         Intent intent = getIntent();
-        String value= intent.getStringExtra("getData");
+        String value= intent.getStringExtra("getData");// the store name here
 
 
 
