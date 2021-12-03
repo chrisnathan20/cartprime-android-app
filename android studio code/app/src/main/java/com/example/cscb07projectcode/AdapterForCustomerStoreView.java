@@ -47,6 +47,7 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
         TextView Available;
         Button add_to_Cart;
         EditText quantity;
+
         // Constructors
         public MyViewHolder(@NonNull View itemView,onItemClickListener listener) {
             super(itemView);

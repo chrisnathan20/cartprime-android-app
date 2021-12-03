@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cscb07projectcode">
         <activity
+            android:name=".Activities.Cart_Order_Activity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Customer_Store_View"
             android:exported="false" />
         <activity
@@ -22,7 +25,6 @@
             android:exported="false"
             android:label="Order Details"
             android:parentActivityName=".StoreOwnerOrderFormActivity" />
-
         <activity
             android:name=".StoreOwnerOrdersActivity"
             android:label="Orders Page"
