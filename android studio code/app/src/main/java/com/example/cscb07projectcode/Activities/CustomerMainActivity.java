@@ -59,6 +59,10 @@ public class CustomerMainActivity extends AppCompatActivity {
                                   }
 
         );
+        // RETRIEVING THE CUSTOMER USERNAME
+        SharedPreferences pref = getSharedPreferences("credentialsCustomer", Context.MODE_PRIVATE);
+        String username = pref.getString("username", "");
+        // RETRIEVING THE CUSTOMER USERNAME
 
 
 
@@ -103,10 +107,12 @@ public class CustomerMainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Customer_Store_View.class);
         String x = spinner.getSelectedItem().toString();
         intent.putExtra("getData",x);
+        // saving the current store name to a local file
         SharedPreferences pref = getSharedPreferences("credentials_store_name", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putString("store_name", x); // saving the current store name to a local file
+        editor.putString("store_name", x);
         editor.apply();
+        // saving the current store name to a local file
         startActivity(intent);
 
 

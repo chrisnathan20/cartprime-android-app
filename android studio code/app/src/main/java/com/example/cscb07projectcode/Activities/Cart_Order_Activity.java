@@ -12,7 +12,9 @@ import com.example.cscb07projectcode.Order;
 import com.example.cscb07projectcode.OrderMetaData;
 import com.example.cscb07projectcode.R;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +33,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class Cart_Order_Activity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -78,6 +81,14 @@ Button SendOrder;
 
         //ArrayList<Item> myList = getIntent().getParcelableExtra("Contact_list");
         //t.setText(myList.get(0).getName());
+
+// RETRIEVING THE CUSTOMER USERNAME
+        SharedPreferences pref = getSharedPreferences("credentialsCustomer", Context.MODE_PRIVATE);
+        String username = pref.getString("username", "");
+        // RETRIEVING THE STORE NAME
+        SharedPreferences pref2 = getSharedPreferences("credentials_store_name",Context.MODE_PRIVATE);
+        String store_name = pref2.getString("store_name","");
+
         order_place = new Order();
         OrderMetaData Order_info = new OrderMetaData();
          ref = FirebaseDatabase.getInstance().getReference("orders");
@@ -87,11 +98,12 @@ Button SendOrder;
             @Override
             public void onClick(View v) {
                 Map<String, OrderMetaData> new_order = new HashMap<>();
-                String id = "11122";
-                new_order.put(String.valueOf(11122),new OrderMetaData(11122, "incomplete","Customer Name","STORE NAME"));
+                String id = UUID.randomUUID().toString();
+                order_place.setOrderId(0);
+                new_order.put(id,new OrderMetaData(order_place.getOrderId(), "incomplete",username,store_name));
                 DatabaseReference new_child = ref.child("list_of_orders");
                 new_child.setValue(new_order);
-                DatabaseReference child2 = ref.child("list_of_orders").child(id).child("list_of_products");
+                DatabaseReference child2 = ref.child("list_of_orders").child(id).child("itemList");
                 Map<String, Item> new_list = new HashMap<>();
 
                 for(Item i:list)

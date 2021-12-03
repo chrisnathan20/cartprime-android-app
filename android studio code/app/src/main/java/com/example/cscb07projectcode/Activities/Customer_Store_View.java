@@ -57,6 +57,16 @@ public class Customer_Store_View extends AppCompatActivity {
         add = (Button) findViewById(R.id.cart_add);
         // This for when items in the recyler view are clicked
 
+// RETRIEVING THE CUSTOMER USERNAME
+        SharedPreferences pref = getSharedPreferences("credentialsCustomer", Context.MODE_PRIVATE);
+        String username = pref.getString("username", "");
+        // RETRIEVING THE STORE NAME
+        SharedPreferences pref2 = getSharedPreferences("credentials_store_name",Context.MODE_PRIVATE);
+        String store_name = pref2.getString("store_name","");
+
+
+
+
 
             // VISIT CART STUFF DOWN THERE
         Button cart_button = (Button) findViewById(R.id.visitCart); // what happens when you click the visit cart button
