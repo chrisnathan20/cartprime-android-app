@@ -1,9 +1,11 @@
 package com.example.cscb07projectcode.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -59,7 +61,6 @@ public class EditProductActivity extends AppCompatActivity {
 
     public void republish_button(View view){
         Intent intent = new Intent(this, StoreOwnerMainActivity.class);
-
         // connect edittext views
         EditText productName_id = (EditText) findViewById(R.id.editTextTextPersonName3);
         EditText productDesc_id = (EditText) findViewById(R.id.editTextTextPersonName4);
@@ -173,5 +174,38 @@ public class EditProductActivity extends AppCompatActivity {
             }
         };
         ref.addListenerForSingleValueEvent(listener);
+    }
+
+    public void displayAlertIncompleteOrder(String product_name){
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditProductActivity.this);
+
+        builder.setTitle("Republish denied");
+        builder.setMessage(product_name + " found in incomplete order");
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
+
+    public void displayAlertTakenProduct(String product_name){
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditProductActivity.this);
+
+        builder.setTitle("Republish denied");
+        builder.setMessage(product_name + " is taken, please choose another product name");
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
