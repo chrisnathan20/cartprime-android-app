@@ -97,7 +97,7 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
                     if(orderId.equals(String.valueOf(order.getOrderId()))){
                         Log.i("newtag", "works");
                         // create a database reference to access list of products
-                        DatabaseReference newRef = ref.child(orderId).child("list_of_products");
+                        DatabaseReference newRef = ref.child(orderId).child("itemsList");
                         ValueEventListener newListener = new ValueEventListener(){
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
