@@ -22,7 +22,10 @@ public class OrderMetaData {
     }
 
     public void setOrderId(int orderId) {
-        this.orderId = orderId;
+        int max= 999999;
+        int min = 100000;
+        int random = (int) Math.floor(Math.random()*(max-min+1)+min); //RANDOMIZING THE ORDER ID
+        this.orderId = random;
     }
 
     public String getOrderStatus() {

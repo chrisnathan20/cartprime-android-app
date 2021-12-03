@@ -1,5 +1,6 @@
 package com.example.cscb07projectcode.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,25 +8,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cscb07projectcode.AdapterForCustomerStoreView;
 import com.example.cscb07projectcode.Cart_Item_Adapter;
+import com.example.cscb07projectcode.Order;
+import com.example.cscb07projectcode.OrderMetaData;
 import com.example.cscb07projectcode.R;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cscb07projectcode.Item;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cart_Order_Activity extends AppCompatActivity {
     RecyclerView recyclerView;
-
+    Order order_place; // gotta init it and this is the order we will send via this form
    Cart_Item_Adapter myAdapter;
     ArrayList<Item> list;
-
+Button SendOrder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,8 +49,7 @@ public class Cart_Order_Activity extends AppCompatActivity {
         // ADAPTER
         // PROBABLY ADD A FUNCTION FOR It
 
-        TextView  t= (TextView)findViewById(R.id.textView26);
-      t.setText(x[2].toString());
+
 
      PopulateList(x);
       Log.i("IS THE ARRAYLIST EMPTY"," " + list.size());
@@ -48,23 +59,68 @@ public class Cart_Order_Activity extends AppCompatActivity {
 
       } **/
 
+
+
    // SUCCESSFULLY ABLE TO POPULATE THE ARRAY LIST WITH PROPER QUANTITY
         recyclerView = findViewById(R.id.recycler_cart);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myAdapter =  new Cart_Item_Adapter(this,list);
+        DatabaseReference ref ;
 
 
         recyclerView.setAdapter(myAdapter);
 
+        double newTotal = Calculate_total(list);
+
+        TextView total_ = (TextView) findViewById(R.id.tv_total);
+        total_.setText("$ "+String.format("%.2f",newTotal)); // TOTAL OF THE ORDER IN 2 DECIMAL PLACES
+
         //ArrayList<Item> myList = getIntent().getParcelableExtra("Contact_list");
         //t.setText(myList.get(0).getName());
+        order_place = new Order();
+        OrderMetaData Order_info = new OrderMetaData();
+         ref = FirebaseDatabase.getInstance().getReference("orders");
+        SendOrder = (Button)findViewById(R.id.btn_placeorder);
+        DatabaseReference orderRef = ref.child("list_of_orders");
+        SendOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<String, OrderMetaData> new_order = new HashMap<>();
+                String id = "11122";
+                new_order.put(String.valueOf(11122),new OrderMetaData(11122, "incomplete","Customer Name","STORE NAME"));
+                DatabaseReference new_child = ref.child("list_of_orders");
+                new_child.setValue(new_order);
+                DatabaseReference child2 = ref.child("list_of_orders").child(id).child("list_of_products");
+                Map<String, Item> new_list = new HashMap<>();
+
+                for(Item i:list)
+                {
+                    new_list.put(i.getName(),i);
+                }
+
+                child2.setValue(new_list);
+
+
+            }
+        });
 
 
 
        // Intent intent = getIntent();
        // String name = intent.getStringExtra("first");
      // Log.i("Taggg",myList.get(0).getName());
+    }
+
+    public double Calculate_total(ArrayList<Item>ls) // CALCULATES THE TOTAL OF THE ORDER
+    {
+        double Total =0;
+        for(Item i: ls)
+        {
+            Total += i.getPrice()*i.getQuantity();
+
+        }
+        return Total;
     }
 
     public void PopulateList(String[] str)

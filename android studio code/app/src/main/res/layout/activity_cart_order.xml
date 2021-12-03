@@ -44,18 +44,16 @@
         android:layout_marginBottom="0dp" />
 
 
-
     <Button
         android:id="@+id/btn_placeorder"
-        android:layout_gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_height="60dp"
         android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
         android:onClick="insertOrder"
         android:text="Place Order"
         android:textColor="@android:color/white"
-        android:theme="@style/Widget.MaterialComponents.Button">
-    </Button>
+        android:theme="@style/Widget.MaterialComponents.Button"></Button>
 
 
 
