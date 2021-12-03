@@ -70,7 +70,8 @@ public class Item implements Parcelable {
 
     @Override
     public String toString() {
-        String x = this.name + " " + this.description + " " + this.price + " " + this.quantity + " " + this.unit;
+        String x = this.name + ";" + this.description + ";" + this.price + ";" + this.quantity + ";" + this.unit;
+        // ADDED A DELIMETER TO MAKE SURE I CAN EXTRACT STUFF WHILE DOING THE CART
         return x;
     }
 
@@ -83,9 +84,8 @@ public class Item implements Parcelable {
         Item obj = (Item) o;
         if (obj.getName() != this.name &&
                 obj.getDescription() != this.description &&
-                obj.getPrice() != this.price &&
-                obj.getQuantity() != this.quantity &&
-                this.unit != obj.getUnit())
+                obj.getPrice() != this.price
+                )
             return false;
         return true;
     }
