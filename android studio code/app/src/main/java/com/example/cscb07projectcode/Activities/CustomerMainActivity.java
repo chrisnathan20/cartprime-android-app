@@ -100,7 +100,7 @@ public class CustomerMainActivity extends AppCompatActivity {
 
         //String text_to_send = spinner.getOnItemSelectedListener().toString();
 
-        Intent intent = new Intent(this, CustomerOrderActivity.class);
+        Intent intent = new Intent(this, Customer_Store_View.class);
         String x = spinner.getSelectedItem().toString();
         intent.putExtra("getData",x);
         SharedPreferences pref = getSharedPreferences("credentials_store_name", Context.MODE_PRIVATE);
