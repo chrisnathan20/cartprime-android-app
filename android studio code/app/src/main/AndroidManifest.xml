@@ -11,10 +11,12 @@
         android:theme="@style/Theme.Cscb07projectcode">
         <activity
             android:name=".StoreOwnerOrderHistoryActivity"
+            android:label="Order History"
             android:parentActivityName=".StoreOwnerOrdersActivity"
             android:exported="false" />
         <activity
             android:name=".StoreOwnerOrderFormActivity"
+            android:label="Order Details"
             android:exported="false"
             android:parentActivityName=".StoreOwnerOrderFormActivity" />
         <activity
@@ -22,18 +24,22 @@
             android:exported="false" />
         <activity
             android:name=".StoreOwnerOrdersActivity"
+            android:label="Orders Page"
             android:parentActivityName=".Activities.StoreOwnerMainActivity" />
         <activity
             android:name=".Activities.EditProductActivity"
+            android:label="Edit Product"
             android:parentActivityName=".Activities.StoreOwnerMainActivity" />
         <activity
             android:name=".Activities.CustomerOrderActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.AddProductActivity"
+            android:label="Add a Product"
             android:parentActivityName=".Activities.StoreOwnerMainActivity" />
         <activity
             android:name=".Activities.StoreOwnerMainActivity"
+            android:label="Store Owner Home"
             android:parentActivityName=".Activities.LoginStoreOwnerActivity" />
         <activity
             android:name=".Activities.CustomerMainActivity"
