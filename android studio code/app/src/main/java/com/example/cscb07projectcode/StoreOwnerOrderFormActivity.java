@@ -1,12 +1,14 @@
 package com.example.cscb07projectcode;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -166,5 +168,21 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, StoreOwnerOrdersActivity.class);
         startActivity(intent);
+    }
+
+    public void displayAlertStockShortage(String product_name){
+        AlertDialog.Builder builder = new AlertDialog.Builder(StoreOwnerOrderFormActivity.this);
+
+        builder.setTitle("Order cannot be completed");
+        builder.setMessage(product_name + " has insufficient stock");
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
