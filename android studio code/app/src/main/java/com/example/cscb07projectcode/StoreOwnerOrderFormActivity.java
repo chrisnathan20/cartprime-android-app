@@ -14,7 +14,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cscb07projectcode.Activities.EditProductActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -46,8 +48,10 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
             button.setVisibility(View.INVISIBLE);
         }
 
+        // pull order id from sharedpreference file
         String orderId = "Id: #" + pref.getString("orderIdKey", "");
 
+        // set textview value via backend
         TextView order_id = (TextView) findViewById(R.id.textView5);
         order_id.setText(orderId);
 
@@ -126,11 +130,13 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
         listener = new ProductRecyclerAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Intent intent = new Intent(getApplicationContext(), StoreOwnerOrderFormActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), StoreOwnerOrderFormActivity.class);
 
                 // use intent as a vehicle to transfer product details into next activity
 //                intent.putExtra("productUnit", itemsList.get(position).getUnit());
-                startActivity(intent);
+//                startActivity(intent);
+                Toast.makeText(StoreOwnerOrderFormActivity.this, itemsList.get(position).getName(),
+                        Toast.LENGTH_SHORT).show();
             }
         };
     }
