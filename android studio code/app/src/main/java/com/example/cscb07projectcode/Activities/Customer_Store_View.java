@@ -16,7 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -36,6 +38,7 @@ public class Customer_Store_View extends AppCompatActivity {
     ArrayList<Item> cartList;
     EditText quan; // for the quantity of a selected item to be added
     TextView isQuanAvliable; // tells whether the quanity added is available
+    Button add;
 
 
     @Override
@@ -51,41 +54,8 @@ public class Customer_Store_View extends AppCompatActivity {
         myAdapter =  new AdapterForCustomerStoreView(this,list);
         cartList = new ArrayList<>();
 
+        add = (Button) findViewById(R.id.cart_add);
         // This for when items in the recyler view are clicked
-        myAdapter.setOnItemClickListener(new AdapterForCustomerStoreView.onItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                list.get(position); // GET THE ITEM AT THIS POSITION DONE
-                Log.i("AAAAAA", list.get(position).getName());
-            }
-
-            @Override
-            public void onAddtoCart(int position) {
-                list.get(position); // GET THE ITEM AT THIS POSITION DONE
-
-                // WILL NEED A POP UP MESSAGE
-                Item current = list.get(position);
-                Item toAdd = new Item(current.getName(),current.getDescription(),current.getPrice(),1,current.getUnit());
-                if((cartList.isEmpty() || !cartList.contains(toAdd)) && current.getQuantity()>=1 )
-                { cartList.add(toAdd);
-
-                    Log.i("Did it add", String.valueOf(cartList.contains(toAdd))); // this works for now
-                }
-
-                else if(cartList.contains(toAdd) && (current.getQuantity()-cartList.get(cartList.indexOf(toAdd)).getQuantity())>0)
-                {
-                   int index = cartList.indexOf(toAdd);
-                   cartList.get(index).setQuantity(cartList.get(index).getQuantity() +1); // increments the quantity by 1
-                    Log.i("Did it add 1 more", cartList.get(index).getName() + cartList.get(index).getQuantity());
-
-                }
-
-
-
-               // Log.i("AAAAAA", list.get(position).getName()); // this works for now
-
-            }
-        });
 
 
             // VISIT CART STUFF DOWN THERE
@@ -98,6 +68,7 @@ public class Customer_Store_View extends AppCompatActivity {
                                        }
 
         );
+
 
 
 
@@ -145,12 +116,58 @@ public class Customer_Store_View extends AppCompatActivity {
             }
         };
         ref.addValueEventListener(listener);
+        myAdapter.setOnItemClickListener(new AdapterForCustomerStoreView.onItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                list.get(position); // GET THE ITEM AT THIS POSITION DONE
+
+                Log.i("AAAAAA", list.get(position).getName());
+            }
+
+            @Override
+            public void onAddtoCart(int position) {
+                list.get(position); // GET THE ITEM AT THIS POSITION DONE
+                Log.i(" CAN I GET TO STRING",list.get(position).toString());
+
+                //Intent intent = new Intent(getApplicationContext(),Cart_Order_Activity.class);
+                Log.i("DOES IT ADD STUFFBEFORE", cartList.size() + "  Prev") ;
+                cartList.add(list.get(position));
+                Log.i("DOES IT ADD STUFF ", cartList.size() + "  ") ;
+                //intent.putExtra("extra", list.get(position).toString());
+                //startActivity(intent);
+
+
+
+            }
+        });
+
+
     }
 
 public void openCart()
 {
-    Intent intent = new Intent(getApplicationContext(), Cart_Order_Activity.class);
-    intent.putExtra("first",cartList.get(0).getName());
+    for(Item i: cartList)
+    {
+        Log.i("TESt",i.getName()+ "\n\n"+i.getDescription());
+    }
+    if(cartList.isEmpty())
+    {   Intent intent = new Intent(getApplicationContext(), Cart_Order_Activity.class);
+        startActivity(intent);
+    intent.putExtra("first","Empty");
+    }
+
+    Intent intent = new Intent(this,Cart_Order_Activity.class);
+    String [] arr_ = new String[cartList.size()];
+    int  i = 0;
+    for(Item item_: cartList)
+    {
+                arr_[i] = item_.toString();
+                i++;
+    }
+
+    intent.putExtra("VALUESSSSS",arr_);
+
+
 
     startActivity(intent);
 

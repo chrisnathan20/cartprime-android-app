@@ -157,6 +157,7 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
         // assign the intent to open add a product form
         Intent intent = new Intent(this, AddProductActivity.class);
 
+
         // go into the next activity and pass the username
 //        intent.putExtra(username_key, username);
 

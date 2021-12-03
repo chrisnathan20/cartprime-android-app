@@ -1,16 +1,19 @@
 package com.example.cscb07projectcode;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-public class Item {
+public class Item implements Parcelable {
 
     private String name;
     private String description;
     private double price;
     private int quantity;
     private String unit;
-    private boolean available;
+  //  private boolean available;
 
     public Item() {
     }
@@ -21,7 +24,7 @@ public class Item {
         setQuantity(quantity);
         setUnit(unit);
         setPrice(price);
-        setAvailable();
+
     }
 
 
@@ -62,15 +65,13 @@ public class Item {
     public String getUnit() {
         return this.unit;
     }
-    public void setAvailable()
-    {
-        this.available = this.quantity >0;
-    }
+
 
 
     @Override
     public String toString() {
-        return "Item Name: " + this.name + " Quantity: " + this.quantity + " " + this.unit + "for $" + this.price;
+        String x = this.name + " " + this.description + " " + this.price + " " + this.quantity + " " + this.unit;
+        return x;
     }
 
     @Override
@@ -101,6 +102,16 @@ public class Item {
         return x;
     }
 
+    public Item(Parcel in)
+    {
+        name =in.readString();
+        description = in.readString();
+        quantity = in.readInt();
+        price = in.readDouble();
+        unit = in.readString();
+       // available = in.readBoolean();
+
+    }
 
     public static DiffUtil.ItemCallback<Item> itemItemCallback = new DiffUtil.ItemCallback<Item>() {
         @Override
@@ -114,4 +125,28 @@ public class Item {
         }
     };
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeInt(quantity);
+        dest.writeDouble(price);
+        dest.writeString(description);
+        dest.writeString(unit);
+    }
+
+    public static final Parcelable.Creator<Item> CREATOR = new Parcelable.Creator<Item>() {
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
+        }
+
+        public Item[] newArray(int size) {
+            return new Item[size];
+
+        }
+    };
 }
