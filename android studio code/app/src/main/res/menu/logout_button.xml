@@ -3,10 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_name"
-        android:icon="@drawable/icons8_logout_50"
+        android:id="@+id/action_settings"
+        android:icon="@drawable/dots"
         android:orderInCategory="0"
-        android:title="Logout"
-        app:showAsAction="always" />
+        android:title="Settings"
+        app:showAsAction="always">
+
+        <menu>
+            <!--
+            <item
+                android:id="@+id/action_name"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:title="settings"
+                app:showAsAction="ifRoom" />
+            -->
+            <item
+                android:id="@+id/action_name"
+                android:icon="@drawable/icons8_logout_50"
+                android:title="Logout"
+                app:showAsAction="ifRoom" />
+
+        </menu>
+    </item>
 
 </menu>

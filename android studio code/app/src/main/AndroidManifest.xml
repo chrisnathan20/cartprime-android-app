@@ -42,11 +42,9 @@
             android:parentActivityName=".Activities.StoreOwnerMainActivity" />
         <activity
             android:name=".Activities.StoreOwnerMainActivity"
-            android:label="Store Owner Home"
-            android:parentActivityName=".Activities.LoginStoreOwnerActivity" />
+            android:label="Store Owner Home" />
         <activity
-            android:name=".Activities.CustomerMainActivity"
-            android:parentActivityName=".Activities.LoginCustomerActivity" />
+            android:name=".Activities.CustomerMainActivity" />
         <activity
             android:name=".Activities.RegisterCustomerActivity"
             android:exported="false"
