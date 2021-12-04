@@ -53,6 +53,7 @@ public class Order {
         //int min = 100000;
         //int random = (int) Math.floor(Math.random()*(max-min+1)+min); //RANDOMIZING THE ORDER ID
         //this.orderId = random;
+
         this.orderId = orderId;
     }
 
@@ -61,6 +62,7 @@ public class Order {
         int min = 100000;
         int random = (int) Math.floor(Math.random()*(max-min+1)+min); //RANDOMIZING THE ORDER ID
         this.orderId = random;
+
     }
 
     public String getOrderStatus() {

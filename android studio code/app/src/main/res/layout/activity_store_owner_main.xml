@@ -32,10 +32,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="418dp"
-        android:layout_height="373dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
+        android:layout_width="0dp"
+        android:layout_height="519dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +98,6 @@
         android:layout_width="68dp"
         android:layout_height="46dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
         android:onClick="ordersIcon_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

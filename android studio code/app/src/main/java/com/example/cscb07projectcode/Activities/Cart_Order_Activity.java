@@ -100,8 +100,9 @@ Button SendOrder;
             public void onClick(View v) {
                 DatabaseReference mDatabase  = FirebaseDatabase.getInstance().getReference();
                 Map<String, OrderMetaData> new_order = new HashMap<>();
-                String id = UUID.randomUUID().toString();
-                order_place.setOrderId(0);
+               order_place.generateOrderId();
+                String id = String.valueOf(order_place.getOrderId());
+
 
                 new_order.put(id,new OrderMetaData(order_place.getOrderId(), "Incomplete",username,store_name));
                 DatabaseReference new_child = ref.child("list_of_orders");
@@ -115,7 +116,7 @@ Button SendOrder;
                     new_list.put(i.getName(),i);
                 }
 
-                mDatabase.child("orders").child("list_of_orders").child(id).child("itemList").setValue(new_list);
+                mDatabase.child("orders").child("list_of_orders").child(id).child("itemsList").setValue(new_list);
              //  child2.setValue(new_list);
 
 
