@@ -15,6 +15,7 @@ import android.widget.EditText;
 
 import com.example.cscb07projectcode.Item;
 import com.example.cscb07projectcode.Order;
+import com.example.cscb07projectcode.OrderExtraction;
 import com.example.cscb07projectcode.OrderMetaData;
 import com.example.cscb07projectcode.R;
 import com.example.cscb07projectcode.Store;
@@ -24,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class EditProductActivity extends AppCompatActivity {
 
@@ -140,31 +143,66 @@ public class EditProductActivity extends AppCompatActivity {
 
 
                         Log.i("edit", username);
-                        // create a database reference to access list of products
-                        DatabaseReference newRef = ref.child(storename).child("products");
-                        ValueEventListener newListener = new ValueEventListener(){
+
+                        //check if the store still has any incomplete orders
+                        DatabaseReference root = FirebaseDatabase.getInstance().getReference();
+                        DatabaseReference user = root.child("orders").child("list_of_orders");
+
+                        user.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                // iterate through each product until product name matches
-                                for(DataSnapshot newChild:snapshot.getChildren()) {
-                                    Item item = newChild.getValue(Item.class);
-                                    Log.i("edit",productName_field);
-                                    Log.i("edit", item.getName());
-                                    if(productName_field.equals(item.getName())){
-                                        newChild.getRef().removeValue();
-                                        Log.i("edit", productName_field);
-                                        break;
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                boolean incomplete_and_contains = false;
+                                Log.v("Store working with", storename);
+                                // loops through to gather orders
+                                for (DataSnapshot orderdata : dataSnapshot.getChildren()) {
+                                    OrderMetaData order = orderdata.getValue(OrderMetaData.class);
+
+                                    Log.v("Store Name", order.getStoreName());
+                                    if (order.getOrderStatus().equals("Incomplete") & storename.equals(order.getStoreName())) {
+                                        String Order_id = Integer.toString(order.getOrderId());
+                                        Log.v("Work on", order.getStoreName());
+
+                                        incomplete_and_contains = true;
                                     }
                                 }
+
+                                if (incomplete_and_contains) {
+                                    displayAlertIncompleteOrder2(productName_field);
+                                } else {
+                                    // create a database reference to access list of products
+                                    DatabaseReference newRef = ref.child(storename).child("products");
+                                    ValueEventListener newListener = new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            // iterate through each product until product name matches
+                                            for (DataSnapshot newChild : snapshot.getChildren()) {
+                                                Item item = newChild.getValue(Item.class);
+                                                Log.i("edit", productName_field);
+                                                Log.i("edit", item.getName());
+                                                if (productName_field.equals(item.getName())) {
+                                                    newChild.getRef().removeValue();
+                                                    Log.i("edit", productName_field);
+                                                    break;
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        }
+                                    };
+                                    newRef.addListenerForSingleValueEvent(newListener);
+                                    startActivity(intent);
+                                }
                             }
+
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
                             }
-                        };
-                        newRef.addListenerForSingleValueEvent(newListener);
+                        });
                     }
                 }
-                startActivity(intent);
             }
 
             @Override
@@ -176,10 +214,28 @@ public class EditProductActivity extends AppCompatActivity {
     }
 
     public void displayAlertIncompleteOrder(String product_name){
+            AlertDialog.Builder builder = new AlertDialog.Builder(EditProductActivity.this);
+
+            builder.setTitle(product_name + " edit denied");
+            builder.setMessage("please complete all incomplete orders before editing");
+
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+
+        }
+
+
+    public void displayAlertIncompleteOrder2(String product_name){
         AlertDialog.Builder builder = new AlertDialog.Builder(EditProductActivity.this);
 
-        builder.setTitle(product_name + " edit denied");
-        builder.setMessage("please complete all incomplete orders before editing");
+        builder.setTitle(product_name + " delete denied");
+        builder.setMessage("please complete all incomplete orders before deleting");
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -358,14 +414,20 @@ public class EditProductActivity extends AppCompatActivity {
                                                     if(order.getOrderStatus().equals("Incomplete") & storename.equals(order.getStoreName())){
                                                         String Order_id = Integer.toString(order.getOrderId());
                                                         Log.v("Work on", order.getStoreName());
+
+                                                        //HashMap<String, Item> itemsList = order.getItemsList();
                                                         //I need some algorithm to check if the product exist in an incomplete order
                                                         //For now if there are incomplete data then cannot change
+
+                                                        //if (itemsList.containsKey(prev_productName)){
+                                                            //Log.v("Hashmap Status", prev_productName + " found in incomplete order");
+                                                        //}
                                                         incomplete_and_contains = true;
 
                                                     }
                                                 }
 
-                                                Log.v("Loop Status", "done looping with result, begin delete and add" + Boolean.toString(incomplete_and_contains));
+                                                Log.v("Loop Status", "incomplete is " + Boolean.toString(incomplete_and_contains));
 
                                                 if(incomplete_and_contains){
                                                     Log.v("incomplete and contains", "unable to republish");
