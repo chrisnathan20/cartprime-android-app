@@ -179,16 +179,10 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // loops through user (of type store owner) until it matches a username
-                for(DataSnapshot child:dataSnapshot.getChildren()) {
-//                    OrderMetaData order = child.getValue(OrderMetaData.class);
-//                    order.setOrderStatus("Complete");
-                    DatabaseReference newRef = ref.child(orderId);
-//                    newRef.setValue(order);
-                    Map<String, Object> updates = new HashMap<>();
-                    updates.put("orderStatus", "Complete");
-                    newRef.updateChildren(updates);
-                }
+                DatabaseReference newRef = ref.child(orderId);
+                Map<String, Object> updates = new HashMap<>();
+                updates.put("orderStatus", "Complete");
+                newRef.updateChildren(updates);
             }
 
             @Override
