@@ -57,6 +57,10 @@ public class RegisterCustomerActivity extends AppCompatActivity {
         EditText password_id = (EditText) findViewById(R.id.editTextTextPassword);
         String password_field = password_id.getText().toString();
 
+        // store user input for retyped pw
+        EditText retype_password_id = (EditText) findViewById(R.id.editTextTextPassword6);
+        String retype_password_field = retype_password_id.getText().toString();
+
         // checks if any input fields (e.g. first name, last name, email, password) are empty
         if(firstname_field.isEmpty()){
             field_status=false;
@@ -75,6 +79,11 @@ public class RegisterCustomerActivity extends AppCompatActivity {
             password_id.setError("Please fill in your password.");
         }
 
+        if(retype_password_field.isEmpty()){
+            field_status=false;
+            retype_password_id.setError("Please type your password again");
+        }
+
         // checks if email input is valid
         Pattern pattern = Pattern.compile("[A-Za-z0-9]+");
         Matcher matcher = pattern.matcher(email_field);
@@ -91,40 +100,49 @@ public class RegisterCustomerActivity extends AppCompatActivity {
 
         // proceed to next validation check: validates if email input is available
 //        else if(valid_email){
-        else{
-            // getReference(): selects data under key:"Customers" who has a child named (email_field)
-            // convention for storing data: Customers -> (username) -> (firstname,lastname,username,password)
-            // note: email and username are synonyms
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("taken_usernames").child(email_field);
-            ValueEventListener listener = new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    // if username is already taken
-                    if(snapshot.exists()){
-                        notifyMessage.setText("An account is already registered with that email.");
-                        email_id.setError("Someone already has this email.");
+        else {
+            // check if passwords are matching
+            if (!password_field.equals(retype_password_field)) {
+                password_id.setError("Passwords do not match");
+                retype_password_id.setError("Passwords do not match");
+                notifyMessage.setText("Passwords do not match.");
+            }
+            else {
+                // getReference(): selects data under key:"Customers" who has a child named (email_field)
+                // convention for storing data: Customers -> (username) -> (firstname,lastname,username,password)
+                // note: email and username are synonyms
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("taken_usernames").child(email_field);
+                ValueEventListener listener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        // if username is already taken
+                        if (snapshot.exists()) {
+                            notifyMessage.setText("An account is already registered with that email.");
+                            email_id.setError("Someone already has this email.");
+                        }
+                        // if username is not taken, then append new user into database
+                        else {
+                            // create a new user instance with user-specified data
+                            Customer customer = new Customer(email_field, firstname_field, lastname_field, password_field);
+                            // get data reference into db
+                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                            // append user data into database under users -> customers
+                            ref.child("users").child("customers").child(email_field).setValue(customer);
+                            // append username into list of pre-existing usernames
+                            ref.child("users").child("taken_usernames").child(email_field).setValue(email_field);
+                            // re-directs the user to login page for Customers
+                            startActivity(intent);
+                        }
                     }
-                    // if username is not taken, then append new user into database
-                    else {
-                        // create a new user instance with user-specified data
-                        Customer customer = new Customer(email_field, firstname_field, lastname_field, password_field);
-                        // get data reference into db
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                        // append user data into database under users -> customers
-                        ref.child("users").child("customers").child(email_field).setValue(customer);
-                        // append username into list of pre-existing usernames
-                        ref.child("users").child("taken_usernames").child(email_field).setValue(email_field);
-                        // re-directs the user to login page for Customers
-                        startActivity(intent);
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        // TODO: add a error message here
                     }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // TODO: add a error message here
-                }
-            };
-            // call the event listener method with the database reference
-            ref.addListenerForSingleValueEvent(listener);
+                };
+                // call the event listener method with the database reference
+                ref.addListenerForSingleValueEvent(listener);
+            }
         }
     }
 }
