@@ -1,20 +1,50 @@
 package com.example.cscb07projectcode;
-import java.util.ArrayList;
+import android.util.Log;
 
-public class OrderMetaData {
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class OrderExtraction {
+    private HashMap<String, Item> itemsList;
     private int orderId;
     private String orderStatus;
     private String customerId;
     private String storeName;
 
-    public OrderMetaData(){
+    public OrderExtraction() {
     }
 
-    public OrderMetaData(int orderId, String orderStatus, String customerId, String storeName) {
+    public OrderExtraction(HashMap<String, Item> itemsList, int orderId, String orderStatus, String customerId, String storeName) {
+        this.itemsList = itemsList;
         this.orderId = orderId;
         this.orderStatus = orderStatus;
         this.customerId = customerId;
         this.storeName = storeName;
+    }
+
+    /*
+    public String computeTotalPrice(){
+        double totalPrice = 0;
+        Log.i("pricerino", String.valueOf(itemsList));
+        if(!itemsList.isEmpty()) {
+            for (Item item : itemsList) {
+                double temp = item.getPrice() * item.getQuantity();
+                totalPrice = totalPrice + temp;
+                Log.i("pricerino", String.valueOf(item.getPrice()));
+                Log.i("pricerino", String.valueOf(item.getQuantity()));
+                Log.i("pricerino", String.valueOf(totalPrice));
+            }
+        }
+        return String.valueOf(totalPrice);
+    }
+     */
+
+    public HashMap<String, Item> getItemsList() {
+        return itemsList;
+    }
+
+    public void setItemsList(HashMap<String, Item> itemsList) {
+        this.itemsList = itemsList;
     }
 
     public int getOrderId() {
