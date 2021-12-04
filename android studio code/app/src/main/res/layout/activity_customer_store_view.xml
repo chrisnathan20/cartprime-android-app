@@ -19,14 +19,15 @@
 
     <Button
         android:id="@+id/visitCart"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:color="#ffcccb"
+        android:layout_width="67dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/cartttt"
 
+        android:color="#ffcccb"
         app:icon="@drawable/cartttt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
