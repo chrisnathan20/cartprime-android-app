@@ -16,17 +16,17 @@
             android:name=".Activities.Customer_Store_View"
             android:exported="false" />
         <activity
-            android:name=".StoreOwnerOrderHistoryActivity"
+            android:name=".Activities.StoreOwnerOrderHistoryActivity"
             android:exported="false"
             android:label="Order History"
-            android:parentActivityName=".StoreOwnerOrdersActivity" />
+            android:parentActivityName=".Activities.StoreOwnerOrdersActivity" />
         <activity
-            android:name=".StoreOwnerOrderFormActivity"
+            android:name=".Activities.StoreOwnerOrderFormActivity"
             android:exported="false"
             android:label="Order Details"
-            android:parentActivityName=".StoreOwnerOrderFormActivity" />
+            android:parentActivityName=".Activities.StoreOwnerOrderFormActivity" />
         <activity
-            android:name=".StoreOwnerOrdersActivity"
+            android:name=".Activities.StoreOwnerOrdersActivity"
             android:label="Orders Page"
             android:parentActivityName=".Activities.StoreOwnerMainActivity" />
         <activity

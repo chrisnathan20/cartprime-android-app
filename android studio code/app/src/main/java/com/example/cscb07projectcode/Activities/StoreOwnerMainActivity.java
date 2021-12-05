@@ -21,7 +21,6 @@ import com.example.cscb07projectcode.Item;
 import com.example.cscb07projectcode.R;
 import com.example.cscb07projectcode.ProductRecyclerAdapter;
 import com.example.cscb07projectcode.Store;
-import com.example.cscb07projectcode.StoreOwnerOrdersActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

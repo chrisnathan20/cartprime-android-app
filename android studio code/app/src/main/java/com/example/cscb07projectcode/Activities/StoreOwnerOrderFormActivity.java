@@ -1,4 +1,4 @@
-package com.example.cscb07projectcode;
+package com.example.cscb07projectcode.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -18,13 +18,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cscb07projectcode.Activities.EditProductActivity;
-import com.example.cscb07projectcode.Activities.MainActivity;
+import com.example.cscb07projectcode.Item;
+import com.example.cscb07projectcode.ItemMetaData;
+import com.example.cscb07projectcode.OrderMetaData;
+import com.example.cscb07projectcode.ProductRecyclerAdapter;
+import com.example.cscb07projectcode.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

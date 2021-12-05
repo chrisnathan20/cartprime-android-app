@@ -1,4 +1,4 @@
-package com.example.cscb07projectcode;
+package com.example.cscb07projectcode.Activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.cscb07projectcode.Activities.MainActivity;
+import com.example.cscb07projectcode.Item;
+import com.example.cscb07projectcode.OrderMetaData;
+import com.example.cscb07projectcode.OrderRecyclerAdapter;
+import com.example.cscb07projectcode.R;
+import com.example.cscb07projectcode.StoreOwner;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,9 +29,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class StoreOwnerOrderHistoryActivity extends AppCompatActivity {
+public class StoreOwnerOrdersActivity extends AppCompatActivity {
 
     public static String storename = null;
+    public String logoutStatus;
     public static ArrayList<OrderMetaData> ordersList;
     public static ArrayList<Item> itemsList;
     private RecyclerView recyclerView;
@@ -36,9 +41,9 @@ public class StoreOwnerOrderHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_owner_order_history);
+        setContentView(R.layout.activity_store_owner_orders);
 
-        recyclerView = findViewById(R.id.recyclerOrderHistoryId);
+        recyclerView = findViewById(R.id.recyclerOrderId);
         ordersList = new ArrayList<OrderMetaData>();
         itemsList = new ArrayList<Item>();
 
@@ -69,12 +74,12 @@ public class StoreOwnerOrderHistoryActivity extends AppCompatActivity {
                                 // loops through user (of type store owner) until it matches a username
                                 for(DataSnapshot newChild:dataSnapshot.getChildren()) {
                                     OrderMetaData orderMetaData = newChild.getValue(OrderMetaData.class);
-                                    if(storename.equals(orderMetaData.getStoreName()) && orderMetaData.getOrderStatus().equals("Complete")){
+                                    if(storename.equals(orderMetaData.getStoreName()) && orderMetaData.getOrderStatus().equals("Incomplete")){
                                         OrderMetaData newOrder = new OrderMetaData(
-                                                orderMetaData.getOrderId(),
-                                                orderMetaData.getOrderStatus(),
-                                                orderMetaData.getCustomerId(),
-                                                orderMetaData.getStoreName());
+                                            orderMetaData.getOrderId(),
+                                            orderMetaData.getOrderStatus(),
+                                            orderMetaData.getCustomerId(),
+                                            orderMetaData.getStoreName());
                                         ordersList.add(newOrder);
                                         Log.i("random", String.valueOf(orderMetaData.getOrderId()));
                                     }
@@ -119,16 +124,22 @@ public class StoreOwnerOrderHistoryActivity extends AppCompatActivity {
             public void onClick(View v, int position) {
                 Intent intent = new Intent(getApplicationContext(), StoreOwnerOrderFormActivity.class);
 
-                // write username into a shared preference
+                // write orderId into a shared preference
                 SharedPreferences pref = getSharedPreferences("ordersData", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("orderIdKey", String.valueOf(ordersList.get(position).getOrderId()));
-                editor.putString("fromComplete", "true");
+                editor.putString("CustomerIdKey", String.valueOf(ordersList.get(position).getCustomerId()));
+                editor.putString("fromComplete", "false");
                 editor.apply();
 
                 startActivity(intent);
             }
         };
+    }
+
+    public void orderHistory_button(View view){
+        Intent intent = new Intent(this, StoreOwnerOrderHistoryActivity.class);
+        startActivity(intent);
     }
 
     // adds button to toolbar
@@ -158,13 +169,13 @@ public class StoreOwnerOrderHistoryActivity extends AppCompatActivity {
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // clicked no, do action
-                            String logoutStatus = "false";
+                            logoutStatus = "false";
                         }
                     })
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // clicked yes, do action
-                            String logoutStatus = "true";
+                            logoutStatus = "true";
                             returnMainActivity(logoutStatus);
                         }
                     })
