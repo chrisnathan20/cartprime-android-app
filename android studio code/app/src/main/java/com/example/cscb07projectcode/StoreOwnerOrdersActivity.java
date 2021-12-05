@@ -1,19 +1,24 @@
 package com.example.cscb07projectcode;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.cscb07projectcode.Activities.EditProductActivity;
+import com.example.cscb07projectcode.Activities.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class StoreOwnerOrdersActivity extends AppCompatActivity {
 
     public static String storename = null;
+    public String logoutStatus;
     public static ArrayList<OrderMetaData> ordersList;
     public static ArrayList<Item> itemsList;
     private RecyclerView recyclerView;
@@ -133,5 +139,56 @@ public class StoreOwnerOrdersActivity extends AppCompatActivity {
     public void orderHistory_button(View view){
         Intent intent = new Intent(this, StoreOwnerOrderHistoryActivity.class);
         startActivity(intent);
+    }
+
+    // adds button to toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.logout_button, menu);
+        return true;
+    }
+    // adds function to onclick button
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_name) {
+
+            // initialize alert
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder
+                    .setTitle("Logout")
+                    .setMessage("Are you sure you want to logout?")
+                    .setIcon(R.drawable.question_mark)
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // clicked no, do action
+                            logoutStatus = "false";
+                        }
+                    })
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // clicked yes, do action
+                            logoutStatus = "true";
+                            returnMainActivity(logoutStatus);
+                        }
+                    })
+                    .show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void returnMainActivity(String logoutStatus) {
+        if (logoutStatus.equals("true")) {
+            // start new activity
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }

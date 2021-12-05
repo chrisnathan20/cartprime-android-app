@@ -197,8 +197,14 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder
                     .setTitle("Logout")
-                    .setMessage("You will be returned to the home screen.")
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setMessage("Are you sure you want to logout?")
+                    .setIcon(R.drawable.question_mark)
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // clicked no, do action
+                            logoutStatus = "false";
+                        }
+                    })
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // clicked yes, do action
@@ -206,13 +212,7 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
                             returnMainActivity(logoutStatus);
                         }
                     })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // clicked no, do action
-                            logoutStatus = "false";
-                        }
-                    })
-            .show();
+                    .show();
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -101,6 +101,6 @@
         android:onClick="ordersIcon_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?android:attr/actionModeFindDrawable" />
+        app:srcCompat="@drawable/icons8_order_64" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
