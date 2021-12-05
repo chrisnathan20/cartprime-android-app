@@ -183,6 +183,66 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
                 Map<String, Object> updates = new HashMap<>();
                 updates.put("orderStatus", "Complete");
                 newRef.updateChildren(updates);
+
+                // get storeName of the order
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("orders").child("list_of_orders").child(orderId).child("storeName");
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String storeName = snapshot.getValue(String.class);
+                        Log.v("Store Name", storeName);
+
+
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("orders").child("list_of_orders").child(orderId).child("itemsList");
+                        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                Log.v("list of products", "start of for loop");
+                                for(DataSnapshot itemsnap : snapshot.getChildren()){
+                                    ItemMetaData item = itemsnap.getValue(ItemMetaData.class);
+                                    String product_name = item.getName();
+                                    Log.v("Item name", product_name);
+
+                                    Integer product_amount = item.getQuantity();
+                                    Log.v("Product Amount", product_amount.toString());
+
+                                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores").child("list_of_stores").child(storeName).child("products").child(product_name).child("quantity");
+                                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Integer quantity = snapshot.getValue(Integer.class);
+
+                                            Integer new_stock = quantity - product_amount;
+                                            Log.v("New Stock", new_stock.toString());
+
+                                            DatabaseReference stockref = FirebaseDatabase.getInstance().getReference("stores").child("list_of_stores").child(storeName).child("products").child(product_name).child("quantity");
+                                            stockref.setValue(new_stock);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
             }
 
             @Override
