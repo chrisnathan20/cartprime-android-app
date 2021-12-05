@@ -62,12 +62,12 @@ public class OrderRecyclerAdapter extends RecyclerView.Adapter<OrderRecyclerAdap
 
         String orderId = String.valueOf(ordersList.get(position).getOrderId());
         String customerName = ordersList.get(position).getCustomerId();
-//        String totalPrice = String.valueOf(ordersList.get(position).computeTotalPrice());
-        Log.i("pricerino", "passed through viewholder");
         String orderStatus = ordersList.get(position).getOrderStatus();
+
         holder.orderIdView.setText(orderId);
         holder.customerNameView.setText(customerName);
         holder.orderStatusView.setText(orderStatus);
+
         // condition textview based on order status to select colour
         if(orderStatus.equals("Incomplete")){
             holder.orderStatusView.setTextColor(Color.parseColor("#C0392B"));

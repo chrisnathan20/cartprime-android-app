@@ -81,7 +81,6 @@ public class StoreOwnerOrdersActivity extends AppCompatActivity {
                                             orderMetaData.getCustomerId(),
                                             orderMetaData.getStoreName());
                                         ordersList.add(newOrder);
-                                        Log.i("random", String.valueOf(orderMetaData.getOrderId()));
                                     }
                                 }
                                 setAdapter();

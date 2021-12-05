@@ -96,10 +96,7 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
                 // loops through user (of type store owner) until it matches a username
                 for(DataSnapshot child:dataSnapshot.getChildren()) {
                     OrderMetaData order = child.getValue(OrderMetaData.class);
-                    Log.i("newtag", String.valueOf(order.getOrderId()));
-                    Log.i("newtag", orderId);
                     if(orderId.equals(String.valueOf(order.getOrderId()))){
-                        Log.i("newtag", "works");
                         // create a database reference to access list of products
                         DatabaseReference newRef = ref.child(orderId).child("itemsList");
                         ValueEventListener newListener = new ValueEventListener(){
@@ -154,7 +151,6 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
         recyclerView.setClickable(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-        Log.i("mytag", "passed thru adapter");
     }
 
     // called when clicking on any product under current products

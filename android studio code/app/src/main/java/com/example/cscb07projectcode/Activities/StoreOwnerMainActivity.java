@@ -74,7 +74,6 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
                 for(DataSnapshot child:dataSnapshot.getChildren()) {
                     Store store = child.getValue(Store.class);
                     if(username.equals(store.getStoreowner())){
-                        Log.i("mytag", "passed into storeowner");
                         // create a database reference to access list of products
                         DatabaseReference newRef = ref.child(store.getName()).child("products");
                         ValueEventListener newListener = new ValueEventListener(){
@@ -84,12 +83,9 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
                                 for(DataSnapshot newChild:snapshot.getChildren()) {
                                     Item item = newChild.getValue(Item.class);
                                     itemsList.add(item);
-                                    Log.i("mytag", item.getName());
-                                    Log.i("mytag", item.getDescription());
 
                                 }
                                 setAdapter();
-//                                Log.i("mytag", itemsList.toString());
                             }
 
                             @Override
@@ -97,12 +93,6 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
 
                             }
                         };
-//                        // store hashmap into a variable
-//                        Object products = child.getValue();
-//                        HashMap other = (HashMap) products;
-////                        Log.i("mtag",child.getValue().get("products").getClass().toString());
-//                        Log.i("mtag",child.getValue().toString());
-//                        Log.i("mtag",other.get("products").toString());
                         newRef.addValueEventListener(newListener);
                     }
                 }
@@ -129,7 +119,6 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
         recyclerView.setClickable(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-        Log.i("mytag", "passed thru adapter");
     }
 
     // called when clicking on any product under current products
@@ -146,7 +135,6 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
                 intent.putExtra("productQty", String.valueOf(itemsList.get(position).getQuantity()));
                 intent.putExtra("productUnit", itemsList.get(position).getUnit());
 
-//                Log.i("mytager", itemsList.get(position).getName());
                 startActivity(intent);
             }
         };

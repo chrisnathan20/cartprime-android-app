@@ -80,7 +80,6 @@ public class StoreOwnerOrderHistoryActivity extends AppCompatActivity {
                                                 orderMetaData.getCustomerId(),
                                                 orderMetaData.getStoreName());
                                         ordersList.add(newOrder);
-                                        Log.i("random", String.valueOf(orderMetaData.getOrderId()));
                                     }
                                 }
                                 setAdapter();
@@ -127,6 +126,7 @@ public class StoreOwnerOrderHistoryActivity extends AppCompatActivity {
                 SharedPreferences pref = getSharedPreferences("ordersData", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("orderIdKey", String.valueOf(ordersList.get(position).getOrderId()));
+                editor.putString("CustomerIdKey", String.valueOf(ordersList.get(position).getCustomerId()));
                 editor.putString("fromComplete", "true");
                 editor.apply();
 
