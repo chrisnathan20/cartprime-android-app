@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Messages"
+        app:layout_constraintTop_toBottomOf="@+id/storenameprod"
         app:layout_constraintVertical_bias="0.211" />
 
     <Button
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/Messages"
+        android:id="@+id/storenameprod"
         android:layout_width="304dp"
         android:layout_height="35dp"
         android:layout_marginTop="44dp"

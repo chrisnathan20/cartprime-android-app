@@ -1,6 +1,5 @@
 package com.example.cscb07projectcode.Activities;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,10 +25,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -74,6 +70,10 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
         // RETRIEVING THE CUSTOMER
         SharedPreferences pref2 = getSharedPreferences("credentials_store_name", Context.MODE_PRIVATE);
         String store_name = pref2.getString("store_name", "");
+
+        TextView messages = (TextView) findViewById(R.id.storenameprod);
+
+        messages.setText(store_name + " Products");
 
 
         // VISIT CART STUFF DOWN THERE
@@ -136,7 +136,7 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
             public void onAddtoCart(int position) {
 
 
-                TextView message = findViewById(R.id.Messages);
+                TextView message = findViewById(R.id.storenameprod);
                 list.get(position); // GET THE ITEM AT THIS POSITION DONE
                 int how_many_can_be_added = list.get(position).getQuantity() - howManyProductsLeft(list.get(position), 0); // calcuates  how many in inventory - how many are already in the cart
                 // VALIDATION FOR QUANTITY ENTERED
