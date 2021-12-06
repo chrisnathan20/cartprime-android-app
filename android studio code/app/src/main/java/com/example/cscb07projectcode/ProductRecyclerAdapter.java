@@ -1,12 +1,17 @@
 package com.example.cscb07projectcode;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.cscb07projectcode.Activities.StoreOwnerMainActivity;
 
 import java.util.ArrayList;
 
@@ -14,11 +19,13 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
 
     private ArrayList<Item> itemsList;
     private RecyclerViewClickListener listener;
+    private String fromActivity;
 
     // each adapter requires an array list of stores on instantiation
-    public ProductRecyclerAdapter(ArrayList<Item> itemsList, RecyclerViewClickListener listener){
+    public ProductRecyclerAdapter(ArrayList<Item> itemsList, RecyclerViewClickListener listener, String fromActivity){
         this.itemsList = itemsList;
         this.listener=listener;
+        this.fromActivity=fromActivity;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -28,6 +35,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         private TextView item_priceView;
         private TextView item_unitView;
         private TextView item_qtyView;
+        private ImageView edit_icon;
 
         public MyViewHolder(final View view){
             // pass the view to superclass
@@ -38,6 +46,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
             item_priceView = view.findViewById(R.id.input_priceView);
             item_unitView = view.findViewById(R.id.input_unitView);
             item_qtyView = view.findViewById(R.id.input_qtyView);
+            edit_icon = view.findViewById(R.id.imageView);
             // set view
             view.setOnClickListener(this);
         }
@@ -71,6 +80,11 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         holder.item_priceView.setText(itemPrice);
         holder.item_unitView.setText(itemUnit);
         holder.item_qtyView.setText(itemQty);
+
+        // removes edit icon if recyclerView is adapting to a page that is not the storeownermainactivity
+        if(!fromActivity.equals("StoreOwnerMainActivity")){
+            holder.edit_icon.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
