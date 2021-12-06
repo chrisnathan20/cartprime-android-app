@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -108,6 +110,36 @@ public class CustomerMainActivity extends AppCompatActivity {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                 String [] store_description = adapter.getItem(position).split(" ");
+                 String storeName = store_description[0];
+                 storeName = storeName.trim();
+
+                 visitDirectly(storeName);
+            }
+        });
+    }
+
+    // visit directly
+    public void visitDirectly(String storeName){
+        Intent intent = new Intent(this, CustomerStoreInfoActivity.class);
+        String x = storeName;
+        intent.putExtra("getData",x);
+        // saving the current store name to a local file
+        SharedPreferences pref = getSharedPreferences("credentials_store_name", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("store_name", x);
+        editor.apply();
+        Log.i("asdf", x);
+
+        // appending empty array into intent
+        String[] arr_ = new String[0];
+        intent.putExtra("strItemsList", arr_);
+
+        // saving the current store name to a local file
+        startActivity(intent);
     }
 
     // visit button
@@ -123,6 +155,7 @@ public class CustomerMainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("store_name", x);
         editor.apply();
+        Log.i("asdf", x);
 
         // appending empty array into intent
         String[] arr_ = new String[0];
