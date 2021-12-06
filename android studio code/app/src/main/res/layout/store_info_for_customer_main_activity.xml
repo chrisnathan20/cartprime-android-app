@@ -7,15 +7,14 @@
 
     <TextView
         android:id="@+id/userInfo"
-        android:layout_width="333dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="332dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="32dp"
         android:text="name"
         android:textColor="@color/common_google_signin_btn_text_light_pressed"
-        android:textSize="12sp"
-        android:textStyle="bold"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
