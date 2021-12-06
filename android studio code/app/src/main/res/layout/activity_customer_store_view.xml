@@ -20,15 +20,17 @@
 
     <Button
         android:id="@+id/visitCart"
-        android:layout_width="54dp"
-        android:layout_height="39dp"
-
-        android:layout_marginTop="44dp"
-        android:background="@drawable/cartttt"
-        android:color="#ffcccb"
-        app:icon="@drawable/cartttt"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="24dp"
+        android:drawableTop="@drawable/ic_baseline_add_shopping_cart_24"
+        android:drawablePadding="5dp"
+        android:padding="9dp"
+        android:background="#00ffffff"
+        android:text="my cart"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintHorizontal_bias="0.979"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,6 +40,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="44dp"
         android:text="Store Products"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.229"
