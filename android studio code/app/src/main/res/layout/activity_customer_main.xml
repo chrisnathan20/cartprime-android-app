@@ -8,15 +8,15 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="334dp"
-        android:layout_height="302dp"
+        android:layout_width="350dp"
+        android:layout_height="358dp"
         android:background="@color/round_button_color"
         app:layout_constraintBottom_toTopOf="@+id/OrderHisComp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.907" />
+        app:layout_constraintTop_toBottomOf="@+id/button12"
+        app:layout_constraintVertical_bias="0.416" />
 
     <Button
         android:id="@+id/button6"
