@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Welcome to CartPrime!"
+        android:label="CartPrime"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -57,7 +57,8 @@
         <activity
             android:name=".Activities.StoreOwnerMainActivity"
             android:label="Store Owner Home" />
-        <activity android:name=".Activities.CustomerMainActivity" />
+        <activity android:name=".Activities.CustomerMainActivity"
+            android:label="Customer Home"/>
         <activity
             android:name=".Activities.RegisterCustomerActivity"
             android:exported="false"
