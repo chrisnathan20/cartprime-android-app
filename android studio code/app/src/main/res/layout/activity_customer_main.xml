@@ -10,7 +10,7 @@
         android:id="@+id/listView"
         android:layout_width="337dp"
         android:layout_height="334dp"
-        android:background="#DACAF8"
+        android:background="@color/round_button_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
@@ -20,25 +20,43 @@
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="63dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="28dp"
-        android:onClick="secondLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00ffffff"
+        android:drawableTop="@drawable/ic_baseline_logout_24"
+        android:drawablePadding="5dp"
+        android:padding="9dp"
+        android:paddingBottom="10dp"
         android:text="Logout"
+        android:textSize="12sp"
+        android:onClick="secondLogout"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/OrderHis"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.925"
+        tools:ignore="OnClick" />
 
     <Button
         android:id="@+id/OrderHis"
-        android:layout_width="147dp"
-        android:layout_height="37dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        android:text="Incomplete Orders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:background="#00ffffff"
+        android:drawableTop="@drawable/ic_baseline_playlist_remove_24"
+        android:drawablePadding="5dp"
+        android:padding="9dp"
+        android:paddingBottom="15dp"
+        android:text="Incomplete&#10;Orders"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/OrderHisComp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/OrderHisComp"
+        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView12"
@@ -89,12 +107,21 @@
 
     <Button
         android:id="@+id/OrderHisComp"
-        android:layout_width="134dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="32dp"
-        android:text="Complete Orders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00ffffff"
+        android:drawableTop="@drawable/ic_baseline_playlist_add_check_24"
+        android:drawablePadding="5dp"
+        android:padding="9dp"
+        android:paddingBottom="10dp"
+        android:text="Complete&#10;Orders"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
