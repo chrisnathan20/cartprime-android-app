@@ -101,7 +101,7 @@ public class CustomerOrderActivity extends AppCompatActivity {
 
     public void setAdapter(){
         setOnClickListener();
-        ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(itemsList, listener);
+        ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(itemsList, listener, "CustomerOrderActivity");
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -67,6 +67,8 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
             statusView.setTextColor(Color.parseColor("#C0392B"));
         }
 
+
+
         // pull order/customer id from sharedpreference file
         String orderId = "Receipt Id: #" + pref.getString("orderIdKey", "");
         String CustomerId = pref.getString("CustomerIdKey", "");
@@ -143,7 +145,7 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
 
     public void setAdapter(){
         setOnClickListener();
-        ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(itemsList, listener);
+        ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(itemsList, listener, "StoreOwnerOrderFormActivity");
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

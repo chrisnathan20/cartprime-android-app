@@ -64,61 +64,6 @@ public class EditProductActivity extends AppCompatActivity {
         productUnit_id.setText(productUnit);
     }
 
-    public void old_republish_button(View view){
-        Intent intent = new Intent(this, StoreOwnerMainActivity.class);
-        // connect edittext views
-        EditText productName_id = (EditText) findViewById(R.id.editTextTextPersonName3);
-        EditText productDesc_id = (EditText) findViewById(R.id.editTextTextPersonName4);
-        EditText productPrice_id= (EditText) findViewById(R.id.editTextTextPersonName5);
-        EditText productQty_id = (EditText) findViewById(R.id.editTextTextPersonName6);
-        EditText productUnit_id = (EditText) findViewById(R.id.editTextTextPersonName9);
-
-        // convert view inputs to string
-        String productName_field = productName_id.getText().toString();
-        String productDesc_field = productDesc_id.getText().toString();
-        String productPrice_field = productPrice_id.getText().toString();
-        String productQty_field = productQty_id.getText().toString();
-        String productUnit_field = productUnit_id.getText().toString();
-
-        SharedPreferences pref = getSharedPreferences("credentials", Context.MODE_PRIVATE);
-        String username = pref.getString("username", "");
-
-        // leverages store owner's username to find their store name
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child("storeowners");
-        ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // loops through user (of type store owner) until it matches a username
-                for(DataSnapshot child:dataSnapshot.getChildren()) {
-                    StoreOwner storeowner = child.getValue(StoreOwner.class);
-                    if(username.equals(storeowner.getUsername())){
-                        // extract store name of storeowner
-                        String storename = storeowner.getStorename();
-                        // create a new product instance
-                        Item item = new Item(
-                                productName_field,
-                                productDesc_field,
-                                Double.parseDouble(productPrice_field),
-                                Integer.parseInt(productQty_field),
-                                productUnit_field);
-                        // get database reference object
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                        // overwrite with a new product under the storeowner's store as a child with key: product name
-                        ref.child("stores").child("list_of_stores").child(storename).child("products").child(productName_field).setValue(item);
-                        Log.i("mytag", storename);
-                        break;
-                    }
-                }
-                startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w("warning", "loadPost:onCancelled", databaseError.toException());
-            }
-        };
-        ref.addListenerForSingleValueEvent(listener);
-    }
 
     public void deleteProduct_button(View view){
         Intent intent = new Intent(this, StoreOwnerMainActivity.class);
@@ -231,6 +176,23 @@ public class EditProductActivity extends AppCompatActivity {
         }
 
 
+    public void displayAlertEmptyFields(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditProductActivity.this);
+
+        builder.setTitle("Unable to Republish");
+        builder.setMessage("please fill in all fields before republishing");
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
+
     public void displayAlertIncompleteOrder2(String product_name){
         AlertDialog.Builder builder = new AlertDialog.Builder(EditProductActivity.this);
 
@@ -323,7 +285,10 @@ public class EditProductActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("credentials", Context.MODE_PRIVATE);
         String username = pref.getString("username", "");
 
-        if(no_change){
+        if(productName_field.isEmpty()|productDesc_field.isEmpty()|productPrice_field.isEmpty()|productQty_field.isEmpty()|productUnit_field.isEmpty()){
+            displayAlertEmptyFields();
+        }
+        else if(no_change){
             startActivity(intent);
             Log.v("product change type", "no_change");
         }
