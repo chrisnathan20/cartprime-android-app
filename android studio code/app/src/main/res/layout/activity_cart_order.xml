@@ -10,6 +10,7 @@
         android:layout_marginTop="43dp"
         android:textColor="#228C22"></TextView>
 
+
     <LinearLayout
         android:id="@+id/layout_total"
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
             android:layout_weight="1"
             android:gravity="end"
             android:text="Total : "
-            android:textSize="20dp"></TextView>
+            android:textSize="24sp"></TextView>
 
         <TextView
             android:id="@+id/tv_total"
@@ -31,36 +32,39 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="$ "
-            android:textSize="20dp"></TextView>
+            android:textSize="24sp"></TextView>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_cart"
-        android:layout_width="376dp"
-        android:layout_height="527dp"
+        android:layout_width="wrap_content"
+        android:layout_height="562dp"
         android:layout_above="@+id/btn_placeorder"
         android:layout_below="@+id/layout_total"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="107dp"
-        android:layout_marginBottom="0dp" />
-
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="35dp" />
 
     <Button
         android:id="@+id/btn_placeorder"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/design_default_color_primary_dark"
-
-        android:textColor="@android:color/black"
-
         android:layout_alignParentStart="true"
+
         android:layout_alignParentBottom="true"
+
         android:layout_gravity="center"
+        android:layout_marginStart="1dp"
         android:layout_marginBottom="2dp"
+        android:background="@color/design_default_color_primary_dark"
         android:backgroundTint="#FFFFFF"
         android:onClick="insertOrder"
         android:text="Place Order"
 
+        android:textColor="@android:color/black"
         android:theme="@style/Widget.MaterialComponents.Button"></Button>
 
 
