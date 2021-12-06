@@ -2,6 +2,7 @@ package com.example.cscb07projectcode.Activities;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -152,8 +154,7 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
 
                 if (how_many_can_be_added <= 0) {
                     findViewById(R.id.Add_to_Cart).setBackgroundColor(Color.DKGRAY);
-                    message.setText("We cannot provide more as " + "we only have " + howManyProductsLeft(list.get(position), 0) + " " + list.get(position).getName() + "(s) in stock");
-                    message.setTextColor(Color.RED);
+                    displayAlertStock(Integer.toString(howManyProductsLeft(list.get(position), 0)), list.get(position).getName());
                 }
                 // EditText quantity = findViewById(R.id.quantity);
                 //  TextView MessageForQuantity = findViewById(R.id.MessageForQuantity);
@@ -185,6 +186,23 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
 
         });
 
+
+    }
+
+    public void displayAlertStock(String product_left, String product_name){
+        AlertDialog.Builder builder = new AlertDialog.Builder(CustomerStoreInfoActivity.this);
+
+        builder.setTitle("Insufficient " + product_name + " stock");
+        builder.setMessage("We only have " + product_left + " " + product_name + "(s) in stock");
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
 
     }
 
