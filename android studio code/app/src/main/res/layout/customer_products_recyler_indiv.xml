@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:padding="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -71,14 +72,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="82dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/Add_to_Cart"
-                android:layout_width="152dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#00BCD4"
-                android:padding="10dp"
+                android:layout_width="182dp"
+                android:layout_height="30dp"
+                android:background="@drawable/round_button"
+                android:paddingHorizontal="40dp"
+                android:paddingVertical="0dp"
                 android:text="Add to Cart" />
 
         </LinearLayout>
