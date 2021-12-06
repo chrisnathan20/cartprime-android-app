@@ -212,4 +212,28 @@ public class StoreOwnerMainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+
+    public void secondLogout(View view){
+        // initialize alert
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+                .setTitle("Logout")
+                .setMessage("You will be returned to the home screen.")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // clicked yes, do action
+                        logoutStatus = "true";
+                        returnMainActivity(logoutStatus);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // clicked no, do action
+                        logoutStatus = "false";
+                    }
+                })
+                .show();
+    }
 }

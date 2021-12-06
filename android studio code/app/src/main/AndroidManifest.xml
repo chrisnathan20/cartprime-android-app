@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.CustomerOrderHistoryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Activities.CustomerMainActivity"/>
         <activity
             android:name=".Activities.Cart_Order_Activity"
             android:exported="false" />
