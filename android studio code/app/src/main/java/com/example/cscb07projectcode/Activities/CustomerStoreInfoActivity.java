@@ -59,7 +59,6 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         strItemsList = intent.getStringArrayExtra("strItemsList");
-        Log.i("check", String.valueOf(strItemsList.length));
         // if there is cart data being passed from the cart page via back button
         if (strItemsList.length != 0) {
             cartList = PopulateList(strItemsList);
@@ -129,8 +128,6 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 list.get(position); // GET THE ITEM AT THIS POSITION DONE
-
-                Log.i("AAAAAA", list.get(position).getName());
             }
 
             @Override
@@ -141,45 +138,15 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
                 list.get(position); // GET THE ITEM AT THIS POSITION DONE
                 int how_many_can_be_added = list.get(position).getQuantity() - howManyProductsLeft(list.get(position), 0); // calcuates  how many in inventory - how many are already in the cart
                 // VALIDATION FOR QUANTITY ENTERED
-                Log.i("how many more", " " + how_many_can_be_added + "  of " + list.get(position).getName());
-                //  Log.i(" CAN I GET TO STRING",list.get(position).toString());
-                // String quantity_edit_text_field_value;
-
-                // quantity_edit_text_field_value = addQuantity.getText().toString();
-                //Log.i("How many?",quantity_edit_text_field_value);
-                // int quantity_to_be_added = Integer.parseInt(quantity_edit_text_field_value);
-
-
                 if (how_many_can_be_added <= 0) {
                     findViewById(R.id.Add_to_Cart).setBackgroundColor(Color.DKGRAY);
                     message.setText("We cannot provide more as " + "we only have " + howManyProductsLeft(list.get(position), 0) + " " + list.get(position).getName() + "(s) in stock");
                     message.setTextColor(Color.RED);
                 }
-                // EditText quantity = findViewById(R.id.quantity);
-                //  TextView MessageForQuantity = findViewById(R.id.MessageForQuantity);
 
-
-                //String quantity_ordewred_for_item = quantity.getText().toString();
-                //  int quant = Integer.parseInt(quantity_ordewred_for_item);
-                // Log.i("IS THE QUANTITY READ", quantity_ordewred_for_item);
-
-
-                //MessageForQuantity.setText(" ");
-                //Intent intent = new Intent(getApplicationContext(),Cart_Order_Activity.class);
-                //Log.i("DOES IT ADD STUFFBEFORE", cartList.size()  + "  Prev");
-                // msg.setText("You can add" + ( ) + " more"));
                 else {
                     cartList.add(list.get(position)); // if we have enough we will add them here
                 }
-
-                //list.get(position).setQuantity((list.get(position).getQuantity() - quant));
-
-
-                //Log.i("How many left", " "+ list.get(position).getQuantity());
-                //Log.i("How many ", " "+ cartList.get(position).getQuantity());
-                // Log.i("DOES IT ADD STUFF ", cartList.size() + "  ");
-                //intent.putExtra("extra", list.get(position).toString());
-                //startActivity(intent);
             }
 
 
@@ -191,7 +158,6 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
     // open cart button
     public void openCart() {
         for (Item i : cartList) {
-            Log.i("TESt", i.getName() + "\n\n" + i.getDescription());
         }
         if (cartList.isEmpty()) {
             Intent intent = new Intent(getApplicationContext(), Cart_Order_Activity.class);
@@ -230,13 +196,7 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
         for (String s : str) {
             String[] arr = s.split(";");
             int i = 0;
-            /**   for(String yyy:arr)
-             {
-             Log.i("MMM", yyy + i );
-             i++;
-             } **/
             Item to_Add = new Item(arr[0], arr[1], Double.parseDouble(arr[2]), Integer.parseInt(arr[3]), arr[4]);
-            //to_Add.setQuantity(1);
             x.add(to_Add);
         }
         return x;

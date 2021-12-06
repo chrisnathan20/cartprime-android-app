@@ -73,7 +73,6 @@ public class CustomerMainActivity extends AppCompatActivity {
                                         }
 
         );
-
         button.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
@@ -98,9 +97,6 @@ public class CustomerMainActivity extends AppCompatActivity {
                     stores.add(store.getName().toString() +"\n\n Description: "+store.getDescription().toString());
                     store_ = ds.getValue(Store.class);
                     stores_.add(store_.getName().toString());
-
-
-
                 }
                 listView.setAdapter(adapter);
                 spinner.setAdapter(adapter2);
@@ -111,18 +107,8 @@ public class CustomerMainActivity extends AppCompatActivity {
 
             }
         });
+
     }
-    /**public class MySpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
-
-     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-     String selected = parent.getItemAtPosition(pos).toString();
-     }
-
-     public void onNothingSelected(AdapterView parent) {
-     // Do nothing.
-     }
-     } **/
-    //final String USN = spinner.getSelectedItem().toString();
 
     // visit button
     public void openNext(){
@@ -187,5 +173,4 @@ public class CustomerMainActivity extends AppCompatActivity {
                 })
                 .show();
     }
-
 }

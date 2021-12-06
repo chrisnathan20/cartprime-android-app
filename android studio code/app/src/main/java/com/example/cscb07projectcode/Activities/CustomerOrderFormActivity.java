@@ -147,7 +147,6 @@ public class CustomerOrderFormActivity extends AppCompatActivity {
         ref.addValueEventListener(listener);
     }
 
-
     public void setAdapter(){
         setOnClickListener();
         ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(itemsList, listener, "StoreOwnerOrderFormActivity");
@@ -165,11 +164,6 @@ public class CustomerOrderFormActivity extends AppCompatActivity {
         listener = new ProductRecyclerAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-//                Intent intent = new Intent(getApplicationContext(), StoreOwnerOrderFormActivity.class);
-
-                // use intent as a vehicle to transfer product details into next activity
-//                intent.putExtra("productUnit", itemsList.get(position).getUnit());
-//                startActivity(intent);
                 Toast.makeText(CustomerOrderFormActivity.this, itemsList.get(position).getName(),
                         Toast.LENGTH_SHORT).show();
             }
@@ -197,9 +191,6 @@ public class CustomerOrderFormActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String storeName = snapshot.getValue(String.class);
-                        Log.v("Store Name", storeName);
-
-
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("orders").child("list_of_orders").child(orderId).child("itemsList");
                         ref.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
