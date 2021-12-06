@@ -24,7 +24,7 @@
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_add_product.xml" value="0.40804020100502514" />
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_customer_main.xml" value="0.36" />
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_customer_order.xml" value="0.36" />
-        <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_customer_store_view.xml" value="0.36" />
+        <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_customer_store_view.xml" value="0.1" />
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_edit_product.xml" value="0.268" />
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_login_customer.xml" value="0.23425925925925925" />
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_login_store_owner.xml" value="0.1640625" />
@@ -33,6 +33,8 @@
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_store_owner_order_form.xml" value="0.3" />
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_store_owner_order_history.xml" value="0.36" />
         <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/layout/activity_store_owner_orders.xml" value="0.268" />
+        <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18020833333333333" />
+        <entry key="..\:/Users/shann/cscb07project/android studio code/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_cart_order.xml" value="0.3545673076923077" />
         <entry key="app/src/main/res/layout/activity_customer_main.xml" value="0.45" />
         <entry key="app/src/main/res/layout/activity_customer_order.xml" value="0.3282051282051282" />
