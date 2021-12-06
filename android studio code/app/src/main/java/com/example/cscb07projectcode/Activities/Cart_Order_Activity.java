@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class Cart_Order_Activity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -128,6 +129,15 @@ Button SendOrder;
              //  child2.setValue(new_list);
                    order_placed.setText("Order Placed Successfully");
 
+                   try{
+                       TimeUnit.SECONDS.sleep(1);
+                   }
+                   catch (InterruptedException e){
+                       e.printStackTrace();
+                   }
+
+                   backtomain();
+
 
 
 
@@ -144,6 +154,11 @@ Button SendOrder;
        // Intent intent = getIntent();
        // String name = intent.getStringExtra("first");
      // Log.i("Taggg",myList.get(0).getName());
+    }
+
+    public void backtomain(){
+        Intent intent = new Intent(this, CustomerMainActivity.class);
+        startActivity(intent);
     }
 
     public double Calculate_total(ArrayList<Item>ls) // CALCULATES THE TOTAL OF THE ORDER
