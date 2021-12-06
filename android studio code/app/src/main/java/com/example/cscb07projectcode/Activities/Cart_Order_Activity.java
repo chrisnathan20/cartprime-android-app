@@ -54,22 +54,8 @@ Button SendOrder;
         list = new ArrayList<>();
         Intent intent = getIntent();
         String[] x = getIntent().getStringArrayExtra("strItemsList"); // RETRIVE AN ARRAY OF ITEMS AS STRINGS AND WE GOTTA MODIFY THAT INTO AN ARRAY LIST FOR RECYLER VIEW
-        // ADAPTER
-        // PROBABLY ADD A FUNCTION FOR It
         TextView order_placed = (TextView) findViewById(R.id.textView26);
-       // order_placed.setEnabled(false);
-
-
-
         PopulateList(x);
-      Log.i("IS THE ARRAYLIST EMPTY"," " + list.size());
-   /**   for(Item i: list)
-      {
-          Log.i("ITEM", "   " + i.toString());
-
-      } **/
-
-
 
    // SUCCESSFULLY ABLE TO POPULATE THE ARRAY LIST WITH PROPER QUANTITY
         recyclerView = findViewById(R.id.recycler_cart);
@@ -86,11 +72,8 @@ Button SendOrder;
         TextView total_ = (TextView) findViewById(R.id.tv_total);
         total_.setText("$ "+String.format("%.2f",newTotal)); // TOTAL OF THE ORDER IN 2 DECIMAL PLACES
 
-        //ArrayList<Item> myList = getIntent().getParcelableExtra("Contact_list");
-        //t.setText(myList.get(0).getName());
 
-
-// RETRIEVING THE CUSTOMER USERNAME
+        // RETRIEVING THE CUSTOMER USERNAME
         SharedPreferences pref = getSharedPreferences("credentialsCustomer", Context.MODE_PRIVATE);
         String username = pref.getString("username", "");
         // RETRIEVING THE STORE NAME
@@ -111,7 +94,6 @@ Button SendOrder;
                order_place.generateOrderId();
                 String id = String.valueOf(order_place.getOrderId());
 
-
                 new_order.put(id,new OrderMetaData(order_place.getOrderId(), "Incomplete",username,store_name));
                 DatabaseReference new_child = ref.child("list_of_orders");
                 //mDatabase.child("orders").child("list_of_orders").setValue(new_order);
@@ -123,12 +105,10 @@ Button SendOrder;
                 {
                     new_list.put(i.getName(),i);
                 }
-
                 mDatabase.child("orders").child("list_of_orders").child(id).setValue(new OrderMetaData(order_place.getOrderId(), "Incomplete",username,store_name));
 
 
                 mDatabase.child("orders").child("list_of_orders").child(id).child("itemsList").setValue(new_list);
-             //  child2.setValue(new_list);
                    order_placed.setText("Order Placed Successfully");
 
                    try{
@@ -137,25 +117,9 @@ Button SendOrder;
                    catch (InterruptedException e){
                        e.printStackTrace();
                    }
-
                    backtomain();
-
-
-
-
-
-
-
-
-
             }
         });
-
-
-
-       // Intent intent = getIntent();
-       // String name = intent.getStringExtra("first");
-     // Log.i("Taggg",myList.get(0).getName());
     }
 
     public void backtomain(){
@@ -181,11 +145,6 @@ Button SendOrder;
             {
                 String[]arr = s.split(";");
                 int i =0;
-            /**   for(String yyy:arr)
-               {
-                   Log.i("MMM", yyy + i );
-                   i++;
-               } **/
                Item to_Add  = new Item(arr[0],arr[1],Double.parseDouble(arr[2]), Integer.parseInt(arr[3]),arr[4]);
                 //to_Add.setQuantity(1);
                if(x.contains(to_Add))
@@ -205,7 +164,6 @@ Button SendOrder;
     @Override
     public void onBackPressed(){
         String[] x = getIntent().getStringArrayExtra("strItemsList");
-        Log.i("checks", String.valueOf(x.length));
         Intent intent = new Intent(this, CustomerStoreInfoActivity.class);
         intent.putExtra("strItemsList", x);
         super.onBackPressed();

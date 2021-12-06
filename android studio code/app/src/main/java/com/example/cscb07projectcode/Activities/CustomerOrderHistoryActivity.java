@@ -55,11 +55,7 @@ public class CustomerOrderHistoryActivity extends AppCompatActivity {
         setHistoryInfo();
     }
 
-
-
     public void setHistoryInfo() {
-
-
         SharedPreferences pref = getSharedPreferences("credentialsCustomer", Context.MODE_PRIVATE);
         String username = pref.getString("username", "");
 
