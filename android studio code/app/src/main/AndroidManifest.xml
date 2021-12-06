@@ -18,6 +18,10 @@
             android:exported="false"
             android:parentActivityName=".Activities.CustomerMainActivity"/>
         <activity
+            android:name=".Activities.CustomerOrderFormActivity"
+            android:exported="false"
+            android:parentActivityName=".Activities.CustomerMainActivity"/>
+        <activity
             android:name=".Activities.Cart_Order_Activity"
             android:exported="false"
             android:parentActivityName=".Activities.CustomerStoreInfoActivity"/>

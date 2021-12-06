@@ -107,13 +107,13 @@ public class CustomerOrderHistoryActivity extends AppCompatActivity {
         listener = new CustomerOrderRecyclerAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Intent intent = new Intent(getApplicationContext(), StoreOwnerOrderFormActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CustomerOrderFormActivity.class);
 
                 // write username into a shared preference
                 SharedPreferences pref = getSharedPreferences("ordersData", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("orderIdKey", String.valueOf(ordersList.get(position).getOrderId()));
-                editor.putString("CustomerIdKey", String.valueOf(ordersList.get(position).getCustomerId()));
+                editor.putString("CustomerIdKey", String.valueOf(ordersList.get(position).getStoreName()));
                 editor.putString("fromComplete", "true");
                 editor.apply();
 
