@@ -65,6 +65,16 @@ public class CustomerMainActivity extends AppCompatActivity {
 
         );
 
+        Button OrderHisComp = findViewById(R.id.OrderHisComp);
+        OrderHisComp.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            open_order_history2 ();
+                                        }
+                                    }
+
+        );
+
         button.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
@@ -134,6 +144,12 @@ public class CustomerMainActivity extends AppCompatActivity {
     public void open_order_history ()
     {
         Intent intent = new Intent(this, CustomerOrderHistoryActivity.class);
+        startActivity(intent);
+    }
+
+    public void open_order_history2 ()
+    {
+        Intent intent = new Intent(this, CustomerOrderHistoryActivity2.class);
         startActivity(intent);
     }
 

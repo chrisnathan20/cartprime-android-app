@@ -1,33 +1,24 @@
 package com.example.cscb07projectcode.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import com.example.cscb07projectcode.R;
+import android.view.MenuItem;
+import android.view.View;
 
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-
 import com.example.cscb07projectcode.Item;
 import com.example.cscb07projectcode.OrderMetaData;
 import com.example.cscb07projectcode.OrderRecyclerAdapter;
 import com.example.cscb07projectcode.R;
-import com.example.cscb07projectcode.StoreOwner;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class CustomerOrderHistoryActivity extends AppCompatActivity {
+public class CustomerOrderHistoryActivity2 extends AppCompatActivity {
     public static String storename = null;
     public static ArrayList<OrderMetaData> ordersList;
     public static ArrayList<Item> itemsList;
@@ -46,7 +37,7 @@ public class CustomerOrderHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_order_history);
+        setContentView(R.layout.activity_customer_order_history2);
         recyclerView = findViewById(R.id.recyclerOrderHistoryId);
         ordersList = new ArrayList<OrderMetaData>();
         itemsList = new ArrayList<Item>();
@@ -68,7 +59,7 @@ public class CustomerOrderHistoryActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot newChild:snapshot.getChildren()) {
                     OrderMetaData orderMetaData = newChild.getValue(OrderMetaData.class);
-                    if(username.equals(orderMetaData.getCustomerId()) & orderMetaData.getOrderStatus().equals("Incomplete")){
+                    if(username.equals(orderMetaData.getCustomerId()) & orderMetaData.getOrderStatus().equals("Complete")){
                         OrderMetaData newOrder = new OrderMetaData(
                                 orderMetaData.getOrderId(),
                                 orderMetaData.getOrderStatus(),
