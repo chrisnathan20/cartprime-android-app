@@ -42,7 +42,6 @@
         android:id="@+id/OrderHis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:background="#00ffffff"
         android:drawableTop="@drawable/ic_baseline_playlist_remove_24"
         android:drawablePadding="5dp"
@@ -51,12 +50,11 @@
         android:text="Incomplete&#10;Orders"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/OrderHisComp"
-        app:layout_constraintHorizontal_bias="0.767"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toEndOf="@+id/button6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945" />
 
     <TextView
         android:id="@+id/textView12"
