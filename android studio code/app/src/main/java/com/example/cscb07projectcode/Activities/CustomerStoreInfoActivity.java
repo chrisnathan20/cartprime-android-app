@@ -31,7 +31,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class Customer_Store_View extends AppCompatActivity {
+public class CustomerStoreInfoActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
 

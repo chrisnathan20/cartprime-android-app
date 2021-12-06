@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.Button;
 import android.view.View;
 
-import com.example.cscb07projectcode.Customer;
 import com.example.cscb07projectcode.R;
 import com.example.cscb07projectcode.Store;
 import com.google.firebase.database.DataSnapshot;
@@ -128,7 +127,7 @@ public class CustomerMainActivity extends AppCompatActivity {
 
         //String text_to_send = spinner.getOnItemSelectedListener().toString();
 
-        Intent intent = new Intent(this, Customer_Store_View.class);
+        Intent intent = new Intent(this, CustomerStoreInfoActivity.class);
         String x = spinner.getSelectedItem().toString();
         intent.putExtra("getData",x);
         // saving the current store name to a local file

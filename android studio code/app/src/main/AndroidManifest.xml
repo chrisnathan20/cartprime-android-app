@@ -20,9 +20,9 @@
         <activity
             android:name=".Activities.Cart_Order_Activity"
             android:exported="false"
-            android:parentActivityName=".Activities.Customer_Store_View"/>
+            android:parentActivityName=".Activities.CustomerStoreInfoActivity"/>
         <activity
-            android:name=".Activities.Customer_Store_View"
+            android:name=".Activities.CustomerStoreInfoActivity"
             android:exported="false"
             android:parentActivityName=".Activities.CustomerMainActivity"/>
         <activity

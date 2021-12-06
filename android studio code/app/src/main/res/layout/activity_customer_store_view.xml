@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Customer_Store_View">
+    tools:context=".Activities.CustomerStoreInfoActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/product_list_from_selected_store"
