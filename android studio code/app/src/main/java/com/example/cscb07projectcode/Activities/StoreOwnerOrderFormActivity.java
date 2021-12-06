@@ -47,9 +47,13 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_owner_order_form);
 
+
         // extract order id and set the value to corresponding order id textview
         SharedPreferences pref = getSharedPreferences("ordersData", Context.MODE_PRIVATE);
         String fromComplete = pref.getString("fromComplete","");
+
+        // adds colour to orderstatus textview
+        TextView statusView = (TextView) findViewById(R.id.textView23);
         if(fromComplete.equals("true")){
             // hides "complete" button for completing orders
             Button button = (Button) findViewById(R.id.button16);
@@ -57,18 +61,14 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
 
             // change text to complete
             // change font colour to be green
-            TextView statusView = (TextView) findViewById(R.id.textView23);
-            statusView.setText("Complete");
             statusView.setTextColor(Color.parseColor("#28B463"));
         }
         else{
-            TextView statusView = (TextView) findViewById(R.id.textView23);
-            statusView.setText("Incomplete");
             statusView.setTextColor(Color.parseColor("#C0392B"));
         }
 
-
-
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        // for storeowner side
         // pull order/customer id from sharedpreference file
         String orderId = "Receipt Id: #" + pref.getString("orderIdKey", "");
         String CustomerId = pref.getString("CustomerIdKey", "");
@@ -78,6 +78,8 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
         TextView customer_id = (TextView) findViewById(R.id.textView20);
         order_id.setText(orderId);
         customer_id.setText(CustomerId);
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
 
         // initialize variables and call method for the recycler
         recyclerView = findViewById(R.id.recyclerOrderFormId);
@@ -99,6 +101,9 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
                 for(DataSnapshot child:dataSnapshot.getChildren()) {
                     OrderMetaData order = child.getValue(OrderMetaData.class);
                     if(orderId.equals(String.valueOf(order.getOrderId()))){
+                        // updates the order status
+                        TextView statusView = (TextView) findViewById(R.id.textView23);
+                        statusView.setText(order.getOrderStatus());
                         // create a database reference to access list of products
                         DatabaseReference newRef = ref.child(orderId).child("itemsList");
                         ValueEventListener newListener = new ValueEventListener(){
