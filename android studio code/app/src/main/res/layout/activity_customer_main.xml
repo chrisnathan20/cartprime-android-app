@@ -63,7 +63,7 @@
         android:layout_marginTop="124dp"
         android:text="List of Stores Near Me!"
         android:textSize="20sp"
-        android:textStyle="italic"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.312"
         app:layout_constraintStart_toStartOf="parent"
