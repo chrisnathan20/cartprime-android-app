@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cscb07projectcode.AdapterForCustomerStoreView;
 import com.example.cscb07projectcode.Item;
-import com.example.cscb07projectcode.Order;
 import com.example.cscb07projectcode.R;
 import com.example.cscb07projectcode.Store;
 import com.google.firebase.database.DataSnapshot;
@@ -20,12 +19,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ public class Customer_Store_View extends AppCompatActivity {
         recyclerView = findViewById(R.id.product_list_from_selected_store);
         list = new ArrayList<>();
         quan = findViewById(R.id.quantity); // quantity to be ordered
-        isQuanAvliable = findViewById(R.id.Reduce);
+        isQuanAvliable = findViewById(R.id.MessageForQuantity);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myAdapter =  new AdapterForCustomerStoreView(this,list);
@@ -137,16 +137,47 @@ public class Customer_Store_View extends AppCompatActivity {
             @Override
             public void onAddtoCart(int position) {
                 list.get(position); // GET THE ITEM AT THIS POSITION DONE
+
+                // VALIDATION FOR QUANTITY ENTERED
                 Log.i(" CAN I GET TO STRING",list.get(position).toString());
+                EditText quantity = findViewById(R.id.quantity);
+                TextView MessageForQuantity = findViewById(R.id.MessageForQuantity);
 
-                //Intent intent = new Intent(getApplicationContext(),Cart_Order_Activity.class);
-                Log.i("DOES IT ADD STUFFBEFORE", cartList.size() + "  Prev") ;
-                cartList.add(list.get(position));
-                Log.i("DOES IT ADD STUFF ", cartList.size() + "  ") ;
-                //intent.putExtra("extra", list.get(position).toString());
-                //startActivity(intent);
+                if(quantity.getText() == null || Integer.parseInt(quantity.getText().toString()) < 0  )
+                {
+                    MessageForQuantity.setText("Please a valid quantity " );
+                }
+
+                else {
+                    String quantity_ordewred_for_item = quantity.getText().toString();
+                    int quant = Integer.parseInt(quantity_ordewred_for_item);
+                    Log.i("IS THE QUANTITY READ", quantity_ordewred_for_item);
+
+                    if (quant > list.get(position).getQuantity()) {
+                        MessageForQuantity.setText("We only have " + list.get(position).getQuantity());
 
 
+                    } else {
+                        MessageForQuantity.setText(" ");
+                        //Intent intent = new Intent(getApplicationContext(),Cart_Order_Activity.class);
+                        Log.i("DOES IT ADD STUFFBEFORE", cartList.size()  + "  Prev");
+
+                        cartList.add(list.get(position));
+                        Item iii = list.get(position);
+                        int tt= iii.getQuantity() -quant;
+                        list.get(position).setQuantity(tt);
+                        //list.get(position).setQuantity((list.get(position).getQuantity() - quant));
+
+                        cartList.get(cartList.indexOf(list.get(position))).setQuantity(quant);
+                        Item x = cartList.get(cartList.indexOf(list.get(position)));
+                        Log.i("What is the quantity", " " + x.getQuantity() );
+                        Log.i("How many left", " "+ list.get(position).getQuantity());
+                        Log.i("How many ", " "+ cartList.get(position).getQuantity());
+                        Log.i("DOES IT ADD STUFF ", cartList.size() + "  ");
+                        //intent.putExtra("extra", list.get(position).toString());
+                        //startActivity(intent);
+                    }
+                }
 
             }
         });

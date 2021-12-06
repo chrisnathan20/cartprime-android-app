@@ -46,15 +46,18 @@ Button SendOrder;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_order);
+
         list = new ArrayList<>();
         Intent intent = getIntent();
         String[] x = getIntent().getStringArrayExtra("VALUESSSSS"); // RETRIVE AN ARRAY OF ITEMS AS STRINGS AND WE GOTTA MODIFY THAT INTO AN ARRAY LIST FOR RECYLER VIEW
         // ADAPTER
         // PROBABLY ADD A FUNCTION FOR It
+        TextView order_placed = (TextView) findViewById(R.id.textView26);
+       // order_placed.setEnabled(false);
 
 
 
-     PopulateList(x);
+        PopulateList(x);
       Log.i("IS THE ARRAYLIST EMPTY"," " + list.size());
    /**   for(Item i: list)
       {
@@ -82,6 +85,7 @@ Button SendOrder;
         //ArrayList<Item> myList = getIntent().getParcelableExtra("Contact_list");
         //t.setText(myList.get(0).getName());
 
+
 // RETRIEVING THE CUSTOMER USERNAME
         SharedPreferences pref = getSharedPreferences("credentialsCustomer", Context.MODE_PRIVATE);
         String username = pref.getString("username", "");
@@ -106,9 +110,9 @@ Button SendOrder;
 
                 new_order.put(id,new OrderMetaData(order_place.getOrderId(), "Incomplete",username,store_name));
                 DatabaseReference new_child = ref.child("list_of_orders");
-                mDatabase.child("orders").child("list_of_orders").setValue(new_order);
+                //mDatabase.child("orders").child("list_of_orders").setValue(new_order);
                // new_child.setValue(new_order);
-                DatabaseReference child2 = ref.child("list_of_orders").child(id).child("itemList");
+                //DatabaseReference child2 = ref.child("list_of_orders").child(id).child("itemList");
                 Map<String, Item> new_list = new HashMap<>();
 
                 for(Item i:list)
@@ -116,8 +120,16 @@ Button SendOrder;
                     new_list.put(i.getName(),i);
                 }
 
+                mDatabase.child("orders").child("list_of_orders").child(id).setValue(new OrderMetaData(order_place.getOrderId(), "Incomplete",username,store_name));
+
+
                 mDatabase.child("orders").child("list_of_orders").child(id).child("itemsList").setValue(new_list);
              //  child2.setValue(new_list);
+                   order_placed.setText("Order Successfully Placed");
+                order_placed.setEnabled(true);
+
+
+
 
 
 
@@ -156,10 +168,10 @@ Button SendOrder;
                    i++;
                } **/
                Item to_Add  = new Item(arr[0],arr[1],Double.parseDouble(arr[2]), Integer.parseInt(arr[3]),arr[4]);
-                to_Add.setQuantity(1);
+                //to_Add.setQuantity(1);
                if(x.contains(to_Add))
                 {
-                    x.get(x.indexOf(to_Add)).setQuantity(x.get(x.indexOf(to_Add)).getQuantity() + 1);
+                    x.get(x.indexOf(to_Add)).setQuantity(x.get(x.indexOf(to_Add)).getQuantity() + to_Add.getQuantity());
                 }
                 else {
                     x.add(to_Add);

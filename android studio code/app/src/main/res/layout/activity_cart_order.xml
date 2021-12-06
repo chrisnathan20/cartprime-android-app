@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="43dp"
-        android:text="TextView"></TextView>
+        android:textColor="#228C22"></TextView>
 
     <LinearLayout
         android:id="@+id/layout_total"
