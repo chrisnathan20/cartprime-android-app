@@ -15,10 +15,12 @@
             android:parentActivityName=".Activities.CustomerMainActivity"/>
         <activity
             android:name=".Activities.Cart_Order_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Activities.Customer_Store_View"/>
         <activity
             android:name=".Activities.Customer_Store_View"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Activities.CustomerMainActivity"/>
         <activity
             android:name=".Activities.StoreOwnerOrderHistoryActivity"
             android:exported="false"

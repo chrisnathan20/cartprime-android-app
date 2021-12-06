@@ -1,9 +1,11 @@
 package com.example.cscb07projectcode.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 
 public class CustomerMainActivity extends AppCompatActivity {
     public static final String EXTRA_TEXT ="com.example.application.cscbo7projectcode.extratest";
+    public String logoutStatus;
     ListView listView;
     FirebaseDatabase database;
     DatabaseReference ref;
@@ -134,6 +137,35 @@ public class CustomerMainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void returnMainActivity(String logoutStatus) {
+        if (logoutStatus.equals("true")) {
+            // start new activity
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+    }
 
+    public void secondLogout(View view){
+        // initialize alert
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+                .setTitle("Logout")
+                .setMessage("You will be returned to the home screen.")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // clicked yes, do action
+                        logoutStatus = "true";
+                        returnMainActivity(logoutStatus);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // clicked no, do action
+                        logoutStatus = "false";
+                    }
+                })
+                .show();
+    }
 
 }
