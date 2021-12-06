@@ -70,33 +70,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="105dp"
+            android:layout_height="82dp"
             android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/quantity"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/Quan"
-                android:inputType="number"
-                android:minHeight="48dp"
-                android:textSize="10sp"
-                tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/Add_to_Cart"
-                android:layout_width="87dp"
+                android:layout_width="152dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#00BCD4"
                 android:padding="10dp"
                 android:text="Add to Cart" />
 
-            <TextView
-                android:id="@+id/MessageForQuantity"
-                android:layout_width="78dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
         </LinearLayout>
 
 

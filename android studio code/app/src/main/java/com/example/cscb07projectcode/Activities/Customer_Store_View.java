@@ -1,5 +1,6 @@
 package com.example.cscb07projectcode.Activities;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,8 +38,7 @@ public class Customer_Store_View extends AppCompatActivity {
     AdapterForCustomerStoreView myAdapter;
     ArrayList<Item> list;
     ArrayList<Item> cartList;
-    EditText quan; // for the quantity of a selected item to be added
-    TextView isQuanAvliable; // tells whether the quanity added is available
+
     Button add;
 
 
@@ -47,12 +48,14 @@ public class Customer_Store_View extends AppCompatActivity {
         setContentView(R.layout.activity_customer_store_view);
         recyclerView = findViewById(R.id.product_list_from_selected_store);
         list = new ArrayList<>();
-        quan = findViewById(R.id.quantity); // quantity to be ordered
-        isQuanAvliable = findViewById(R.id.MessageForQuantity);
+        //quan = findViewById(R.id.quantity); // quantity to be ordered
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myAdapter =  new AdapterForCustomerStoreView(this,list);
         cartList = new ArrayList<>();
+        add = findViewById(R.id.Add_to_Cart);
+
 
 
         // This for when items in the recyler view are clicked
@@ -136,50 +139,65 @@ public class Customer_Store_View extends AppCompatActivity {
 
             @Override
             public void onAddtoCart(int position) {
+
+
+                TextView message = findViewById(R.id.Messages);
                 list.get(position); // GET THE ITEM AT THIS POSITION DONE
-
+                int how_many_can_be_added = list.get(position).getQuantity() - howManyProductsLeft(list.get(position),0); // calcuates  how many in inventory - how many are already in the cart
                 // VALIDATION FOR QUANTITY ENTERED
-                Log.i(" CAN I GET TO STRING",list.get(position).toString());
-                EditText quantity = findViewById(R.id.quantity);
-                TextView MessageForQuantity = findViewById(R.id.MessageForQuantity);
+                Log.i("how many more"," " + how_many_can_be_added + "  of " + list.get(position).getName());
+              //  Log.i(" CAN I GET TO STRING",list.get(position).toString());
+               // String quantity_edit_text_field_value;
 
-                if(quantity.getText() == null || Integer.parseInt(quantity.getText().toString()) < 0  )
+               // quantity_edit_text_field_value = addQuantity.getText().toString();
+                //Log.i("How many?",quantity_edit_text_field_value);
+               // int quantity_to_be_added = Integer.parseInt(quantity_edit_text_field_value);
+
+
+                if(how_many_can_be_added  <=0)
                 {
-                    MessageForQuantity.setText("Please a valid quantity " );
+                findViewById(R.id.Add_to_Cart).setBackgroundColor(Color.DKGRAY);
+                    message.setText("We cannot provide more as " + "we only have " + howManyProductsLeft(list.get(position),0) +" " + list.get(position).getName()+"(s) in stock");
+                    message.setTextColor(Color.RED);
+                }
+               // EditText quantity = findViewById(R.id.quantity);
+              //  TextView MessageForQuantity = findViewById(R.id.MessageForQuantity);
+
+
+
+
+                    //String quantity_ordewred_for_item = quantity.getText().toString();
+                  //  int quant = Integer.parseInt(quantity_ordewred_for_item);
+                   // Log.i("IS THE QUANTITY READ", quantity_ordewred_for_item);
+
+
+
+
+
+
+                        //MessageForQuantity.setText(" ");
+                        //Intent intent = new Intent(getApplicationContext(),Cart_Order_Activity.class);
+                        //Log.i("DOES IT ADD STUFFBEFORE", cartList.size()  + "  Prev");
+                       // msg.setText("You can add" + ( ) + " more"));
+                else { cartList.add(list.get(position)); // if we have enough we will add them here
                 }
 
-                else {
-                    String quantity_ordewred_for_item = quantity.getText().toString();
-                    int quant = Integer.parseInt(quantity_ordewred_for_item);
-                    Log.i("IS THE QUANTITY READ", quantity_ordewred_for_item);
-
-                    if (quant > list.get(position).getQuantity()) {
-                        MessageForQuantity.setText("We only have " + list.get(position).getQuantity());
-
-
-                    } else {
-                        MessageForQuantity.setText(" ");
-                        //Intent intent = new Intent(getApplicationContext(),Cart_Order_Activity.class);
-                        Log.i("DOES IT ADD STUFFBEFORE", cartList.size()  + "  Prev");
-
-                        cartList.add(list.get(position));
-                        Item iii = list.get(position);
-                        int tt= iii.getQuantity() -quant;
-                        list.get(position).setQuantity(tt);
                         //list.get(position).setQuantity((list.get(position).getQuantity() - quant));
 
-                        cartList.get(cartList.indexOf(list.get(position))).setQuantity(quant);
-                        Item x = cartList.get(cartList.indexOf(list.get(position)));
-                        Log.i("What is the quantity", " " + x.getQuantity() );
-                        Log.i("How many left", " "+ list.get(position).getQuantity());
-                        Log.i("How many ", " "+ cartList.get(position).getQuantity());
-                        Log.i("DOES IT ADD STUFF ", cartList.size() + "  ");
+
+
+
+                        //Log.i("How many left", " "+ list.get(position).getQuantity());
+                        //Log.i("How many ", " "+ cartList.get(position).getQuantity());
+                       // Log.i("DOES IT ADD STUFF ", cartList.size() + "  ");
                         //intent.putExtra("extra", list.get(position).toString());
                         //startActivity(intent);
                     }
-                }
 
-            }
+
+
+
+
         });
 
 
@@ -216,5 +234,25 @@ public void openCart()
 
     startActivity(intent);
 }
+
+
+public int howManyProductsLeft(Item i, int init)
+{   int count = init;
+    for(Item x: cartList)
+    {
+        if (x.equals(i)){
+          count++;}
+    }
+    return count;
+}
+public void remove_one_from_arrayList(ArrayList<Item> itemlist,Item item)
+{
+    int location = itemlist.lastIndexOf(item); // finds the last occurence of this item
+    itemlist.remove(location);
+
+}
+
+
+
 
 }

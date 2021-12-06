@@ -125,8 +125,9 @@ Button SendOrder;
 
                 mDatabase.child("orders").child("list_of_orders").child(id).child("itemsList").setValue(new_list);
              //  child2.setValue(new_list);
-                   order_placed.setText("Order Successfully Placed");
-                order_placed.setEnabled(true);
+                   order_placed.setText("Order Placed Successfully");
+
+
 
 
 
@@ -171,9 +172,10 @@ Button SendOrder;
                 //to_Add.setQuantity(1);
                if(x.contains(to_Add))
                 {
-                    x.get(x.indexOf(to_Add)).setQuantity(x.get(x.indexOf(to_Add)).getQuantity() + to_Add.getQuantity());
+                    x.get(x.indexOf(to_Add)).setQuantity(x.get(x.indexOf(to_Add)).getQuantity() + 1);
                 }
                 else {
+                    to_Add.setQuantity(1);
                     x.add(to_Add);
                 }
 

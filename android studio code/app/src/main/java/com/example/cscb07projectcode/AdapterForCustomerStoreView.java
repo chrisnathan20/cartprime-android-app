@@ -25,6 +25,8 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
     public interface onItemClickListener{
         void onItemClick(int position);
         void onAddtoCart(int position);
+
+
     }
     // call this is our activity
     public void setOnItemClickListener(onItemClickListener listener)
@@ -46,6 +48,8 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
         TextView Price;
         TextView Available;
         Button add_to_Cart;
+        Button add_product;
+        Button remove_product;
         EditText quantity;
 
         // Constructors
@@ -58,7 +62,10 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
             Available = itemView.findViewById(R.id.productAvailable);
             Unit = itemView.findViewById(R.id.productUnit);
             add_to_Cart = itemView.findViewById(R.id.Add_to_Cart);
-            quantity = itemView.findViewById(R.id.quantity);
+           // add_product = itemView.findViewById(R.id.add1);
+           // remove_product = itemView.findViewById(R.id.delete1);
+
+           // quantity = itemView.findViewById(R.id.quantity);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -72,6 +79,8 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
                     }
                 }
             });
+
+
 
             add_to_Cart.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,7 +130,7 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
     else{holder.Available.setText("Out of Stock");
         holder.Available.setTextColor(Color.RED);
         holder.add_to_Cart.setEnabled(false); // disables the button when no stock is there
-        holder.quantity.setEnabled(false);
+       // holder.quantity.setEnabled(false);
     }
 
     holder.Description.setText("Description:"+item_.getDescription());

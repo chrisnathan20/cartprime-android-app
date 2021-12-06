@@ -8,26 +8,36 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/product_list_from_selected_store"
-        android:layout_width="370dp"
-        android:layout_height="535dp"
+        android:layout_width="374dp"
+        android:layout_height="457dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.78" />
+        app:layout_constraintVertical_bias="0.839" />
 
     <Button
         android:id="@+id/visitCart"
         android:layout_width="54dp"
         android:layout_height="39dp"
 
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/cartttt"
         android:color="#ffcccb"
         app:icon="@drawable/cartttt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Messages"
+        android:layout_width="304dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.229"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
