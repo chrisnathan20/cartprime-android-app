@@ -24,7 +24,7 @@
     <string name="unit">Unit Type</string>
     <string name="publish_button">Publish Product</string>
     <string name="productname_hint">Enter Product Name</string>
-    <string name="productdescription_hint">Enter Description</string>
+    <string name="productdescription_hint">Enter Description(Brand)</string>
     <string name="price_hint">Enter Price</string>
     <string name="quantity_hint">Enter Quantity</string>
     <string name="unit_hint">(e.g. lbs, kg, litres)</string>

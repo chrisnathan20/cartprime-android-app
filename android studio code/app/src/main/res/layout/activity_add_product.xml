@@ -220,6 +220,9 @@
         android:layout_marginTop="5dp"
         android:onClick="publish_button"
         android:text="@string/publish_button"
+        android:background="@drawable/round_button"
+        android:paddingHorizontal="70dp"
+        android:paddingVertical="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline18"
         app:layout_constraintStart_toStartOf="@+id/guideline19"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />
