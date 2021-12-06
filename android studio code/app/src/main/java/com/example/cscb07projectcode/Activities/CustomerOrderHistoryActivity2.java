@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cscb07projectcode.CustomerOrderRecyclerAdapter;
 import com.example.cscb07projectcode.Item;
 import com.example.cscb07projectcode.OrderMetaData;
 import com.example.cscb07projectcode.OrderRecyclerAdapter;
@@ -33,7 +34,7 @@ public class CustomerOrderHistoryActivity2 extends AppCompatActivity {
     public static ArrayList<OrderMetaData> ordersList;
     public static ArrayList<Item> itemsList;
     private RecyclerView recyclerView;
-    private OrderRecyclerAdapter.RecyclerViewClickListener listener;
+    private CustomerOrderRecyclerAdapter.RecyclerViewClickListener listener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +83,7 @@ public class CustomerOrderHistoryActivity2 extends AppCompatActivity {
     }
     public void setAdapter(){
         setOnClickListener();
-        OrderRecyclerAdapter adapter = new OrderRecyclerAdapter(ordersList, listener);
+        CustomerOrderRecyclerAdapter adapter = new CustomerOrderRecyclerAdapter(ordersList, listener);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -93,7 +94,7 @@ public class CustomerOrderHistoryActivity2 extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
     private void setOnClickListener() {
-        listener = new OrderRecyclerAdapter.RecyclerViewClickListener() {
+        listener = new CustomerOrderRecyclerAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
                 Intent intent = new Intent(getApplicationContext(), StoreOwnerOrderFormActivity.class);

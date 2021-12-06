@@ -99,7 +99,7 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
                 // loops through user (of type store owner) until it matches a username
                 for(DataSnapshot child:dataSnapshot.getChildren()) {
                     Store store = child.getValue(Store.class);
-                    if(value.equals(store.getName())){
+                    if(store_name.equals(store.getName())){
                         // create a database reference to access list of products
                         DatabaseReference newRef = ref.child(store.getName()).child("products");
                         ValueEventListener newListener = new ValueEventListener(){
