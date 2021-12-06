@@ -55,22 +55,22 @@ public class CustomerMainActivity extends AppCompatActivity {
         spinner = (Spinner)findViewById(R.id.spinnerdata);
         Button button = (Button) findViewById(R.id.button12);
         Button OrderHis = findViewById(R.id.OrderHis);
-     OrderHis.setOnClickListener(new View.OnClickListener() {
-                                      @Override
-                                      public void onClick(View v) {
-                                          open_order_history ();
-                                      }
-                                  }
+        OrderHis.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            open_order_history ();
+                                        }
+                                    }
 
         );
 
         Button OrderHisComp = findViewById(R.id.OrderHisComp);
         OrderHisComp.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            open_order_history2 ();
+                                            @Override
+                                            public void onClick(View v) {
+                                                open_order_history2 ();
+                                            }
                                         }
-                                    }
 
         );
 
@@ -123,6 +123,8 @@ public class CustomerMainActivity extends AppCompatActivity {
      }
      } **/
     //final String USN = spinner.getSelectedItem().toString();
+
+    // visit button
     public void openNext(){
 
         //String text_to_send = spinner.getOnItemSelectedListener().toString();
@@ -135,10 +137,13 @@ public class CustomerMainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("store_name", x);
         editor.apply();
+
+        // appending empty array into intent
+        String[] arr_ = new String[0];
+        intent.putExtra("strItemsList", arr_);
+
         // saving the current store name to a local file
         startActivity(intent);
-
-
     }
     public void open_order_history ()
     {

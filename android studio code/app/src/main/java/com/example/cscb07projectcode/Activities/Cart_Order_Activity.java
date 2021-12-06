@@ -18,6 +18,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -51,7 +53,7 @@ Button SendOrder;
 
         list = new ArrayList<>();
         Intent intent = getIntent();
-        String[] x = getIntent().getStringArrayExtra("VALUESSSSS"); // RETRIVE AN ARRAY OF ITEMS AS STRINGS AND WE GOTTA MODIFY THAT INTO AN ARRAY LIST FOR RECYLER VIEW
+        String[] x = getIntent().getStringArrayExtra("strItemsList"); // RETRIVE AN ARRAY OF ITEMS AS STRINGS AND WE GOTTA MODIFY THAT INTO AN ARRAY LIST FOR RECYLER VIEW
         // ADAPTER
         // PROBABLY ADD A FUNCTION FOR It
         TextView order_placed = (TextView) findViewById(R.id.textView26);
@@ -198,5 +200,25 @@ Button SendOrder;
             }
 
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        String[] x = getIntent().getStringArrayExtra("strItemsList");
+        Log.i("checks", String.valueOf(x.length));
+        Intent intent = new Intent(this, CustomerStoreInfoActivity.class);
+        intent.putExtra("strItemsList", x);
+        super.onBackPressed();
+        startActivity(intent);
+        finishActivity(0);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return false;
     }
 }
