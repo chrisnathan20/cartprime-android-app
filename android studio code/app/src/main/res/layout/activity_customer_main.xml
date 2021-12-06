@@ -50,7 +50,7 @@
         app:layout_constraintStart_toEndOf="@+id/button8" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/OrderHis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
@@ -68,7 +68,7 @@
         android:layout_marginEnd="16dp"
         android:text="Cart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button10"
+        app:layout_constraintStart_toStartOf="@+id/OrderHis"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

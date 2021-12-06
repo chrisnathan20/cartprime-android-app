@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Activities.CustomerOrderHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Cart_Order_Activity"
             android:exported="false" />
         <activity
@@ -43,8 +46,7 @@
         <activity
             android:name=".Activities.StoreOwnerMainActivity"
             android:label="Store Owner Home" />
-        <activity
-            android:name=".Activities.CustomerMainActivity" />
+        <activity android:name=".Activities.CustomerMainActivity" />
         <activity
             android:name=".Activities.RegisterCustomerActivity"
             android:exported="false"

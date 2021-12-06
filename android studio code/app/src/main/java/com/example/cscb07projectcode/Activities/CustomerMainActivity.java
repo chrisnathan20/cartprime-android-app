@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Button;
 import android.view.View;
 
+import com.example.cscb07projectcode.Customer;
 import com.example.cscb07projectcode.R;
 import com.example.cscb07projectcode.Store;
 import com.google.firebase.database.DataSnapshot;
@@ -51,6 +52,16 @@ public class CustomerMainActivity extends AppCompatActivity {
         store_ = new Store();
         spinner = (Spinner)findViewById(R.id.spinnerdata);
         Button button = (Button) findViewById(R.id.button12);
+        Button OrderHis = findViewById(R.id.OrderHis);
+     OrderHis.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+                                          open_order_history ();
+                                      }
+                                  }
+
+        );
+
         button.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
@@ -117,6 +128,12 @@ public class CustomerMainActivity extends AppCompatActivity {
 
 
     }
+    public void open_order_history ()
+    {
+        Intent intent = new Intent(this, CustomerOrderHistoryActivity.class);
+        startActivity(intent);
+    }
+
 
 
 }
