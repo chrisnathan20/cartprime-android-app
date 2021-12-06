@@ -98,7 +98,6 @@ public class CustomerOrderActivity extends AppCompatActivity {
         ref.addValueEventListener(listener);
     }
 
-
     public void setAdapter(){
         setOnClickListener();
         ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(itemsList, listener, "CustomerOrderActivity");
@@ -128,5 +127,4 @@ public class CustomerOrderActivity extends AppCompatActivity {
             }
         };
     }
-
 }

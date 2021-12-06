@@ -8,14 +8,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/product_list_from_selected_store"
-        android:layout_width="374dp"
-        android:layout_height="457dp"
+        android:layout_width="376dp"
+        android:layout_height="573dp"
+        android:layout_marginTop="27dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.839" />
+        app:layout_constraintTop_toBottomOf="@+id/Messages"
+        app:layout_constraintVertical_bias="0.211" />
 
     <Button
         android:id="@+id/visitCart"
@@ -36,6 +37,8 @@
         android:layout_width="304dp"
         android:layout_height="35dp"
         android:layout_marginTop="44dp"
+        android:text="Store Products"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.229"
         app:layout_constraintStart_toStartOf="parent"

@@ -55,25 +55,24 @@ public class CustomerMainActivity extends AppCompatActivity {
         spinner = (Spinner)findViewById(R.id.spinnerdata);
         Button button = (Button) findViewById(R.id.button12);
         Button OrderHis = findViewById(R.id.OrderHis);
-     OrderHis.setOnClickListener(new View.OnClickListener() {
-                                      @Override
-                                      public void onClick(View v) {
-                                          open_order_history ();
-                                      }
-                                  }
-
-        );
-
-        Button OrderHisComp = findViewById(R.id.OrderHisComp);
-        OrderHisComp.setOnClickListener(new View.OnClickListener() {
+        OrderHis.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            open_order_history2 ();
+                                            open_order_history ();
                                         }
                                     }
 
         );
 
+        Button OrderHisComp = findViewById(R.id.OrderHisComp);
+        OrderHisComp.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                open_order_history2 ();
+                                            }
+                                        }
+
+        );
         button.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
@@ -98,9 +97,6 @@ public class CustomerMainActivity extends AppCompatActivity {
                     stores.add(store.getName().toString() +"\n\n Description: "+store.getDescription().toString());
                     store_ = ds.getValue(Store.class);
                     stores_.add(store_.getName().toString());
-
-
-
                 }
                 listView.setAdapter(adapter);
                 spinner.setAdapter(adapter2);
@@ -111,18 +107,10 @@ public class CustomerMainActivity extends AppCompatActivity {
 
             }
         });
+
     }
-    /**public class MySpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
 
-     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-     String selected = parent.getItemAtPosition(pos).toString();
-     }
-
-     public void onNothingSelected(AdapterView parent) {
-     // Do nothing.
-     }
-     } **/
-    //final String USN = spinner.getSelectedItem().toString();
+    // visit button
     public void openNext(){
 
         //String text_to_send = spinner.getOnItemSelectedListener().toString();
@@ -135,10 +123,13 @@ public class CustomerMainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("store_name", x);
         editor.apply();
+
+        // appending empty array into intent
+        String[] arr_ = new String[0];
+        intent.putExtra("strItemsList", arr_);
+
         // saving the current store name to a local file
         startActivity(intent);
-
-
     }
     public void open_order_history ()
     {
@@ -182,5 +173,4 @@ public class CustomerMainActivity extends AppCompatActivity {
                 })
                 .show();
     }
-
 }
