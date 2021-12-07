@@ -114,15 +114,28 @@ Button SendOrder;
                 mDatabase.child("orders").child("list_of_orders").child(id).child("itemsList").setValue(new_list);
                    order_placed.setText("Order Placed Successfully");
 
-                   try{
-                       TimeUnit.SECONDS.sleep(5);
-                   }
-                   catch (InterruptedException e){
-                       e.printStackTrace();
-                   }
-                   backtomain();
+                   displaySuccessAlert();
+
             }
         });
+    }
+
+    public void displaySuccessAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Cart_Order_Activity.this);
+
+        builder.setTitle("Order Successfully Placed");
+        builder.setMessage("redirecting back to home page");
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                backtomain();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 
     public void backtomain(){
