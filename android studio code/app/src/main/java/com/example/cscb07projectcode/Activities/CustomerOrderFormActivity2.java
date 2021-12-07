@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CustomerOrderFormActivity extends AppCompatActivity {
+public class CustomerOrderFormActivity2 extends AppCompatActivity {
 
     private ArrayList<Item> itemsList;
     private RecyclerView recyclerView;
@@ -61,7 +61,7 @@ public class CustomerOrderFormActivity extends AppCompatActivity {
 
             // change text to complete
             // change font colour to be green
-            statusView.setTextColor(Color.parseColor("#C0392B"));
+            statusView.setTextColor(Color.parseColor("#28B463"));
         }
         else{
             statusView.setTextColor(Color.parseColor("#C0392B"));
@@ -164,7 +164,7 @@ public class CustomerOrderFormActivity extends AppCompatActivity {
         listener = new ProductRecyclerAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Toast.makeText(CustomerOrderFormActivity.this, itemsList.get(position).getName(),
+                Toast.makeText(CustomerOrderFormActivity2.this, itemsList.get(position).getName(),
                         Toast.LENGTH_SHORT).show();
             }
         };
@@ -255,7 +255,7 @@ public class CustomerOrderFormActivity extends AppCompatActivity {
     }
 
     public void displayAlertStockShortage(String product_name){
-        AlertDialog.Builder builder = new AlertDialog.Builder(CustomerOrderFormActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(CustomerOrderFormActivity2.this);
 
         builder.setTitle("Order cannot be completed");
         builder.setMessage(product_name + " has insufficient stock");

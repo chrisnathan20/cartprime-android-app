@@ -97,7 +97,7 @@ public class CustomerOrderHistoryActivity2 extends AppCompatActivity {
         listener = new CustomerOrderRecyclerAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Intent intent = new Intent(getApplicationContext(), CustomerOrderFormActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CustomerOrderFormActivity2.class);
 
                 // write username into a shared preference
                 SharedPreferences pref = getSharedPreferences("ordersData", Context.MODE_PRIVATE);

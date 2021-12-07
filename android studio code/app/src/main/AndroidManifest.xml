@@ -20,7 +20,11 @@
         <activity
             android:name=".Activities.CustomerOrderFormActivity"
             android:exported="false"
-            android:parentActivityName=".Activities.CustomerMainActivity"/>
+            android:parentActivityName=".Activities.CustomerOrderHistoryActivity"/>
+        <activity
+            android:name=".Activities.CustomerOrderFormActivity2"
+            android:exported="false"
+            android:parentActivityName=".Activities.CustomerOrderHistoryActivity2"/>
         <activity
             android:name=".Activities.Cart_Order_Activity"
             android:exported="false"
