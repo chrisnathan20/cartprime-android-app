@@ -150,7 +150,7 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
     holder.Price.setText("$ "+ item_.getPrice());
         holder.Price.setTextColor(Color.DKGRAY);
         holder.add_to_Cart.setBackgroundColor(Color.parseColor("#32cd32"));
-        holder.refresh.setBackgroundColor(Color.BLUE);
+        holder.refresh.setBackgroundColor(Color.parseColor("#87cefa"));
 
         holder.remove_from_cart.setBackgroundColor(Color.RED);
 
