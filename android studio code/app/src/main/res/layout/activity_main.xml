@@ -68,4 +68,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cartprime_removebg_preview" />
 
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="179dp"
+        android:layout_marginEnd="174dp"
+        android:layout_marginBottom="20dp"
+        android:text="Copyright © 2021 CartPrime.inc All Rights Reserved"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

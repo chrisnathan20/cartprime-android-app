@@ -12,26 +12,32 @@
         <activity
             android:name=".Activities.CustomerOrderHistoryActivity"
             android:exported="false"
+            android:label="Order History"
             android:parentActivityName=".Activities.CustomerMainActivity"/>
         <activity
             android:name=".Activities.CustomerOrderHistoryActivity2"
             android:exported="false"
+            android:label="Order History"
             android:parentActivityName=".Activities.CustomerMainActivity"/>
         <activity
             android:name=".Activities.CustomerOrderFormActivity"
             android:exported="false"
+            android:label="Order Details"
             android:parentActivityName=".Activities.CustomerOrderHistoryActivity"/>
         <activity
             android:name=".Activities.CustomerOrderFormActivity2"
             android:exported="false"
+            android:label="Order Details"
             android:parentActivityName=".Activities.CustomerOrderHistoryActivity2"/>
         <activity
             android:name=".Activities.Cart_Order_Activity"
             android:exported="false"
-            android:parentActivityName=".Activities.CustomerStoreInfoActivity"/>
+            android:parentActivityName=".Activities.CustomerStoreInfoActivity"
+            android:label="My Cart"/>
         <activity
             android:name=".Activities.CustomerStoreInfoActivity"
             android:exported="false"
+            android:label="Selected Store"
             android:parentActivityName=".Activities.CustomerMainActivity"/>
         <activity
             android:name=".Activities.StoreOwnerOrderHistoryActivity"
