@@ -173,7 +173,7 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
        // holder.quantity.setEnabled(false);
     }
 
-    holder.Description.setText("Description:"+item_.getDescription());
+    holder.Description.setText("Description/Brand: "+item_.getDescription());
     holder.Unit.setText("Price per " + item_.getUnit());
 
 

@@ -68,6 +68,8 @@ Varun
 – Created the CartItemAdapter to display the products with the selected quantity before they decide to place the order.
 – Added icons to some activities
 – Added test cases for the MVP login for customerLogin
+- Added unique integers which autogenerate for order ID
+
 
 – Bug/ Error fixes
 -Fixed invalid or illegal input for passwords on customer registration page
