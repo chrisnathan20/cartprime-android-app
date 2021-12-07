@@ -150,7 +150,7 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
     holder.Price.setText("$ "+ item_.getPrice());
         holder.Price.setTextColor(Color.DKGRAY);
         holder.add_to_Cart.setBackgroundColor(Color.parseColor("#32cd32"));
-        holder.refresh.setBackgroundColor(Color.BLUE);
+        holder.refresh.setBackgroundColor(Color.parseColor("#87cefa"));
 
         holder.remove_from_cart.setBackgroundColor(Color.RED);
 
@@ -164,8 +164,8 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
     }
     else{holder.Available.setText("Out of Stock");
         holder.Available.setTextColor(Color.RED);
-        holder.add_to_Cart.setEnabled(false); // disables the button when no stock is there
-        holder.remove_from_cart.setEnabled(false);
+        //holder.add_to_Cart.setEnabled(false); // disables the button when no stock is there
+        //holder.remove_from_cart.setEnabled(false);
         holder.add_to_Cart.setBackgroundColor(Color.parseColor("#cdc9c9"));
         holder.howManyInCart.setText("0 in cart");
         holder.remove_from_cart.setBackgroundColor(Color.parseColor("#cdc9c9"));

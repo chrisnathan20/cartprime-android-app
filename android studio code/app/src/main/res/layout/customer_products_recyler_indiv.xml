@@ -98,24 +98,23 @@
                 android:id="@+id/deleteCart"
                 android:layout_width="114dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="3dp"
                 android:layout_marginBottom="4dp"
                 android:layout_weight="1"
                 android:paddingTop="5dp"
                 android:text="Delete From&#10;Cart"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/refresh_btn"
                 app:layout_constraintStart_toEndOf="@+id/Add_to_Cart" />
 
             <TextView
                 android:id="@+id/itemsInCart"
                 android:layout_width="87dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="144dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="hit refresh to unhide"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/deleteCart" />
 
@@ -134,14 +133,18 @@
 
             <Button
                 android:id="@+id/refresh_btn"
-                android:layout_width="129dp"
+                android:layout_width="114dp"
                 android:layout_height="48dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
                 android:layout_weight="1"
-                android:text="Refresh"
+                android:text="Quantity in Cart"
+                android:paddingTop="5dp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

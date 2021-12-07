@@ -23,9 +23,12 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -139,6 +142,7 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
             @Override
             public void onAddtoCart(int position) {
 
+                Toast myToast;
 
                 TextView how_many_in_Cart = findViewById(R.id.itemsInCart);
                 list.get(position); // GET THE ITEM AT THIS POSITION DONE
@@ -152,8 +156,10 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
                 else {
                     cartList.add(list.get(position)); // if we have enough we will add them here
                     int occurences = occurences_of_item_in_list(cartList,list.get(position));
-                    how_many_in_Cart.setText(occurences + " in cart");
-
+                    //how_many_in_Cart.setText(occurences + " in cart");
+                   myToast = Toast.makeText(CustomerStoreInfoActivity.this,null,Toast.LENGTH_SHORT);
+                    myToast.setText("Added 1 " + list.get(position).getName() + " Total is now: "+ occurences);
+                    myToast.show();
                 }
             }
 
@@ -172,7 +178,8 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
                 {
                     remove_one_from_arrayList(cartList,list.get(position));
                     int occurences2 = occurences_of_item_in_list(cartList,list.get(position));
-                    how_many_in_Cart.setText(occurences2 + " in cart");
+                   // how_many_in_Cart.setText(occurences2 + " in cart");
+                    Toast.makeText(CustomerStoreInfoActivity.this,"Deleted 1 " + list.get(position).getName() +" Total is now: "+occurences2,Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -181,7 +188,8 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
             public void onRefresh(int position) {
                 TextView how_many_in_Cart = findViewById(R.id.itemsInCart);
                 int occurences2 = occurences_of_item_in_list(cartList,list.get(position));
-                how_many_in_Cart.setText(occurences2 + " in cart");
+                Toast.makeText(CustomerStoreInfoActivity.this, list.get(position).getName() +" Total is now: "+occurences2,Toast.LENGTH_SHORT).show();
+                //how_many_in_Cart.setText(occurences2 + " in cart");
 
             }
 
@@ -207,6 +215,7 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
         alert.show();
 
     }
+
 
     public void displayAlertStock(String product_left, String product_name){
         AlertDialog.Builder builder = new AlertDialog.Builder(CustomerStoreInfoActivity.this);
@@ -282,5 +291,56 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
 
         }
         return count;
+    }
+
+    // adds button to toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.logout_button, menu);
+        return true;
+    }
+    // adds function to onclick button
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_name) {
+
+            // initialize alert
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder
+                    .setTitle("Logout")
+                    .setMessage("Are you sure you want to logout?")
+                    .setIcon(R.drawable.question_mark)
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // clicked no, do action
+                            String logoutStatus = "false";
+                        }
+                    })
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // clicked yes, do action
+                            String logoutStatus = "true";
+                            returnMainActivity(logoutStatus);
+                        }
+                    })
+                    .show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void returnMainActivity(String logoutStatus) {
+        if (logoutStatus.equals("true")) {
+            // start new activity
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }
