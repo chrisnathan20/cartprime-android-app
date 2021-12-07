@@ -98,9 +98,12 @@
                 android:id="@+id/deleteCart"
                 android:layout_width="114dp"
                 android:layout_height="48dp"
+                android:layout_marginStart="3dp"
                 android:layout_marginBottom="4dp"
                 android:layout_weight="1"
-                android:text="Delete From Cart"
+                android:paddingTop="5dp"
+                android:text="Delete From&#10;Cart"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/Add_to_Cart" />
 
@@ -111,19 +114,21 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="hit refresh to unhide"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/deleteCart" />
 
             <Button
                 android:id="@+id/Add_to_Cart"
-                android:layout_width="137dp"
-                android:layout_height="wrap_content"
+                android:layout_width="114dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="3dp"
-                android:layout_marginBottom="6dp"
-                android:paddingHorizontal="40dp"
+                android:layout_marginBottom="4dp"
                 android:paddingVertical="0dp"
-                android:text="Add to Cart"
+                android:text="Add to&#10;Cart"
+                android:paddingTop="5dp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 

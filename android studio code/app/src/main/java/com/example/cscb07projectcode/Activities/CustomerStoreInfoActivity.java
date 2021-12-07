@@ -145,7 +145,7 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
                 int how_many_can_be_added = list.get(position).getQuantity() - howManyProductsLeft(list.get(position), 0); // calcuates  how many in inventory - how many are already in the cart
                 // VALIDATION FOR QUANTITY ENTERED
                 if (how_many_can_be_added <= 0) {
-                    findViewById(R.id.Add_to_Cart).setBackgroundColor(Color.DKGRAY);
+                    findViewById(R.id.Add_to_Cart).setBackgroundColor(Color.parseColor("#ffffff"));
                     displayAlertStock(Integer.toString(howManyProductsLeft(list.get(position), 0)), list.get(position).getName());
                 }
 
