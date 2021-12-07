@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.cscb07projectcode.Item;
 import com.example.cscb07projectcode.OrderMetaData;
@@ -82,6 +83,10 @@ public class StoreOwnerOrdersActivity extends AppCompatActivity {
                                             orderMetaData.getStoreName());
                                         ordersList.add(newOrder);
                                     }
+                                }
+                                if(ordersList.isEmpty()){
+                                    TextView orderMsg = (TextView) findViewById(R.id.textView30);
+                                    orderMsg.setText("There are no pending orders.");
                                 }
                                 setAdapter();
                             }
