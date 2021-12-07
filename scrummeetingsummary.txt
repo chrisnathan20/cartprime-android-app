@@ -1,0 +1,99 @@
+Scrum Meeting
+
+Scrum Meeting 1 (November 19):
+- introduced each other
+- elected Christopher as the scrum master
+- decided to use GitHub over SVN
+- set up Discord server to communicate
+- read user stories and planned accordingly
+- agreed on daily 15-min scrum meeting schedule (every night at 8pm)
+
+Scrum Meeting 2 (November 20):
+- finalized working agreement
+- learned git, github, android studio and firebase realtime database
+- set up Github repository for the project
+
+Scrum Meeting 3 (November 21):
+- discussed progress on learning git, github, android studio and firebase realtime database
+- set up realtime database for the project
+- initial commit of android studio code code to github
+
+Scrum Meeting 4 (November 22):
+- discussed fundamental classes and its fields/methods (item, order, storeowner, customer, etc)
+- assigned tasks among ourselves which class to write
+- designed welcome, login and registration page
+- agreed to use github issues as a scrum board
+
+Scrum Meeting 5 (November 23):
+Completed implementation of fundamental classes
+- welcome, login and registration pages xml completed
+- read and understand lecture content regarding MVP
+- started doing mockito testing
+
+Scrum Meeting 6 (November 24):
+-added extra fields to login page
+-re-designed email to be username
+-designed database architecture for users
+-Completed mockito testing
+-Discussed about asynchronous function bug for model of storeowner login
+
+Scrum Meeting 7 (November 25):
+-discussed skeleton main activity for storeowner
+-discussed skeleton main activity for customer
+-Debugged storeowner mvp login to become fully functional
+-Discussed and assigned mockito testing for presenter
+
+Scrum Meeting 8 (November 26):
+-discussed new product activity for storeowner
+-researched best practice for displaying list of items
+-read up on list and recycler view
+-Implemented mvp login for customer
+
+Scrum Meeting 9 (November 27):
+-discussed edit product activity for storeowner and how to handle dependencies in incomplete orders
+-implemented recycler view by creating adapter class regarding list of products in a store
+
+Scrum Meeting 10 (November 28):
+-discussed best practice for hooking adapter to read data from realtime firebase database
+-Refactored edit product to be able to change key by checking for dependencies in orders
+-Discussed delete product for storeowner and how to handle dependencies in incomplete orders
+
+Scrum Meeting 11 (November 29):
+-came to an unanimous decision to add product field with authentication checks
+-Refactored delete product to be able to handle product occurrences in incomplete orders
+
+Scrum Meeting 12 (November 30):
+-brainstormed how to design database architecture for storing order data
+-reviewed code efficacy for recyclerview implementation to build list of orders
+-fixed async bugs
+-Discussed redesigning login and registration pages to prevent keyboard covering fields and buttons
+
+Scrum Meeting 13 (December 1):
+-concluded that orders should go into its own branch independent of customers/storeowners
+-hooked database to list of orders
+-Discussed about changing color of login alert depending on status of login attempt
+
+Scrum Meeting 14 (December 2):
+-communicated implementation of dynamic code to change text colour based on order status for store owners
+-Designed logo and decided on app name
+
+Scrum Meeting 15 (December 3):
+-researched and implemented menu button for global access to logout
+-Discussed and implemented app theme
+
+Scrum Meeting 16 (December 4):
+-Redesigned recycler view for customer product recycler
+-Redesigned buttons and icons to improve UI
+
+Scrum Meeting 17 (December 5):
+-reviewed codebase (removed deprecated methods, unnecessary code)
+-Refactored order history of customer page into 2 separate activities; complete and incomplete
+-Refactored order form display for customer from order form display of storeowner to show relevant information for the customer 
+
+Scrum Meeting 18 (December 6):
+- performed final debugging test run
+- finalized scrum meeting summary
+- finalized main tasks list
+- submitted project
+
+

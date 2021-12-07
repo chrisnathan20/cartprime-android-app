@@ -10,4 +10,4 @@ Christopher Nathanael
 Recurrent Standup Meetings everyday 8pm EST (10-15 minutes)
 
 Version control system: Git
-Information to include in commits: changes made (what is removed and added) for which user story
+Information to include in commits: changes made (what is removed and added)
