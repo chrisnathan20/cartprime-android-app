@@ -27,6 +27,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class CustomerStoreInfoActivity extends AppCompatActivity {
@@ -106,8 +108,10 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
                                 for (DataSnapshot newChild : snapshot.getChildren()) {
                                     Item item = newChild.getValue(Item.class);
                                     list.add(item);
+
                                 }
                                 recyclerView.setAdapter(myAdapter);
+
                             }
 
                             @Override
@@ -136,7 +140,7 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
             public void onAddtoCart(int position) {
 
 
-                TextView message = findViewById(R.id.storenameprod);
+                TextView how_many_in_Cart = findViewById(R.id.itemsInCart);
                 list.get(position); // GET THE ITEM AT THIS POSITION DONE
                 int how_many_can_be_added = list.get(position).getQuantity() - howManyProductsLeft(list.get(position), 0); // calcuates  how many in inventory - how many are already in the cart
                 // VALIDATION FOR QUANTITY ENTERED
@@ -147,12 +151,60 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
 
                 else {
                     cartList.add(list.get(position)); // if we have enough we will add them here
+                    int occurences = occurences_of_item_in_list(cartList,list.get(position));
+                    how_many_in_Cart.setText(occurences + " in cart");
+
                 }
+            }
+
+            @Override
+            public void onDelete(int position) {
+
+                TextView how_many_in_Cart = findViewById(R.id.itemsInCart);
+                int occurences = occurences_of_item_in_list(cartList,list.get(position));
+                if(occurences <= 0 )
+                {
+                    displayAlertDelete(list.get(position).getName());
+
+
+                }
+                else
+                {
+                    remove_one_from_arrayList(cartList,list.get(position));
+                    int occurences2 = occurences_of_item_in_list(cartList,list.get(position));
+                    how_many_in_Cart.setText(occurences2 + " in cart");
+                }
+
+            }
+
+            @Override
+            public void onRefresh(int position) {
+                TextView how_many_in_Cart = findViewById(R.id.itemsInCart);
+                int occurences2 = occurences_of_item_in_list(cartList,list.get(position));
+                how_many_in_Cart.setText(occurences2 + " in cart");
+
             }
 
 
         });
 
+
+
+    }
+    public void displayAlertDelete( String product_name){
+        AlertDialog.Builder builder = new AlertDialog.Builder(CustomerStoreInfoActivity.this);
+
+        builder.setTitle(product_name + " not present in cart");
+        builder.setMessage(product_name +  " is not in your cart, we cannot delete it ");
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
 
     }
 
@@ -218,5 +270,17 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
             x.add(to_Add);
         }
         return x;
+    }
+
+    public int occurences_of_item_in_list(ArrayList<Item>itemList,Item item)
+    {
+        int count  = 0;
+        for(Item i: itemList)
+        {
+            if(i.equals(item))
+            {count++;}
+
+        }
+        return count;
     }
 }

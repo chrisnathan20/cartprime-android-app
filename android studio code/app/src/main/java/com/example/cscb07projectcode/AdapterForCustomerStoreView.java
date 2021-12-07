@@ -25,6 +25,8 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
     public interface onItemClickListener{
         void onItemClick(int position);
         void onAddtoCart(int position);
+        void onDelete(int position);
+        void onRefresh(int position);
 
 
     }
@@ -48,20 +50,23 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
         TextView Price;
         TextView Available;
         Button add_to_Cart;
-        Button add_product;
-        Button remove_product;
-        EditText quantity;
+        Button refresh;
+        Button remove_from_cart;
+
+       TextView howManyInCart;
 
         // Constructors
         public MyViewHolder(@NonNull View itemView,onItemClickListener listener) {
             super(itemView);
             Name = itemView.findViewById(R.id.productName);
-
+            refresh = itemView.findViewById(R.id.refresh_btn);
             Description = itemView.findViewById(R.id.productDescription);
             Price = itemView.findViewById(R.id.productPrice);
             Available = itemView.findViewById(R.id.productAvailable);
             Unit = itemView.findViewById(R.id.productUnit);
             add_to_Cart = itemView.findViewById(R.id.Add_to_Cart);
+            remove_from_cart = itemView.findViewById(R.id.deleteCart);
+            howManyInCart = itemView.findViewById(R.id.itemsInCart);
            // add_product = itemView.findViewById(R.id.add1);
            // remove_product = itemView.findViewById(R.id.delete1);
 
@@ -96,8 +101,33 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
                 }
             });
 
+            remove_from_cart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null)
+                    {
+                        int position = getBindingAdapterPosition();
+                        if(position!=RecyclerView.NO_POSITION)
+                        {
+                            listener.onDelete(position);
+                        }
+                    }
+                }
+            });
 
-
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener != null)
+                {
+                    int position = getBindingAdapterPosition();
+                    if(position!=RecyclerView.NO_POSITION)
+                    {
+                        listener.onRefresh(position);
+                    }
+                }
+            }
+        });
 
 
         }
@@ -119,17 +149,27 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
 
     holder.Price.setText("$ "+ item_.getPrice());
         holder.Price.setTextColor(Color.DKGRAY);
+        holder.add_to_Cart.setBackgroundColor(Color.GREEN);
+        holder.refresh.setBackgroundColor(Color.BLUE);
 
+        holder.remove_from_cart.setBackgroundColor(Color.RED);
 
     if(item_.getAvailable()){
         holder.Available.setText("Available");
     holder.Available.setTextColor(Color.GREEN);
+
+   // holder.howManyInCart.setText("0 in Cart");
 
         //holder.quantity.setTextSize;
     }
     else{holder.Available.setText("Out of Stock");
         holder.Available.setTextColor(Color.RED);
         holder.add_to_Cart.setEnabled(false); // disables the button when no stock is there
+        holder.remove_from_cart.setEnabled(false);
+        holder.add_to_Cart.setBackgroundColor(Color.DKGRAY);
+        holder.howManyInCart.setText("0 in cart");
+        holder.remove_from_cart.setBackgroundColor(Color.DKGRAY);
+
        // holder.quantity.setEnabled(false);
     }
 
@@ -142,5 +182,16 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
     @Override
     public int getItemCount() {
         return list.size();
+    }
+    public int occurences_of_item_in_list(ArrayList<Item>itemList,Item item)
+    {
+        int count  = 0;
+        for(Item i: itemList)
+        {
+            if(i.equals(item))
+            {count++;}
+
+        }
+        return count;
     }
 }
