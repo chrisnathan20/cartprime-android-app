@@ -23,3 +23,60 @@ Things we have done so far:
 - implement registeration functionality for customer
 
 Split it into 7 days of work
+
+
+Scrum Meeting 1 (November 19):
+- introduced each other
+- elected Christopher as the scrum master
+- decide to use GitHub for SVN
+- set up Discord server to communicate
+- agreed on daily 15-min scrum meeting schedule (everynight at 8pm)
+
+Scrum Meeting 2 (November 20):
+- finalized working agreement
+- Agreed that learning git, github, android studio and firebase realtime database is the current main priority
+- set up Github repository for the project
+
+Scrum Meeting 3 (November 21):
+- discussed progress on learning git, github, android studio and firebase realtime database
+- set up realtime database for the project
+- initial commit of android studio code code to github
+
+Scrum Meeting 4 (November 22):
+- designed fundamental classes and its fields/methods (item, order, storeowner, customer, etc)
+- assigned tasks among ourselves which class to write
+- designed login and registeration page
+
+Scrum Meeting 5 (November 23):
+
+Scrum Meeting 6 (November 24):
+
+Scrum Meeting 7 (November 25):
+
+Scrum Meeting 8 (November 26):
+
+Scrum Meeting 9 (November 27):
+
+Scrum Meeting 10 (November 28):
+
+Scrum Meeting 11 (November 29):
+
+Scrum Meeting 12 (November 30):
+
+Scrum Meeting 13 (December 1):
+
+Scrum Meeting 14 (December 2):
+
+Scrum Meeting 15 (December 3):
+
+Scrum Meeting 16 (December 4):
+
+Scrum Meeting 17 (December 5):
+
+Scrum Meeting 18 (December 6):
+- final test run
+- finalized submission
+
+
+
+
