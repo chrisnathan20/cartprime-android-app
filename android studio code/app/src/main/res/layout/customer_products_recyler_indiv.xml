@@ -19,92 +19,126 @@
         android:padding="10dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/productName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="360dp"
+            android:layout_height="173dp">
 
-            android:text="Product Name"
-            android:textColor="@color/common_google_signin_btn_text_light"
-            android:textSize="14sp"
-            android:textStyle="bold"></TextView>
-
-        <TextView
-            android:id="@+id/productDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="Product Name"
-            android:textColor="@color/common_google_signin_btn_text_light"
-            android:textSize="14sp"
-            android:textStyle="bold"></TextView>
-
-        <TextView
-            android:id="@+id/productPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="Product Name"
-            android:textColor="@color/common_google_signin_btn_text_light"
-            android:textSize="14sp"
-            android:textStyle="bold"></TextView>
-
-        <TextView
-            android:id="@+id/productUnit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="Product Name"
-            android:textColor="@color/common_google_signin_btn_text_light"
-            android:textSize="14sp"
-            android:textStyle="bold"></TextView>
-
-        <TextView
-            android:id="@+id/productAvailable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="Product Name"
-            android:textColor="@color/common_google_signin_btn_text_light"
-            android:textSize="14sp"
-            android:textStyle="bold"></TextView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="82dp"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/refresh_btn"
-                android:layout_width="129dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:text="Refresh" />
-
-            <Button
-                android:id="@+id/Add_to_Cart"
-                android:layout_width="137dp"
+            <TextView
+                android:id="@+id/productPrice"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="40dp"
-                android:paddingVertical="0dp"
-                android:text="Add to Cart" />
+
+                android:layout_marginStart="16dp"
+                android:text="Product Name"
+                android:textColor="@color/common_google_signin_btn_text_light"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/productUnit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productDescription"></TextView>
+
+            <TextView
+                android:id="@+id/productAvailable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="16dp"
+                android:text="Product Name"
+                android:textColor="@color/common_google_signin_btn_text_light"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/Add_to_Cart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productUnit"></TextView>
+
+            <TextView
+                android:id="@+id/productUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="16dp"
+                android:text="Product Name"
+                android:textColor="@color/common_google_signin_btn_text_light"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/productAvailable"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productPrice"></TextView>
+
+            <TextView
+                android:id="@+id/productDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="16dp"
+                android:text="Product Name"
+                android:textColor="@color/common_google_signin_btn_text_light"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/productPrice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productName"></TextView>
+
+            <TextView
+                android:id="@+id/productName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="11dp"
+                android:text="Product Name"
+                android:textColor="@color/common_google_signin_btn_text_light"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/productDescription"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></TextView>
+
+            <Button
+                android:id="@+id/deleteCart"
+                android:layout_width="114dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:text="Delete From Cart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Add_to_Cart" />
 
             <TextView
                 android:id="@+id/itemsInCart"
                 android:layout_width="87dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
                 android:layout_weight="1"
-                android:text="hit refresh to unhide" />
+                android:text="hit refresh to unhide"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/deleteCart" />
 
             <Button
-                android:id="@+id/deleteCart"
-                android:layout_width="116dp"
+                android:id="@+id/Add_to_Cart"
+                android:layout_width="137dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Delete From Cart" />
+                android:layout_marginStart="3dp"
+                android:layout_marginBottom="6dp"
+                android:paddingHorizontal="40dp"
+                android:paddingVertical="0dp"
+                android:text="Add to Cart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        </LinearLayout>
+            <Button
+                android:id="@+id/refresh_btn"
+                android:layout_width="129dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:text="Refresh"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </LinearLayout>
