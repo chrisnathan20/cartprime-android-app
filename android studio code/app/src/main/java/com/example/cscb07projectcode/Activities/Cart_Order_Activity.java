@@ -59,6 +59,16 @@ Button SendOrder;
         String[] x = getIntent().getStringArrayExtra("strItemsList"); // RETRIVE AN ARRAY OF ITEMS AS STRINGS AND WE GOTTA MODIFY THAT INTO AN ARRAY LIST FOR RECYLER VIEW
         TextView order_placed = (TextView) findViewById(R.id.textView26);
         PopulateList(x);
+        Button cont;
+        cont = findViewById(R.id.continue_shopping);
+        cont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
 
    // SUCCESSFULLY ABLE TO POPULATE THE ARRAY LIST WITH PROPER QUANTITY
         recyclerView = findViewById(R.id.recycler_cart);
@@ -92,6 +102,12 @@ Button SendOrder;
         SendOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(list.size() == 0 )
+                {
+                    displayNullCart();
+                }
+               else {
                 DatabaseReference mDatabase  = FirebaseDatabase.getInstance().getReference();
                 Map<String, OrderMetaData> new_order = new HashMap<>();
                order_place.generateOrderId();
@@ -114,7 +130,7 @@ Button SendOrder;
                 mDatabase.child("orders").child("list_of_orders").child(id).child("itemsList").setValue(new_list);
                    order_placed.setText("Order Placed Successfully");
 
-                   displaySuccessAlert();
+                   displaySuccessAlert(); }
 
             }
         });
@@ -131,6 +147,24 @@ Button SendOrder;
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 backtomain();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
+
+    public void displayNullCart(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Cart_Order_Activity.this);
+
+        builder.setTitle("Order Has Not Been Placed");
+        builder.setMessage("Cannot send an empty order, please add products");
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
             }
         });
         AlertDialog alert = builder.create();
