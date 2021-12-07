@@ -23,6 +23,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -289,5 +291,56 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
 
         }
         return count;
+    }
+
+    // adds button to toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.logout_button, menu);
+        return true;
+    }
+    // adds function to onclick button
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_name) {
+
+            // initialize alert
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder
+                    .setTitle("Logout")
+                    .setMessage("Are you sure you want to logout?")
+                    .setIcon(R.drawable.question_mark)
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // clicked no, do action
+                            String logoutStatus = "false";
+                        }
+                    })
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // clicked yes, do action
+                            String logoutStatus = "true";
+                            returnMainActivity(logoutStatus);
+                        }
+                    })
+                    .show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void returnMainActivity(String logoutStatus) {
+        if (logoutStatus.equals("true")) {
+            // start new activity
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }
