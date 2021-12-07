@@ -164,8 +164,8 @@ public class AdapterForCustomerStoreView extends RecyclerView.Adapter<AdapterFor
     }
     else{holder.Available.setText("Out of Stock");
         holder.Available.setTextColor(Color.RED);
-        holder.add_to_Cart.setEnabled(false); // disables the button when no stock is there
-        holder.remove_from_cart.setEnabled(false);
+        //holder.add_to_Cart.setEnabled(false); // disables the button when no stock is there
+        //holder.remove_from_cart.setEnabled(false);
         holder.add_to_Cart.setBackgroundColor(Color.parseColor("#cdc9c9"));
         holder.howManyInCart.setText("0 in cart");
         holder.remove_from_cart.setBackgroundColor(Color.parseColor("#cdc9c9"));

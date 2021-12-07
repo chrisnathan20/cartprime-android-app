@@ -115,7 +115,6 @@
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="hit refresh to unhide"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/deleteCart" />
 
@@ -134,12 +133,12 @@
 
             <Button
                 android:id="@+id/refresh_btn"
-                android:layout_width="129dp"
-                android:layout_height="48dp"
+                android:layout_width="127dp"
+                android:layout_height="72dp"
                 android:layout_marginTop="9dp"
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
-                android:text="Refresh"
+                android:text="Show Quantity in Cart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

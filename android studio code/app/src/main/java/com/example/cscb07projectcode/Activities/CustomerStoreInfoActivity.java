@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -139,6 +140,7 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
             @Override
             public void onAddtoCart(int position) {
 
+                Toast myToast;
 
                 TextView how_many_in_Cart = findViewById(R.id.itemsInCart);
                 list.get(position); // GET THE ITEM AT THIS POSITION DONE
@@ -152,8 +154,10 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
                 else {
                     cartList.add(list.get(position)); // if we have enough we will add them here
                     int occurences = occurences_of_item_in_list(cartList,list.get(position));
-                    how_many_in_Cart.setText(occurences + " in cart");
-
+                    //how_many_in_Cart.setText(occurences + " in cart");
+                   myToast = Toast.makeText(CustomerStoreInfoActivity.this,null,Toast.LENGTH_SHORT);
+                    myToast.setText("Added 1 " + list.get(position).getName() + " Total is now: "+ occurences);
+                    myToast.show();
                 }
             }
 
@@ -172,7 +176,8 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
                 {
                     remove_one_from_arrayList(cartList,list.get(position));
                     int occurences2 = occurences_of_item_in_list(cartList,list.get(position));
-                    how_many_in_Cart.setText(occurences2 + " in cart");
+                   // how_many_in_Cart.setText(occurences2 + " in cart");
+                    Toast.makeText(CustomerStoreInfoActivity.this,"Deleted 1 " + list.get(position).getName() +" Total is now: "+occurences2,Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -181,7 +186,8 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
             public void onRefresh(int position) {
                 TextView how_many_in_Cart = findViewById(R.id.itemsInCart);
                 int occurences2 = occurences_of_item_in_list(cartList,list.get(position));
-                how_many_in_Cart.setText(occurences2 + " in cart");
+                Toast.makeText(CustomerStoreInfoActivity.this, list.get(position).getName() +" Total is now: "+occurences2,Toast.LENGTH_SHORT).show();
+                //how_many_in_Cart.setText(occurences2 + " in cart");
 
             }
 
@@ -207,6 +213,7 @@ public class CustomerStoreInfoActivity extends AppCompatActivity {
         alert.show();
 
     }
+
 
     public void displayAlertStock(String product_left, String product_name){
         AlertDialog.Builder builder = new AlertDialog.Builder(CustomerStoreInfoActivity.this);
