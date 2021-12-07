@@ -196,6 +196,7 @@ Button SendOrder;
                 String[]arr = s.split(";");
                 int i =0;
                Item to_Add  = new Item(arr[0],arr[1],Double.parseDouble(arr[2]), Integer.parseInt(arr[3]),arr[4]);
+
                 //to_Add.setQuantity(1);
                if(x.contains(to_Add))
                 {

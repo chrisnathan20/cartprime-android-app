@@ -1,12 +1,9 @@
 package com.example.cscb07projectcode;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
+import java.util.Objects;
 
-public class Item implements Parcelable {
+public class Item  {
 
     private String name;
     private String description;
@@ -68,6 +65,7 @@ public class Item implements Parcelable {
 
 
 
+
     @Override
     public String toString() {
         String x = this.name + ";" + this.description + ";" + this.price + ";" + this.quantity + ";" + this.unit;
@@ -75,78 +73,21 @@ public class Item implements Parcelable {
         return x;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null)
-            return false;
-        if (o.getClass() != this.getClass())
-            return false;
-        Item obj = (Item) o;
-        if (obj.getName() != this.name &&
-                obj.getDescription() != this.description &&
-                obj.getPrice() != this.price
-                )
-            return false;
-        return true;
-    }
-
     public boolean getAvailable()
     {
         return this.quantity >0;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Double.compare(item.price, price) == 0 && name.equals(item.name) && description.equals(item.description) && unit.equals(item.unit);
+    }
+
+    @Override
     public int hashCode() {
-        int x = 0;
-        int p = (int) this.price;
-        x = this.quantity + p ;
-        return x;
+        return Objects.hash(name, description, price, unit);
     }
-
-    public Item(Parcel in)
-    {
-        name =in.readString();
-        description = in.readString();
-        quantity = in.readInt();
-        price = in.readDouble();
-        unit = in.readString();
-       // available = in.readBoolean();
-
-    }
-
-    public static DiffUtil.ItemCallback<Item> itemItemCallback = new DiffUtil.ItemCallback<Item>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull Item oldItem, @NonNull Item newItem) {
-            return oldItem.getDescription().equals(newItem.getDescription());
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull Item oldItem, @NonNull Item newItem) {
-            return oldItem.equals(newItem);
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeInt(quantity);
-        dest.writeDouble(price);
-        dest.writeString(description);
-        dest.writeString(unit);
-    }
-
-    public static final Parcelable.Creator<Item> CREATOR = new Parcelable.Creator<Item>() {
-        public Item createFromParcel(Parcel in) {
-            return new Item(in);
-        }
-
-        public Item[] newArray(int size) {
-            return new Item[size];
-
-        }
-    };
 }
