@@ -115,7 +115,7 @@ public class CustomerMainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                 String [] store_description = adapter.getItem(position).split(" ");
+                 String [] store_description = adapter.getItem(position).split("Description");
                  String storeName = store_description[0];
                  storeName = storeName.trim();
 
