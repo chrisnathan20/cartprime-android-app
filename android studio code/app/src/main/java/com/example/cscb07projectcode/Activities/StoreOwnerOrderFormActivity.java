@@ -1,5 +1,7 @@
 package com.example.cscb07projectcode.Activities;
 
+import static java.lang.Math.round;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -125,7 +127,7 @@ public class StoreOwnerOrderFormActivity extends AppCompatActivity {
                                 setAdapter();
                                 // update textview wtih total price value and change colour to green
                                 TextView priceView = (TextView) findViewById(R.id.textView22);
-                                priceView.setText("$" + String.valueOf(totalPrice));
+                                priceView.setText("$" + String.valueOf(round((totalPrice*100.0))/100.0));
                                 priceView.setTextColor(Color.parseColor("#28B463"));
                             }
 
