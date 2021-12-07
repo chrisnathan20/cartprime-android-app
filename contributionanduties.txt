@@ -1,0 +1,126 @@
+Christopher:
+- initialized github repository
+- initialized and added realtime database to app
+- made Store class
+- define LoginContract interface for MVP login
+- added/coded Model, View for StoreOwner Login
+- added/coded Presenter, used for both StoreOwner and Customer Login
+- added/coded Model, View for Customer Login
+- added/coded Alert messages for illegal and successful login attempt with according text color
+- defined product edit feature to handle dependencies in incomplete orders by having 2 different types of product edit; general change edit and quantity change edit
+- added/coded new order extraction class to handle hashmap extraction of firebase database
+- defined product delete feature to handle dependencies in incomplete orders
+- added/coded complete order feature that removes item stock in store according to amount in order
+- added/coded product edit feature that changes product information with implemented restrictions to some field
+- redesigned 
+- refactored 'submit order successfully' to send user back to customer main page
+- coded incomplete orders page for customer which displays info appropriately to user
+- coded complete orders page for customer which displays info appropriately to user
+- implemented flexible store owner header that displays messages according to which store being visited
+- added/coded alert messages for "-storename- products" page when adding products to cart
+
+Bugs/Fixes
+- redesigned login and registration pages to prevent fields and button being covered by keyboard
+- redesigned presenter and model class of mvp login for both customer and storeowner due to asynchronous function returning default values for booleans thus always returning false
+- worked around classes with arraylists returning hashmap causing getters and setters to work with null by defining a new class specifically for extraction
+- completing stock encountered null stock update issues due to product being deleted, refactored product deletion feature to handle product occurrence in incomplete order dependencies
+
+
+
+Harrick
+-added code/xml to login activity for store owner
+-added code/xml to main activity for store owner
+-added code/xml to activity for store owner’s product edit
+-added code/xml to activity for store owner’s product add
+-added code/xml to activity for store owner’s current (e.g. incomplete) orders
+-added code/xml to activity for store owner’s completed orders
+-added code/xml to login activity for customer
+-added code/xml to main activity for customer
+-added code/xml to activity showing list of stores for customers 
+-added code/xml to activity for customer’s view of a store’s list of products
+-added code/xml to activity for customer’s cart
+-added test cases for presenter
+
+bugs/fixes
+-re-factor customer registration to use a seperate login activity/xml
+-fixed alert notification showing up after registration
+-fixed workflow for intent null pointer error
+-fixed async issue with database connection for fetching data
+
+features
+-designed code for recyclerView
+-added code for logout menu
+-hooked into realtime firebase db for store owner pages for read/write
+
+
+
+Varun 
+– Created the Item Class
+– Created the Order Class
+– Modified the Store Class
+– Modified the Customer Class
+– Created the CustomerMainActivity java and xml
+– Created the CustomerStoreInfoActivity java and xml
+– Created Cart_Order_Activity java and xml
+– Added the ability to view orders both completed and incomplete for Customers
+– Created CustomerOrderHistory
+– Created AdapterForCustomerStoreView to display the products of a store (from the    database)to a customer with the ability to add/delete stuff onto their cart
+– Created the CartItemAdapter to display the products with the selected quantity before they decide to place the order.
+– Added icons to some activities
+– Added test cases for the MVP login for customerLogin
+
+– Bug/ Error fixes
+-Fixed invalid or illegal input for passwords on customer registration page
+-Fixed bugs with recylerview while fetching data from the database, null pointer errors
+-Fixed errors with sending an arraylist with an intent using parcelable, when that got really buggy, converted it into a string array(encoded) and then at destination activity sliced the strings to make it back into the ArrayList<Item> (decoded)
+-Fixed an error with the database where every order that was placed was overwriting the whole orders section of the database by using HashSets<> more carefully and at the right place.
+-Ensured clicking on the listview would send customers to desired store instead of crashing the application
+-Replaced a textView field for displaying messages of successfully added/deleted items or how many of one item in the cart because it was incoherent with 3 different toast messages.
+-Changed the toString() for item for my encoding and decoding from before to avoid bugs with the delimiter. Added ; as a delimiter to split strings properly to recreate items.
+-Since reference type objects are linked and sometimes modifying them with different names but same references causes issues, used an ArrayList with repeated items and then in the next activity filtered their quantity with the number of occurrences.
+-Added Dependencies to try and use databinding but when that did not work had to completely remove and delete the design I had made.
+-While extracting the listview.selectedItem.toString() was having trouble finding it in the database, realised there were whitespaces and garbage residual data, used String.trim() to get rid of it.
+
+
+
+
+
+	
+Shannon
+- made customer class
+-mockito testing
+-regex username authentication
+-added registration functionality for customer
+-designed logo
+-added logo to main activity
+-redesigned theme from default
+-redesigned action bars and changed activity titles
+-created custom round button and added xml to resource file
+-changed buttons on all activities from default to match theme
+-redesigned storeowner main activity, added custom task bar with 3 buttons
+-redesigned customer main activity, added custom task bar with 3 buttons
+-created custom buttons for each task bar with icon
+-Created alert popup message for illegal republish product in edit product activity
+-Created alert popup message for illegal delete product in edit product activity
+-Created alert popup message for illegal order completion in store owner order form activity
+-redesigned recycler view for customer product recycler
+-redesigned listview for customer
+-changed input type for username to account for firebase character restriction
+-added icons to textview for customer login page 
+-added icons to textview for storeowner login page
+-added icons for customer registration
+-added icons for storeowner registration
+-linked activities together with back button
+
+Bugs/fixes
+-Worked around asynchronous functions when stubbing for mockito testing by adding boolean array for testing indicator
+-Redesigned login and registration activities to prevent fields from being covered by keyboards
+-Changed overlay status to false to prevent overlapping of textview and action bars
+-Changed icons and buttons and colors to improve readability and ease of use
+-Added constraints to prevent elements from shifting
+-Created alert popup messages for republishing, delete  and complete order buttons to prevent illegal republishing, deleting and completion of orders
+
+
+
+
+
